@@ -1,0 +1,16 @@
+{
+  "schemaVersion": 1,
+  "templates": [
+    { "name": "POLICY_BOUNDARY.md", "folder": "Policy", "required_vars": [], "optional_vars": [] },
+    { "name": "policy.config.sample", "folder": "Policy", "required_vars": [], "optional_vars": [] },
+    { "name": "TAG_POLICY.md", "folder": "Tags", "required_vars": [], "optional_vars": [] },
+    { "name": "STEWARDSHIP_CHECKLIST.md", "folder": "Stewardship", "required_vars": [], "optional_vars": [] },
+    { "name": "FEEDBACK_LOG.md", "folder": "Stewardship", "required_vars": [], "optional_vars": [] },
+    { "name": "UX_MAINTENANCE.md", "folder": "UX", "required_vars": [], "optional_vars": [] },
+    { "name": "UX_STYLE_GUIDE.md", "folder": "UX", "required_vars": ["FRAMEWORK"], "optional_vars": [] },
+    { "name": "UX_CHANGELOG.md", "folder": "UX", "required_vars": [], "optional_vars": [] },
+    { "name": "UX_TOKENS.md", "folder": "UX", "required_vars": [], "optional_vars": [] },
+    { "name": "github_tools-only_workflow.yml", "folder": "CI", "required_vars": [], "optional_vars": [] },
+    { "name": "README.md", "folder": "Handoff", "required_vars": [], "optional_vars": [] }
+  ]
+}

@@ -1,0 +1,8 @@
+# Sample policy config
+profile: Public
+allowLiveAutomation: false
+capabilities:
+  - MinigameCatalog
+  - OverlayWidgets: disabled
+notes: >
+  This is a sample policy stub. Adjust only in a controlled branch and keep gold immutable.

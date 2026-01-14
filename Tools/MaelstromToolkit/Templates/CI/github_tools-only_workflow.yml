@@ -1,0 +1,27 @@
+name: MaelstromToolkit Tools Gate
+
+on:
+  push:
+    paths:
+      - 'MaelstromToolkit/**'
+      - '.github/workflows/maelstrom_toolkit.yml'
+  pull_request:
+    paths:
+      - 'MaelstromToolkit/**'
+      - '.github/workflows/maelstrom_toolkit.yml'
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: '8.0.x'
+      - name: Restore
+        run: dotnet restore MaelstromToolkit/MaelstromToolkit.csproj
+      - name: Build
+        run: dotnet build MaelstromToolkit/MaelstromToolkit.csproj -c Debug
+      - name: Selftest
+        run: dotnet run --project MaelstromToolkit/MaelstromToolkit.csproj -- selftest

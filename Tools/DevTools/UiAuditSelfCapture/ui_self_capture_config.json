@@ -1,0 +1,9 @@
+{
+  "OutputDir": "ui-audit/ui_audit_pack_selfcapture",
+  "Scales": [
+    1,
+    1.25,
+    1.5,
+    1.75
+  ]
+}
