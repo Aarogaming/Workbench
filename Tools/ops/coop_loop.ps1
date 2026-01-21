@@ -35,22 +35,22 @@ if ($Watch) {
     Read-Host "Press Enter when ready"
 }
 
-Write-Host "2) Generating handoff..." -ForegroundColor Cyan
-& "$PSScriptRoot/handoff_from_codex.ps1" $InputPath
+Write-Host "2) Generating guild..." -ForegroundColor Cyan
+& "$PSScriptRoot/guild_from_codex.ps1" $InputPath
 $exitCode = $LASTEXITCODE
 if ($exitCode -ne 0) {
-    Write-Host "handoff_from_codex failed (exit $exitCode)" -ForegroundColor Red
+    Write-Host "guild_from_codex failed (exit $exitCode)" -ForegroundColor Red
     exit $exitCode
 }
 
-$handoffPath = Resolve-Path -LiteralPath "HANDOFF.md"
-Write-Host "HANDOFF.md copied to clipboard. Paste into ChatGPT now." -ForegroundColor Green
-Write-Host "HANDOFF path: $handoffPath"
+$guildPath = Resolve-Path -LiteralPath "GUILD.md"
+Write-Host "GUILD.md copied to clipboard. Paste into ChatGPT now." -ForegroundColor Green
+Write-Host "GUILD path: $guildPath"
 
 try {
-    Invoke-Item (Split-Path -Parent $handoffPath)
+    Invoke-Item (Split-Path -Parent $guildPath)
 } catch { }
 
-Write-Host "Next: When you get a new Codex prompt, run ./ops/handoff_to_codex.ps1 and append the footer after your prompt." -ForegroundColor Yellow
+Write-Host "Next: When you get a new Codex prompt, run ./ops/guild_to_codex.ps1 and append the footer after your prompt." -ForegroundColor Yellow
 
 exit 0

@@ -5,7 +5,7 @@ import os
 import sys
 import time
 import threading
-from typing import List
+from typing import Any, List
 
 import pyautogui
 import pygetwindow as pgw
@@ -18,12 +18,14 @@ from gui import MessageBox
 from properties import separate
 
 
-def setup_game(locations: List[int], snacks: List[int], resolution: str) -> DG.MouseMover:
+def setup_game(
+    locations: List[int], snacks: List[int], resolution: str
+) -> DG.MouseMover:
     MM = DG.MouseMover(locations, snacks, resolution)
     KP = DG.KeyboardPresser()
 
     # press 'X' to play
-    KP.press_key('x')
+    KP.press_key("x")
 
     # choose location from user input
     MM.choose_and_moveto_location()
@@ -76,9 +78,9 @@ def setup(resolution: str) -> int:
     DG.properties.load_file(resolution=resolution)
 
     try:
-        possible_windows = pgw.getWindowsWithTitle('Wizard101')
+        possible_windows = pgw.getWindowsWithTitle("Wizard101")
         for window in possible_windows:
-            if window.title == 'Wizard101':
+            if window.title == "Wizard101":
                 w101_window = window
                 break
         else:
@@ -86,7 +88,7 @@ def setup(resolution: str) -> int:
 
         sizeX, sizeY = w101_window.size
         width, height = sizeX - offsetX, sizeY - offsetY
-        actual_width, actual_height = separate(resolution, delimiter='x')
+        actual_width, actual_height = separate(resolution, delimiter="x")
 
         if abs(int(actual_width) - width) >= EPSILON:
             return 1
@@ -96,8 +98,10 @@ def setup(resolution: str) -> int:
         w101_window.activate()
         w101_window.moveTo(0, 0)
     except IndexError:
-        MessageBox(title='Game Not Found',
-                   message='Could not find Wizard101 client running on your computer.').show_error()
+        MessageBox(
+            title="Game Not Found",
+            message="Could not find Wizard101 client running on your computer.",
+        ).show_error()
         return 2
 
     return 0
@@ -105,6 +109,7 @@ def setup(resolution: str) -> int:
 
 def main() -> None:
     from gui import Configure, Playing
+
     # listen for keyboard inputs
     threading.Thread(target=key_listener, daemon=True).start()
 
@@ -116,28 +121,35 @@ def main() -> None:
         # overwrite file if user chooses to save current settings
         if Globals.save_settings:
             Globals.save_settings = False
-            with open('configure.txt', 'w', encoding='utf-8') as fp:
-                fp.writelines([f'{str(setting)}\n' for setting in Configure.configure_settings])
+            with open("configure.txt", "w", encoding="utf-8") as fp:
+                fp.writelines(
+                    [f"{str(setting)}\n" for setting in Configure.configure_settings]
+                )
             logging.info("Finished saving settings to configure.txt")
 
         if not any(locations):
-            MessageBox(title='Invalid Selection',
-                       message='Select at least one area to play').show_info()
+            MessageBox(
+                title="Invalid Selection", message="Select at least one area to play"
+            ).show_info()
             continue
         return_value = setup(resolution)
 
         # save configuration settings to reuse after the script has finished playing
         if return_value in [1, 2]:
             if return_value == 1:
-                MessageBox(title='Invalid Resolution',
-                           message='Game resolution and selected resolution do not match up.').show_error()
+                MessageBox(
+                    title="Invalid Resolution",
+                    message="Game resolution and selected resolution do not match up.",
+                ).show_error()
             continue
         try:
             DG.load_application(resolution)
         except Exception as exception:
             logging.error(repr(exception))
-            MessageBox(title='Application Load Fail',
-                       message='Failed to load application, now closing.').show_error()
+            MessageBox(
+                title="Application Load Fail",
+                message="Failed to load application, now closing.",
+            ).show_error()
             return
 
         logging.debug(f"{num_games = }")
@@ -146,7 +158,7 @@ def main() -> None:
             Globals.game_finished = False
             MM = setup_game(locations, snacks, resolution)
 
-            logging.info('running Playing() in main')
+            logging.info("running Playing() in main")
             play = Playing(resolution, num_games, game_index)
 
             progress_thread = threading.Thread(target=play_game, daemon=False)
@@ -155,13 +167,12 @@ def main() -> None:
 
             play.mainloop()
             progress_thread.join()  # wait for thread to finish before continuing
-            logging.debug(
-                f'{progress_thread.is_alive() = }\t{play.finished = }')
-            logging.info('finishing Playing().mainloop()')
+            logging.debug(f"{progress_thread.is_alive() = }\t{play.finished = }")
+            logging.info("finishing Playing().mainloop()")
 
             # execute feed snack only if user did not early stop
             if play.finished:
-                logging.info('play was finished, running post game movement')
+                logging.info("play was finished, running post game movement")
                 finish_game(MM, resolution)
                 time.sleep(2)  # give time for animation
             else:
@@ -169,10 +180,10 @@ def main() -> None:
                 break
 
 
-def on_press(key: any) -> None:
-    logging.trace('Key %s pressed' % key, stacklevel=3)
+def on_press(key: Any) -> None:
+    logging.trace("Key %s pressed" % key, stacklevel=3)
     try:
-        if key.char == 'q':
+        if key.char == "q":
             Globals.q_pressed = True
             logging.debug("Quitting application because q key pressed")
             os._exit(1)
@@ -191,8 +202,10 @@ def check_running_instance() -> None:
     app_title = "W101 Pet Dance"
     if not pgw.getWindowsWithTitle(app_title):
         return
-    MessageBox(title='Duplicate application',
-               message='A dance bot instance is already running on your computer').show_error()
+    MessageBox(
+        title="Duplicate application",
+        message="A dance bot instance is already running on your computer",
+    ).show_error()
     raise RuntimeError("An instance is already running.")
 
 

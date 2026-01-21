@@ -40,7 +40,7 @@ API_VER = "2022-11-28"
 
 
 def utc_iso() -> str:
-    return dt.datetime.utcnow().isoformat() + "Z"
+    return dt.datetime.now(dt.timezone.utc).isoformat().replace("+00:00", "Z")
 
 
 def load_json(path: Path) -> Any:
@@ -178,7 +178,7 @@ def should_use_cache(entry: Dict[str, Any]) -> bool:
         fetched = dt.datetime.fromisoformat(ts.replace("Z", "+00:00"))
     except Exception:
         return False
-    age = (dt.datetime.utcnow() - fetched.replace(tzinfo=None)).total_seconds()
+    age = (dt.datetime.now(dt.timezone.utc) - fetched).total_seconds()
     return age < TTL_SECONDS
 
 

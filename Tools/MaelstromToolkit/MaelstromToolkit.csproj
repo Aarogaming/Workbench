@@ -10,7 +10,7 @@
     <InformationalVersion>0.1.0-dev</InformationalVersion>
   </PropertyGroup>
   <ItemGroup>
-    <PackageReference Include="JsonSchema.Net" Version="8.0.0" />
+    <PackageReference Include="JsonSchema.Net" Version="8.0.5" />
     <None Update="Templates\**\*">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>

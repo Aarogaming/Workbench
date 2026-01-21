@@ -20,15 +20,15 @@ dotnet run --project DevTools/GuildReceptionist/GuildReceptionist.csproj -- "$In
 $exit = $LASTEXITCODE
 
 if ($exit -eq 0) {
-    $handoff = Resolve-Path -LiteralPath "HANDOFF.md"
-    $zipPath = "handoff_pack.zip"
-    Write-Host "Handoff ready:" -ForegroundColor Green
-    Write-Host "  HANDOFF.md     -> $handoff"
+    $guild = Resolve-Path -LiteralPath "GUILD.md"
+    $zipPath = "guild_pack.zip"
+    Write-Host "Guild ready:" -ForegroundColor Green
+    Write-Host "  GUILD.md     -> $guild"
     if (Test-Path $zipPath) {
         $zip = Resolve-Path -LiteralPath $zipPath
-        Write-Host "  handoff_pack.zip -> $zip"
+        Write-Host "  guild_pack.zip -> $zip"
     }
-    Write-Host "Clipboard updated with HANDOFF.md contents."
+    Write-Host "Clipboard updated with GUILD.md contents."
 } else {
     Write-Host "GuildReceptionist failed (exit $exit)." -ForegroundColor Red
 }

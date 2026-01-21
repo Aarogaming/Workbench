@@ -198,7 +198,9 @@ quick_actions = [
 
 report = {
     "project": "Wizard101-quest-data-sources",
-    "timestamp": datetime.datetime.utcnow().isoformat() + "Z",
+    "timestamp": datetime.datetime.now(datetime.timezone.utc)
+    .isoformat()
+    .replace("+00:00", "Z"),
     "sources": entries,
     "summary": {
         "recommended_sources_for_initial_collection": summary_recommended[:7],

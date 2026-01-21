@@ -7,16 +7,17 @@ from shared import Globals
 
 import pyautogui
 from image import *
+from wizard101_dancebot.textures import Arrow
 
 
 turn = 0
 refresh_rate = 7
 moves = []
 ARROW_TO_KEY = {
-    Arrow.Up: 'up',
-    Arrow.Down: 'down',
-    Arrow.Left: 'left',
-    Arrow.Right: 'right'
+    Arrow.Up: "up",
+    Arrow.Down: "down",
+    Arrow.Left: "left",
+    Arrow.Right: "right",
 }
 
 
@@ -74,10 +75,12 @@ def input_moves(input_arrows: List[Arrow]) -> None:
         time.sleep(0.2)
 
 
-class MouseMover():
+class MouseMover:
     """No need to do error checking since the user will not have access to this class."""
 
-    def __init__(self, locations: List[int], snacks: List[int], resolution: str) -> None:
+    def __init__(
+        self, locations: List[int], snacks: List[int], resolution: str
+    ) -> None:
         self.locations = locations
         self.snacks = snacks
         self.resolution = resolution
@@ -85,9 +88,9 @@ class MouseMover():
 
     def choose_and_moveto_location(self) -> None:
         available_locations = [
-            i for i, location in enumerate(self.locations) if location]
-        available_locations = [
-            0] if available_locations == [] else available_locations
+            i for i, location in enumerate(self.locations) if location
+        ]
+        available_locations = [0] if available_locations == [] else available_locations
         location_choice = random.choice(available_locations)
         x, y = MouseMover.get_location_pixels(self.resolution)[location_choice]
         MouseMover.move_and_click(x, y, self.mouse_delay)
@@ -105,12 +108,13 @@ class MouseMover():
     @staticmethod
     def get_location_pixels(resolution: str) -> List[Tuple[int, int]]:
         """These values are hard-coded (x,y)=(0,0)-based coordinates.
-        In order, returns the coordinates for Wizard City, Krokotopia, Marleybone, Mooshu, and Dragonspre."""
+        In order, returns the coordinates for Wizard City, Krokotopia, Marleybone, Mooshu, and Dragonspre.
+        """
         x_coords, y = [], 0
-        if resolution == '800x600':
+        if resolution == "800x600":
             y = 495
             x_coords = [175, 290, 405, 520, 635]
-        elif resolution == '1280x800':
+        elif resolution == "1280x800":
             y = 650
             x_coords = [345, 495, 645, 790, 945]
         return [(x, y) for x in x_coords]
@@ -121,9 +125,9 @@ class MouseMover():
         NEXT after game finishes,
         and FEED PET in feed screen."""
         x, y = None, None
-        if resolution == '800x600':
+        if resolution == "800x600":
             x, y = 630, 590
-        elif resolution == '1280x800':
+        elif resolution == "1280x800":
             x, y = 940, 770
         MouseMover.move_and_click(x, y, mouse_delay)
 
@@ -132,25 +136,29 @@ class MouseMover():
         """Presses CANCEL in select level screen,
         FINISH in both feed screen and post fees screen."""
         x, y = None, None
-        if resolution == '800x600':
+        if resolution == "800x600":
             x, y = 185, 590
-        elif resolution == '1280x800':
+        elif resolution == "1280x800":
             x, y = 355, 770
         MouseMover.move_and_click(x, y, mouse_delay)
 
     @staticmethod
-    def press_snack(snack_index: int, resolution: str, mouse_delay: float = 0.15) -> None:
+    def press_snack(
+        snack_index: int, resolution: str, mouse_delay: float = 0.15
+    ) -> None:
         """Clicks on the snack given the snack number given (1-5)."""
         x_coords, y = None, None
-        if resolution == '800x600':
+        if resolution == "800x600":
             pass
-        elif resolution == '1280x800':
+        elif resolution == "1280x800":
             y = 540
             x_coords = [350, 495, 655, 790, 940]
+        if x_coords is None or y is None:
+            return
         MouseMover.move_and_click(x_coords[snack_index], y, mouse_delay)
 
 
-class KeyboardPresser():
+class KeyboardPresser:
     """No need to do error checking since the user will not have access to this class."""
 
     def __init__(self) -> None:

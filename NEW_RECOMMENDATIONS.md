@@ -16,7 +16,7 @@
 ## Advanced Automation & Safety
 30. **Live Automation Guard**: A global check script that verifies `ALLOW_LIVE_AUTOMATION=false` across all project configs before allowing certain tasks.
 31. **High-DPI UI Validator**: Implement a script to trigger `ui_check_regression.ps1` and capture screenshots at different scaling levels (100%, 125%, 150%).
-32. **Handoff Directory Watcher**: A background PowerShell job to monitor `artifacts/handoff/to_hub/` and notify the user of new OpenAI requests.
+32. **Guild Directory Watcher**: A background PowerShell job to monitor `artifacts/guild/to_hub/` and notify the user of new OpenAI requests.
 33. **Resource-Aware Task Runner**: A wrapper that checks system resources (CPU/RAM) and game resources (energy/mana via OCR if available) before starting heavy tasks.
 34. **Local LLM Bridge**: A tool to manage LM Studio model loading/unloading for parallel agent tasks.
 35. **NEXUS Integration Auditor**: A script to verify cross-repo integration points defined in `NEXUS.md`.

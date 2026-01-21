@@ -3,6 +3,10 @@
 ## Overview
 Workbench is a collection of cross-project scripts, utilities, and automation tools used throughout the workspace. It provides shared functionality for development, testing, and deployment across multiple projects.
 
+## Guild Workflow
+- Quest template: https://github.com/Aarogaming/AaroneousAutomationSuite/blob/main/guild/QUEST_TEMPLATE.md
+- Protocol: https://github.com/Aarogaming/AaroneousAutomationSuite/blob/main/docs/GUILD_PROTOCOL.md
+
 ## Features
 - PowerShell and Python scripts for automation
 - Asset management and ingestion tools

@@ -2,6 +2,7 @@ from PIL import Image
 import importlib.resources as resources
 import pyautogui
 from .properties import *
+from .textures import Arrow
 
 arrow_icons = []
 arrow_subicons = []
@@ -29,7 +30,7 @@ def generate_icon_subregions(icon_index) -> Image:
                 x * sub_region_width,
                 y * sub_region_height,
                 (x * sub_region_width) + sub_region_width,
-                (y * sub_region_height) + sub_region_width
+                (y * sub_region_height) + sub_region_width,
             )
             yield arrow_icons[icon_index].crop(bounds)
 
@@ -73,7 +74,9 @@ def get_screenshot() -> Image:
     scale = properties.screen_scale
 
     # Scales image to match original size
-    return screenshot.resize((int(size[0]) / scale, int(size[1]) / scale), Image.NEAREST)
+    return screenshot.resize(
+        (int(size[0]) / scale, int(size[1]) / scale), Image.NEAREST
+    )
 
 
 def locate(sub_image, base_image, confidence=0.95):

@@ -54,14 +54,14 @@ internal static class Program
                 return 1;
             }
 
-            string handoff;
+            string guild;
             if (options.PromptOnly)
             {
-                handoff = BuildPromptOnly(nextPrompt);
-                Console.WriteLine(handoff);
+                guild = BuildPromptOnly(nextPrompt);
+                Console.WriteLine(guild);
                 if (!string.IsNullOrWhiteSpace(options.OutputPath))
                 {
-                    File.WriteAllText(options.OutputPath!, handoff, Encoding.UTF8);
+                    File.WriteAllText(options.OutputPath!, guild, Encoding.UTF8);
                     Console.WriteLine($"[INFO] Wrote prompt-only output to {options.OutputPath}");
                 }
                 else
@@ -71,16 +71,16 @@ internal static class Program
 
                 if (options.Zip && !string.IsNullOrWhiteSpace(options.OutputPath))
                 {
-                    var zipPath = Path.Combine(Path.GetDirectoryName(options.OutputPath!) ?? ".", "handoff_pack.zip");
+                    var zipPath = Path.Combine(Path.GetDirectoryName(options.OutputPath!) ?? ".", "guild_pack.zip");
                     if (File.Exists(zipPath)) File.Delete(zipPath);
                     using var archive = ZipFile.Open(zipPath, ZipArchiveMode.Create);
-                    archive.CreateEntryFromFile(options.OutputPath!, "HANDOFF.md");
+                    archive.CreateEntryFromFile(options.OutputPath!, "GUILD.md");
                     Console.WriteLine($"[INFO] Created {zipPath}");
                 }
 
                 if (options.Clipboard)
                 {
-                    Clipboard.SetText(handoff);
+                    Clipboard.SetText(guild);
                     Console.WriteLine("[INFO] Copied prompt-only output to clipboard.");
                 }
 
@@ -90,26 +90,26 @@ internal static class Program
             {
                 var contextSummary = BuildContextSummary(redactedText, lines: 8);
                 var filesTouched = ExtractFilesTouched(redactedText);
-                handoff = BuildHandoffMarkdown(contextSummary, filesTouched, nextPrompt);
+                guild = BuildGuildMarkdown(contextSummary, filesTouched, nextPrompt);
             }
 
-            var outputPathFinal = string.IsNullOrWhiteSpace(options.OutputPath) ? "HANDOFF.md" : options.OutputPath!;
-            File.WriteAllText(outputPathFinal, handoff, Encoding.UTF8);
-            Console.WriteLine($"[INFO] Wrote HANDOFF.md to {outputPathFinal}");
+            var outputPathFinal = string.IsNullOrWhiteSpace(options.OutputPath) ? "GUILD.md" : options.OutputPath!;
+            File.WriteAllText(outputPathFinal, guild, Encoding.UTF8);
+            Console.WriteLine($"[INFO] Wrote GUILD.md to {outputPathFinal}");
 
             if (options.Zip)
             {
-                var zipPath = Path.Combine(Path.GetDirectoryName(outputPathFinal) ?? ".", "handoff_pack.zip");
+                var zipPath = Path.Combine(Path.GetDirectoryName(outputPathFinal) ?? ".", "guild_pack.zip");
                 if (File.Exists(zipPath)) File.Delete(zipPath);
                 using var archive = ZipFile.Open(zipPath, ZipArchiveMode.Create);
-                archive.CreateEntryFromFile(outputPathFinal, "HANDOFF.md");
+                archive.CreateEntryFromFile(outputPathFinal, "GUILD.md");
                 Console.WriteLine($"[INFO] Created {zipPath}");
             }
 
             if (options.Clipboard)
             {
-                Clipboard.SetText(handoff);
-                Console.WriteLine("[INFO] Copied HANDOFF.md contents to clipboard.");
+                Clipboard.SetText(guild);
+                Console.WriteLine("[INFO] Copied GUILD.md contents to clipboard.");
             }
 
             return 0;
@@ -218,10 +218,10 @@ internal static class Program
         return list;
     }
 
-    private static string BuildHandoffMarkdown(string context, List<string> filesTouched, string nextPrompt)
+    private static string BuildGuildMarkdown(string context, List<string> filesTouched, string nextPrompt)
     {
         var sb = new StringBuilder();
-        sb.AppendLine("# Handoff");
+        sb.AppendLine("# Guild");
         sb.AppendLine();
         sb.AppendLine("## Context summary");
         sb.AppendLine(context);
@@ -326,13 +326,13 @@ internal static class Program
 
     private static void PrintHelp()
     {
-        Console.WriteLine("handoff <input-file> [--stdin] [--clipboard] [--zip] [--allow-secrets] [--prompt-only] [--out <path>]");
+        Console.WriteLine("guild <input-file> [--stdin] [--clipboard] [--zip] [--allow-secrets] [--prompt-only] [--out <path>]");
         Console.WriteLine("Examples:");
-        Console.WriteLine("  handoff codex_output.txt");
-        Console.WriteLine("  handoff codex_output.txt --clipboard");
-        Console.WriteLine("  handoff codex_output.txt --clipboard --zip");
-        Console.WriteLine("  cat codex_output.txt | handoff --stdin");
-        Console.WriteLine("  handoff codex_output.txt --prompt-only --out prompt.md");
+        Console.WriteLine("  guild codex_output.txt");
+        Console.WriteLine("  guild codex_output.txt --clipboard");
+        Console.WriteLine("  guild codex_output.txt --clipboard --zip");
+        Console.WriteLine("  cat codex_output.txt | guild --stdin");
+        Console.WriteLine("  guild codex_output.txt --prompt-only --out prompt.md");
     }
 
     private sealed class Options

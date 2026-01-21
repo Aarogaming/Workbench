@@ -81,7 +81,7 @@ internal static class Program
                     var profile = options.Args.TryGetValue("profile", out var pr) ? pr : "tools-only";
                     CopyTemplate(root, $"{provider}_{profile}_workflow.yml", options, summary, warnings);
                     break;
-                case "handoff":
+                case "guild":
                     CopyTemplate(root, "README.md", options, summary, warnings);
                     break;
                 case "contracts" when options.Subcommand == "validate":
@@ -166,6 +166,7 @@ internal static class Program
                     "GameStateSnapshot" => "snapshot.v1.schema.json",
                     "HandoffEnvelope" => "handoff-envelope.v1.schema.json",
                     "ContractsIndex" => "contracts-index.v1.schema.json",
+                    "HomeDeviceControl" => "home-device-control.v1.schema.json",
                     _ => string.Empty
                 };
 
@@ -191,11 +192,14 @@ internal static class Program
                 if (!eval.IsValid)
                 {
                     Console.Error.WriteLine($"FAIL {examplePath}: does not validate against {schemaFileStem}");
-                    foreach (var detail in eval.Details)
+                    if (eval.Details is not null)
                     {
-                        if (detail == null) continue;
-                        if (detail.IsValid) continue;
-                        Console.Error.WriteLine($"  - {detail.InstanceLocation}");
+                        foreach (var detail in eval.Details)
+                        {
+                            if (detail == null) continue;
+                            if (detail.IsValid) continue;
+                            Console.Error.WriteLine($"  - {detail.InstanceLocation}");
+                        }
                     }
                     failures++;
                 }
@@ -269,11 +273,14 @@ internal static class Program
         }
 
         Console.Error.WriteLine($"FAIL {jsonPath}: does not validate against {schemaArg}");
-        foreach (var detail in eval.Details)
+        if (eval.Details is not null)
         {
-            if (detail == null) continue;
-            if (detail.IsValid) continue;
-            Console.Error.WriteLine($"  - {detail.InstanceLocation}");
+            foreach (var detail in eval.Details)
+            {
+                if (detail == null) continue;
+                if (detail.IsValid) continue;
+                Console.Error.WriteLine($"  - {detail.InstanceLocation}");
+            }
         }
 
         return 1;
@@ -329,7 +336,7 @@ internal static class Program
         Console.WriteLine("  maelstromtoolkit stewardship init --out ./out");
         Console.WriteLine("  maelstromtoolkit ux init --framework winforms --out ./out");
         Console.WriteLine("  maelstromtoolkit ci add --provider github --profile tools-only --out ./out");
-        Console.WriteLine("  maelstromtoolkit handoff --out ./out");
+        Console.WriteLine("  maelstromtoolkit guild --out ./out");
         Console.WriteLine("  maelstromtoolkit contracts validate --root <aas-hub-root>");
         Console.WriteLine("  maelstromtoolkit contracts checkfile --root <aas-hub-root> --schema <schema-file> --file <json-file>");
         Console.WriteLine("  maelstromtoolkit selftest");
@@ -382,7 +389,7 @@ internal static class Program
             ("UX","UX_CHANGELOG.md"),
             ("UX","UX_TOKENS.md"),
             ("CI","github_tools-only_workflow.yml"),
-            ("Handoff","README.md"),
+            ("Guild","README.md"),
         };
 
         var schemaVersion = Path.Combine(AppContext.BaseDirectory, "Templates", "schema_version.txt");
@@ -462,12 +469,12 @@ internal static class Program
         if (templateName.Contains("TAG", StringComparison.OrdinalIgnoreCase)) return "Tags";
         if (templateName.Contains("FEEDBACK", StringComparison.OrdinalIgnoreCase) || templateName.Contains("STEWARDSHIP", StringComparison.OrdinalIgnoreCase)) return "Stewardship";
         if (templateName.StartsWith("UX_", StringComparison.OrdinalIgnoreCase) || templateName.StartsWith("UX ", StringComparison.OrdinalIgnoreCase) || templateName.Contains("UX", StringComparison.OrdinalIgnoreCase)) return "UX";
-        if (templateName.Equals("README.md", StringComparison.OrdinalIgnoreCase)) return "Handoff";
+        if (templateName.Equals("README.md", StringComparison.OrdinalIgnoreCase)) return "Guild";
         return string.Empty;
     }
 
     private static bool RequiresOut(string command) =>
-        command is "init" or "policy" or "tags" or "stewardship" or "ux" or "ci" or "handoff";
+        command is "init" or "policy" or "tags" or "stewardship" or "ux" or "ci" or "guild";
 
     private static bool ValidateOut(string outPath, CommandOptions options)
     {

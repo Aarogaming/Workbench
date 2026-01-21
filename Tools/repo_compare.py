@@ -2,7 +2,7 @@ import json
 import os
 import sys
 import subprocess
-from datetime import datetime
+from datetime import datetime, timezone
 from urllib.parse import urlparse
 
 
@@ -171,7 +171,7 @@ def main():
 
         report = {
             "scan_path": scan_path,
-            "timestamp": datetime.utcnow().isoformat() + "Z",
+            "timestamp": datetime.now(timezone.utc).isoformat().replace("+00:00", "Z"),
             "exact_match": exact_match,
             "present_different_remote": present_different_remote,
             "present_not_git": present_not_git,
@@ -184,7 +184,7 @@ def main():
     except Exception as e:
         err = {
             "error": str(e),
-            "timestamp": datetime.utcnow().isoformat() + "Z",
+            "timestamp": datetime.now(timezone.utc).isoformat().replace("+00:00", "Z"),
         }
         print(json.dumps(err, indent=2))
         sys.exit(1)

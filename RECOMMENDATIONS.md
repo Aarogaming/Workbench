@@ -9,7 +9,7 @@
 ## Tooling Enhancements
 5. **MyFortress CLI Implementation**: Replace the placeholder `hg_task.ps1` with a functional wrapper for the MyFortress `gateway/` logic.
 6. **Android Build Automation**: Implement `android_task.ps1` with common Gradle tasks (build, lint, test) and emulator management.
-7. **GUI Task Wrapper**: Define and implement `gui_task.ps1` to interface with the `HandoffTray` or `dashboard` components.
+7. **GUI Task Wrapper**: Define and implement `gui_task.ps1` to interface with the `GuildTray` or `dashboard` components.
 8. **Shared Git Hooks**: Create a `setup_hooks.ps1` to deploy pre-commit hooks (ruff, eslint, etc.) across all sibling repos.
 
 ## Developer Experience (DX)
