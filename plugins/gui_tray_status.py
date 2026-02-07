@@ -7,6 +7,7 @@ from enum import Enum
 
 class FocusMode(Enum):
     """Focus mode states"""
+
     NORMAL = "normal"
     DND = "dnd"
     FOCUS = "focus"
@@ -32,16 +33,16 @@ class TrayStatus:
             FocusMode.NORMAL: "Normal mode - all notifications",
             FocusMode.DND: "Do Not Disturb - notifications silenced",
             FocusMode.FOCUS: "Focus mode - critical only",
-            FocusMode.PRIORITY: "Priority mode - VIP only"
+            FocusMode.PRIORITY: "Priority mode - VIP only",
         }
 
         self.status_message = messages[mode]
 
         return {
-            'previous_mode': previous.value,
-            'new_mode': mode.value,
-            'message': self.status_message,
-            'changed': True
+            "previous_mode": previous.value,
+            "new_mode": mode.value,
+            "message": self.status_message,
+            "changed": True,
         }
 
     def toggle_dnd(self) -> Dict[str, Any]:
@@ -69,12 +70,12 @@ class TrayStatus:
     def get_status(self) -> Dict[str, Any]:
         """Get current tray status"""
         return {
-            'active': self.is_active,
-            'focus_mode': self.focus_mode.value,
-            'status_message': self.status_message,
-            'pending_notifications': self.notification_count,
-            'dnd_enabled': self.focus_mode == FocusMode.DND,
-            'focus_enabled': self.focus_mode == FocusMode.FOCUS
+            "active": self.is_active,
+            "focus_mode": self.focus_mode.value,
+            "status_message": self.status_message,
+            "pending_notifications": self.notification_count,
+            "dnd_enabled": self.focus_mode == FocusMode.DND,
+            "focus_enabled": self.focus_mode == FocusMode.FOCUS,
         }
 
     def set_active(self, active: bool) -> None:
@@ -96,24 +97,24 @@ class M1StatusBar:
 
     def add_menu_item(self, label: str, action: str) -> None:
         """Add menu item"""
-        self.menu_items.append({'label': label, 'action': action})
+        self.menu_items.append({"label": label, "action": action})
 
     def build_menu(self) -> Dict[str, Any]:
         """Build status bar menu"""
         return {
-            'status': self.tray.get_status(),
-            'menu_items': self.menu_items,
-            'focus_toggle': {
-                'label': f"Focus: {self.tray.focus_mode.value}",
-                'available': True
-            }
+            "status": self.tray.get_status(),
+            "menu_items": self.menu_items,
+            "focus_toggle": {
+                "label": f"Focus: {self.tray.focus_mode.value}",
+                "available": True,
+            },
         }
 
     def render(self) -> Dict[str, Any]:
         """Render status bar"""
         return {
-            'platform': 'macOS M1',
-            'position': 'menu-bar',
-            'menu': self.build_menu(),
-            'icon_state': self.tray.focus_mode.value
+            "platform": "macOS M1",
+            "position": "menu-bar",
+            "menu": self.build_menu(),
+            "icon_state": self.tray.focus_mode.value,
         }

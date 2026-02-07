@@ -167,6 +167,12 @@ internal static class Program
                     "HandoffEnvelope" => "handoff-envelope.v1.schema.json",
                     "ContractsIndex" => "contracts-index.v1.schema.json",
                     "HomeDeviceControl" => "home-device-control.v1.schema.json",
+                    "Capability" => "capability.v1.schema.json",
+                    "PluginManifest" => "plugin-manifest.v1.schema.json",
+                    "EventEnvelope" => "event-envelope.v1.schema.json",
+                    "MeshCapabilityAdvertisement" => "mesh-capability-advertisement.v1.schema.json",
+                    "SwarmMembershipHeartbeat" => "swarm-membership-heartbeat.v1.schema.json",
+                    "SwarmProviderAssignment" => "swarm-provider-assignment.v1.schema.json",
                     _ => string.Empty
                 };
 

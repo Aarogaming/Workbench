@@ -182,7 +182,9 @@ def should_use_cache(entry: Dict[str, Any]) -> bool:
     return age < TTL_SECONDS
 
 
-def fetch_repo(session: requests.Session, url: str, cache_entry: Dict[str, Any]) -> Dict[str, Any]:
+def fetch_repo(
+    session: requests.Session, url: str, cache_entry: Dict[str, Any]
+) -> Dict[str, Any]:
     if "github.com" not in url:
         return {
             "owner": None,
@@ -312,9 +314,24 @@ def main() -> None:
         "summary": summary,
         "data_sources_preview": sources.get("sources", [])[:5],
         "milestones_90d": [
-            {"phase": "0-30d", "goals": ["Guardrails, HUD OCR baseline, catalog credits, diagnostics dashboard."]},
-            {"phase": "31-60d", "goals": ["Behavior trees/FSM for SmartPlay, path graphs, build matrix, seed dataset workflow."]},
-            {"phase": "61-90d", "goals": ["Optional detectors, offline RL experiments, UI polish, contributor guide."]},
+            {
+                "phase": "0-30d",
+                "goals": [
+                    "Guardrails, HUD OCR baseline, catalog credits, diagnostics dashboard."
+                ],
+            },
+            {
+                "phase": "31-60d",
+                "goals": [
+                    "Behavior trees/FSM for SmartPlay, path graphs, build matrix, seed dataset workflow."
+                ],
+            },
+            {
+                "phase": "61-90d",
+                "goals": [
+                    "Optional detectors, offline RL experiments, UI polish, contributor guide."
+                ],
+            },
         ],
     }
     save_json(PLAN_PATH, plan)

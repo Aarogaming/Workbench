@@ -1,0 +1,27 @@
+{
+  "schemaName": "PluginManifest",
+  "schemaVersion": "1.0.0",
+  "name": "dpi_audit",
+  "version": "0.1.0",
+  "description": "Audit DPI scaling for Workbench UI tooling",
+  "entry": "plugin.py",
+  "type": "plugin",
+  "capabilities": [
+    {
+      "schemaName": "Capability",
+      "schemaVersion": "1.0.0",
+      "name": "workbench.dpi.audit",
+      "version": "0.1.0"
+    }
+  ],
+  "extensions": {
+    "aas": {
+      "hive": "workbench",
+      "visibility": "global",
+      "exports": [
+        "workbench.dpi.audit"
+      ],
+      "kernel": "workbench"
+    }
+  }
+}

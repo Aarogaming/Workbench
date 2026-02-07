@@ -11,6 +11,7 @@ import inspect
 
 class LifecycleType(Enum):
     """Service lifecycle patterns"""
+
     SINGLETON = "singleton"
     FACTORY = "factory"
     TRANSIENT = "transient"
@@ -19,6 +20,7 @@ class LifecycleType(Enum):
 @dataclass
 class ServiceDefinition:
     """Service registration metadata"""
+
     service_type: Type
     factory_func: Callable
     lifecycle: LifecycleType
@@ -34,56 +36,57 @@ class DIContainer:
         self.services: Dict[str, ServiceDefinition] = {}
         self.singletons: Dict[str, Any] = {}
 
-    def register_singleton(self, name: str, service_type: Type,
-                           factory_func: Optional[Callable] = None
-                           ) -> Dict[str, Any]:
+    def register_singleton(
+        self, name: str, service_type: Type, factory_func: Optional[Callable] = None
+    ) -> Dict[str, Any]:
         """Register singleton service"""
         if name in self.services:
-            return {'error': f'Service {name} already registered'}
+            return {"error": f"Service {name} already registered"}
 
         factory = factory_func or (lambda: service_type())
         service_def = ServiceDefinition(
             service_type=service_type,
             factory_func=factory,
-            lifecycle=LifecycleType.SINGLETON
+            lifecycle=LifecycleType.SINGLETON,
         )
         self.services[name] = service_def
-        return {'success': True, 'service': name, 'lifecycle': 'singleton'}
+        return {"success": True, "service": name, "lifecycle": "singleton"}
 
-    def register_factory(self, name: str, service_type: Type,
-                         factory_func: Callable) -> Dict[str, Any]:
+    def register_factory(
+        self, name: str, service_type: Type, factory_func: Callable
+    ) -> Dict[str, Any]:
         """Register factory service (new instance each time)"""
         if name in self.services:
-            return {'error': f'Service {name} already registered'}
+            return {"error": f"Service {name} already registered"}
 
         service_def = ServiceDefinition(
             service_type=service_type,
             factory_func=factory_func,
-            lifecycle=LifecycleType.FACTORY
+            lifecycle=LifecycleType.FACTORY,
         )
         self.services[name] = service_def
-        return {'success': True, 'service': name, 'lifecycle': 'factory'}
+        return {"success": True, "service": name, "lifecycle": "factory"}
 
-    def register_transient(self, name: str, service_type: Type,
-                           factory_func: Optional[Callable] = None
-                           ) -> Dict[str, Any]:
+    def register_transient(
+        self, name: str, service_type: Type, factory_func: Optional[Callable] = None
+    ) -> Dict[str, Any]:
         """Register transient service (temporary)"""
         if name in self.services:
-            return {'error': f'Service {name} already registered'}
+            return {"error": f"Service {name} already registered"}
 
         factory = factory_func or (lambda: service_type())
         service_def = ServiceDefinition(
             service_type=service_type,
             factory_func=factory,
-            lifecycle=LifecycleType.TRANSIENT
+            lifecycle=LifecycleType.TRANSIENT,
         )
         self.services[name] = service_def
-        return {'success': True, 'service': name, 'lifecycle': 'transient'}
+        return {"success": True, "service": name, "lifecycle": "transient"}
 
     def resolve(self, name: str) -> Any:
         """Resolve service instance"""
         if name not in self.services:
-            raise ValueError(f'Service {name} not registered')
+            raise ValueError(f"Service {name} not registered")
 
         service_def = self.services[name]
 
@@ -99,7 +102,7 @@ class DIContainer:
             instance = self._create_instance(service_def)
             return instance
 
-        raise ValueError(f'Unknown lifecycle: {service_def.lifecycle}')
+        raise ValueError(f"Unknown lifecycle: {service_def.lifecycle}")
 
     def _create_instance(self, service_def: ServiceDefinition) -> Any:
         """Create service instance with dependency resolution"""
@@ -113,16 +116,16 @@ class DIContainer:
 
             return service_def.factory_func(**params)
         except Exception as e:
-            raise ValueError(f'Failed to create instance: {str(e)}')
+            raise ValueError(f"Failed to create instance: {str(e)}")
 
     def list_services(self) -> Dict[str, Any]:
         """List all registered services"""
         services_info = {}
         for name, service_def in self.services.items():
             services_info[name] = {
-                'type': service_def.service_type.__name__,
-                'lifecycle': service_def.lifecycle.value,
-                'cached': name in self.singletons
+                "type": service_def.service_type.__name__,
+                "lifecycle": service_def.lifecycle.value,
+                "cached": name in self.singletons,
             }
         return services_info
 
@@ -130,14 +133,14 @@ class DIContainer:
         """Clear singleton cache"""
         count = len(self.singletons)
         self.singletons.clear()
-        return {'success': True, 'cleared': count}
+        return {"success": True, "cleared": count}
 
     def get_status(self) -> Dict[str, Any]:
         """Get container status"""
         return {
-            'total_services': len(self.services),
-            'cached_singletons': len(self.singletons),
-            'services': self.list_services()
+            "total_services": len(self.services),
+            "cached_singletons": len(self.singletons),
+            "services": self.list_services(),
         }
 
 
@@ -149,39 +152,44 @@ class DIContainerBuilder:
         self.container = DIContainer()
         self.registrations: List[Dict[str, Any]] = []
 
-    def add_singleton(self, name: str, service_type: Type,
-                      factory_func: Optional[Callable] = None
-                      ) -> 'DIContainerBuilder':
+    def add_singleton(
+        self, name: str, service_type: Type, factory_func: Optional[Callable] = None
+    ) -> "DIContainerBuilder":
         """Add singleton to builder"""
-        self.registrations.append({
-            'name': name,
-            'type': service_type,
-            'factory': factory_func,
-            'lifecycle': LifecycleType.SINGLETON
-        })
+        self.registrations.append(
+            {
+                "name": name,
+                "type": service_type,
+                "factory": factory_func,
+                "lifecycle": LifecycleType.SINGLETON,
+            }
+        )
         return self
 
-    def add_factory(self, name: str, service_type: Type,
-                    factory_func: Callable) -> 'DIContainerBuilder':
+    def add_factory(
+        self, name: str, service_type: Type, factory_func: Callable
+    ) -> "DIContainerBuilder":
         """Add factory to builder"""
-        self.registrations.append({
-            'name': name,
-            'type': service_type,
-            'factory': factory_func,
-            'lifecycle': LifecycleType.FACTORY
-        })
+        self.registrations.append(
+            {
+                "name": name,
+                "type": service_type,
+                "factory": factory_func,
+                "lifecycle": LifecycleType.FACTORY,
+            }
+        )
         return self
 
     def build(self) -> DIContainer:
         """Build container"""
         for reg in self.registrations:
-            if reg['lifecycle'] == LifecycleType.SINGLETON:
+            if reg["lifecycle"] == LifecycleType.SINGLETON:
                 self.container.register_singleton(
-                    reg['name'], reg['type'], reg['factory']
+                    reg["name"], reg["type"], reg["factory"]
                 )
-            elif reg['lifecycle'] == LifecycleType.FACTORY:
+            elif reg["lifecycle"] == LifecycleType.FACTORY:
                 self.container.register_factory(
-                    reg['name'], reg['type'], reg['factory']
+                    reg["name"], reg["type"], reg["factory"]
                 )
 
         return self.container

@@ -1,0 +1,27 @@
+{
+  "schemaName": "PluginManifest",
+  "schemaVersion": "1.0.0",
+  "name": "asset_search",
+  "version": "0.1.0",
+  "description": "Search Workbench asset index",
+  "entry": "plugin.py",
+  "type": "plugin",
+  "capabilities": [
+    {
+      "schemaName": "Capability",
+      "schemaVersion": "1.0.0",
+      "name": "workbench.asset.search",
+      "version": "0.1.0"
+    }
+  ],
+  "extensions": {
+    "aas": {
+      "hive": "workbench",
+      "visibility": "global",
+      "exports": [
+        "workbench.asset.search"
+      ],
+      "kernel": "workbench"
+    }
+  }
+}

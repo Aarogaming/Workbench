@@ -1,0 +1,24 @@
+{
+  "id": "workbench",
+  "name": "Workbench",
+  "kernel": {
+    "type": "in_process",
+    "manager": "core.module_kernels.PluginShelfKernel"
+  },
+  "plugins": {
+    "paths": [
+      "plugins"
+    ]
+  },
+  "hive": {
+    "swarm_enabled": true,
+    "verify_interval_sec": 45,
+    "repair_backoff_sec": 10,
+    "max_recursive_repairs": 1
+  },
+  "metadata": {
+    "owner": "AAS",
+    "description": "Workbench plugin shelf + automation tools",
+    "tier": "support"
+  }
+}

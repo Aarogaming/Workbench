@@ -1,0 +1,27 @@
+{
+  "schemaName": "PluginManifest",
+  "schemaVersion": "1.0.0",
+  "name": "asset_indexer",
+  "version": "0.1.0",
+  "description": "Index Workbench assets into asset_index.json",
+  "entry": "plugin.py",
+  "type": "plugin",
+  "capabilities": [
+    {
+      "schemaName": "Capability",
+      "schemaVersion": "1.0.0",
+      "name": "workbench.asset.index",
+      "version": "0.1.0"
+    }
+  ],
+  "extensions": {
+    "aas": {
+      "hive": "workbench",
+      "visibility": "global",
+      "exports": [
+        "workbench.asset.index"
+      ],
+      "kernel": "workbench"
+    }
+  }
+}

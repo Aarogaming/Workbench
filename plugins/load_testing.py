@@ -8,6 +8,7 @@ from enum import Enum
 
 class LoadPattern(Enum):
     """Load testing patterns"""
+
     RAMP = "ramp"
     SPIKE = "spike"
     CONSTANT = "constant"
@@ -17,6 +18,7 @@ class LoadPattern(Enum):
 @dataclass
 class LoadConfig:
     """Load test configuration"""
+
     pattern: LoadPattern = LoadPattern.CONSTANT
     initial_load: int = 10
     peak_load: int = 100
@@ -27,8 +29,7 @@ class LoadConfig:
 class LoadTest:
     """Single load test execution"""
 
-    def __init__(self, test_id: str, test_func: Callable,
-                 config: LoadConfig):
+    def __init__(self, test_id: str, test_func: Callable, config: LoadConfig):
         """Initialize load test"""
         self.test_id = test_id
         self.test_func = test_func
@@ -40,49 +41,45 @@ class LoadTest:
     def run(self) -> Dict[str, Any]:
         """Run load test"""
         results = {
-            'test_id': self.test_id,
-            'pattern': self.config.pattern.value,
-            'total_requests': 0,
-            'successful': 0,
-            'failed': 0,
-            'response_times': []
+            "test_id": self.test_id,
+            "pattern": self.config.pattern.value,
+            "total_requests": 0,
+            "successful": 0,
+            "failed": 0,
+            "response_times": [],
         }
 
         for i in range(self.config.initial_load):
             try:
                 response_time = self.test_func()
-                results['response_times'].append(response_time)
-                results['successful'] += 1
+                results["response_times"].append(response_time)
+                results["successful"] += 1
                 self.successes += 1
             except Exception:
-                results['failed'] += 1
+                results["failed"] += 1
                 self.errors += 1
 
-        results['total_requests'] = (
-            results['successful'] + results['failed'])
+        results["total_requests"] = results["successful"] + results["failed"]
 
-        if results['response_times']:
-            results['avg_response_time'] = (
-                sum(results['response_times']) /
-                len(results['response_times']))
-            results['min_response_time'] = min(
-                results['response_times'])
-            results['max_response_time'] = max(
-                results['response_times'])
+        if results["response_times"]:
+            results["avg_response_time"] = sum(results["response_times"]) / len(
+                results["response_times"]
+            )
+            results["min_response_time"] = min(results["response_times"])
+            results["max_response_time"] = max(results["response_times"])
 
         return results
 
     def get_stats(self) -> Dict[str, Any]:
         """Get test statistics"""
         total = self.successes + self.errors
-        success_rate = (
-            (self.successes / total * 100) if total > 0 else 0)
+        success_rate = (self.successes / total * 100) if total > 0 else 0
 
         return {
-            'successes': self.successes,
-            'errors': self.errors,
-            'total': total,
-            'success_rate': success_rate
+            "successes": self.successes,
+            "errors": self.errors,
+            "total": total,
+            "success_rate": success_rate,
         }
 
 
@@ -102,9 +99,9 @@ class LoadTestSuite:
     def run_all(self) -> Dict[str, Any]:
         """Run all load tests"""
         overall = {
-            'suite_id': self.suite_id,
-            'total_tests': len(self.tests),
-            'test_results': []
+            "suite_id": self.suite_id,
+            "total_tests": len(self.tests),
+            "test_results": [],
         }
 
         total_requests = 0
@@ -114,42 +111,38 @@ class LoadTestSuite:
         for test in self.tests:
             result = test.run()
             self.results.append(result)
-            overall['test_results'].append(result)
+            overall["test_results"].append(result)
 
-            total_requests += result.get('total_requests', 0)
-            total_successful += result.get('successful', 0)
-            total_failed += result.get('failed', 0)
+            total_requests += result.get("total_requests", 0)
+            total_successful += result.get("successful", 0)
+            total_failed += result.get("failed", 0)
 
-        overall['total_requests'] = total_requests
-        overall['total_successful'] = total_successful
-        overall['total_failed'] = total_failed
+        overall["total_requests"] = total_requests
+        overall["total_successful"] = total_successful
+        overall["total_failed"] = total_failed
 
         if total_requests > 0:
-            overall['success_rate'] = (
-                total_successful / total_requests * 100)
+            overall["success_rate"] = total_successful / total_requests * 100
 
         return overall
 
     def get_performance_baseline(self) -> Dict[str, Any]:
         """Get performance baseline from results"""
         if not self.results:
-            return {'baseline': 'no data'}
+            return {"baseline": "no data"}
 
         all_response_times = []
         for result in self.results:
-            all_response_times.extend(
-                result.get('response_times', []))
+            all_response_times.extend(result.get("response_times", []))
 
         if not all_response_times:
-            return {'baseline': 'no response times'}
+            return {"baseline": "no response times"}
 
         return {
-            'avg_response_time': (
-                sum(all_response_times) /
-                len(all_response_times)),
-            'min_response_time': min(all_response_times),
-            'max_response_time': max(all_response_times),
-            'total_samples': len(all_response_times)
+            "avg_response_time": (sum(all_response_times) / len(all_response_times)),
+            "min_response_time": min(all_response_times),
+            "max_response_time": max(all_response_times),
+            "total_samples": len(all_response_times),
         }
 
 
@@ -175,13 +168,10 @@ class LoadTestManager:
 
     def run_all_suites(self) -> Dict[str, Any]:
         """Run all suites"""
-        results = {
-            'total_suites': len(self.suites),
-            'suite_results': []
-        }
+        results = {"total_suites": len(self.suites), "suite_results": []}
 
         for suite_id, suite in self.suites.items():
             result = suite.run_all()
-            results['suite_results'].append(result)
+            results["suite_results"].append(result)
 
         return results

@@ -1,0 +1,27 @@
+{
+  "schemaName": "PluginManifest",
+  "schemaVersion": "1.0.0",
+  "name": "asset_size_analysis",
+  "version": "0.1.0",
+  "description": "Analyze Workbench asset sizes by category",
+  "entry": "plugin.py",
+  "type": "plugin",
+  "capabilities": [
+    {
+      "schemaName": "Capability",
+      "schemaVersion": "1.0.0",
+      "name": "workbench.asset.size_analysis",
+      "version": "0.1.0"
+    }
+  ],
+  "extensions": {
+    "aas": {
+      "hive": "workbench",
+      "visibility": "global",
+      "exports": [
+        "workbench.asset.size_analysis"
+      ],
+      "kernel": "workbench"
+    }
+  }
+}

@@ -1,0 +1,27 @@
+{
+  "schemaName": "PluginManifest",
+  "schemaVersion": "1.0.0",
+  "name": "asset_cleanup",
+  "version": "0.1.0",
+  "description": "Normalize Workbench asset names and structure",
+  "entry": "plugin.py",
+  "type": "plugin",
+  "capabilities": [
+    {
+      "schemaName": "Capability",
+      "schemaVersion": "1.0.0",
+      "name": "workbench.asset.cleanup",
+      "version": "0.1.0"
+    }
+  ],
+  "extensions": {
+    "aas": {
+      "hive": "workbench",
+      "visibility": "global",
+      "exports": [
+        "workbench.asset.cleanup"
+      ],
+      "kernel": "workbench"
+    }
+  }
+}

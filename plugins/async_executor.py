@@ -13,15 +13,14 @@ class AsyncExecutor:
         self.tasks: List[asyncio.Task] = []
         self.results: Dict[str, Any] = {}
 
-    async def execute_task(self, task_id: str,
-                           task_func: Callable) -> Any:
+    async def execute_task(self, task_id: str, task_func: Callable) -> Any:
         """Execute single async task"""
         try:
             result = await task_func()
-            self.results[task_id] = {'success': True, 'result': result}
+            self.results[task_id] = {"success": True, "result": result}
             return result
         except Exception as e:
-            self.results[task_id] = {'success': False, 'error': str(e)}
+            self.results[task_id] = {"success": False, "error": str(e)}
             return None
 
     async def execute_parallel(self, tasks: Dict[str, Callable]) -> Dict:
@@ -34,8 +33,7 @@ class AsyncExecutor:
         await asyncio.gather(*coroutines)
         return self.results
 
-    async def execute_sequence(self,
-                               tasks: List[Callable]) -> List[Any]:
+    async def execute_sequence(self, tasks: List[Callable]) -> List[Any]:
         """Execute tasks sequentially"""
         results = []
         for task in tasks:
@@ -65,31 +63,25 @@ class BotExecutionLoop:
                 self.iteration += 1
             except Exception as e:
                 return {
-                    'completed': False,
-                    'iterations': self.iteration,
-                    'error': str(e)
+                    "completed": False,
+                    "iterations": self.iteration,
+                    "error": str(e),
                 }
 
-        return {
-            'completed': True,
-            'iterations': self.iteration,
-            'status': 'finished'
-        }
+        return {"completed": True, "iterations": self.iteration, "status": "finished"}
 
-    async def run_with_timeout(self, work_func: Callable,
-                               timeout: float) -> Dict[str, Any]:
+    async def run_with_timeout(
+        self, work_func: Callable, timeout: float
+    ) -> Dict[str, Any]:
         """Run with timeout"""
         try:
-            result = await asyncio.wait_for(
-                self.run_loop(work_func),
-                timeout=timeout
-            )
+            result = await asyncio.wait_for(self.run_loop(work_func), timeout=timeout)
             return result
         except asyncio.TimeoutError:
             return {
-                'completed': False,
-                'iterations': self.iteration,
-                'error': 'Timeout exceeded'
+                "completed": False,
+                "iterations": self.iteration,
+                "error": "Timeout exceeded",
             }
 
     def execute(self, work_func: Callable) -> Dict[str, Any]:
@@ -110,19 +102,17 @@ class AsyncBotManager:
         self.bots: Dict[str, BotExecutionLoop] = {}
         self.execution_stats: Dict[str, Dict] = {}
 
-    def create_bot(self, bot_id: str,
-                   max_iterations: int = 100) -> BotExecutionLoop:
+    def create_bot(self, bot_id: str, max_iterations: int = 100) -> BotExecutionLoop:
         """Create new async bot"""
         bot = BotExecutionLoop(max_iterations)
         self.bots[bot_id] = bot
         return bot
 
-    async def execute_bot(self, bot_id: str,
-                          work_func: Callable) -> Dict[str, Any]:
+    async def execute_bot(self, bot_id: str, work_func: Callable) -> Dict[str, Any]:
         """Execute specific bot"""
         bot = self.bots.get(bot_id)
         if not bot:
-            return {'error': 'Bot not found'}
+            return {"error": "Bot not found"}
 
         result = await bot.run_loop(work_func)
         self.execution_stats[bot_id] = result
@@ -130,25 +120,22 @@ class AsyncBotManager:
 
     async def execute_all(self, work_func: Callable) -> Dict[str, Any]:
         """Execute all bots"""
-        tasks = {
-            bot_id: bot.run_loop(work_func)
-            for bot_id, bot in self.bots.items()
-        }
+        tasks = {bot_id: bot.run_loop(work_func) for bot_id, bot in self.bots.items()}
 
         results = await asyncio.gather(
             *[asyncio.create_task(task) for task in tasks.values()]
         )
 
         return {
-            'total_bots': len(self.bots),
-            'completed': len(results),
-            'results': results
+            "total_bots": len(self.bots),
+            "completed": len(results),
+            "results": results,
         }
 
     def get_stats(self) -> Dict[str, Any]:
         """Get execution statistics"""
         return {
-            'total_bots': len(self.bots),
-            'executions': len(self.execution_stats),
-            'stats': self.execution_stats
+            "total_bots": len(self.bots),
+            "executions": len(self.execution_stats),
+            "stats": self.execution_stats,
         }

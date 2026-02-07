@@ -5,7 +5,6 @@ import subprocess
 from datetime import datetime, timezone
 from urllib.parse import urlparse
 
-
 CANONICAL_URLS = [
     "https://github.com/Unity-Technologies/ml-agents",
     "https://github.com/Farama-Foundation/Gymnasium",
@@ -129,7 +128,9 @@ def main():
                     break
 
             if not found_path:
-                missing.append({"name": repo or list(names_to_check)[0], "canonical_url": url})
+                missing.append(
+                    {"name": repo or list(names_to_check)[0], "canonical_url": url}
+                )
                 continue
 
             seen_paths.add(os.path.abspath(found_path))
@@ -144,7 +145,11 @@ def main():
                     "local_path": found_path,
                     "remote_url": remote,
                 }
-                if remote and canonical_norm and remote.rstrip("/") == canonical_norm.rstrip("/"):
+                if (
+                    remote
+                    and canonical_norm
+                    and remote.rstrip("/") == canonical_norm.rstrip("/")
+                ):
                     exact_match.append(entry)
                 else:
                     present_different_remote.append(entry)

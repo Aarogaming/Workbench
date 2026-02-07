@@ -8,6 +8,7 @@ from dataclasses import dataclass
 @dataclass
 class CLITask:
     """CLI task definition"""
+
     name: str
     description: str
     command: str
@@ -39,9 +40,9 @@ class GUICLIHelper:
         """List all tasks"""
         return [
             {
-                'name': task.name,
-                'description': task.description,
-                'category': task.category
+                "name": task.name,
+                "description": task.description,
+                "category": task.category,
             }
             for task in self.tasks.values()
         ]
@@ -57,34 +58,29 @@ class GUICLIHelper:
             return task.help_text
         return "Task not found"
 
-    def execute(self, task_name: str,
-                args: Optional[List[str]] = None) -> Dict[str, Any]:
+    def execute(
+        self, task_name: str, args: Optional[List[str]] = None
+    ) -> Dict[str, Any]:
         """Execute CLI task"""
         task = self.tasks.get(task_name)
         if not task:
-            return {'success': False, 'error': 'Task not found'}
+            return {"success": False, "error": "Task not found"}
 
         return {
-            'success': True,
-            'task': task.name,
-            'command': task.command,
-            'args': args or [],
-            'status': 'executed'
+            "success": True,
+            "task": task.name,
+            "command": task.command,
+            "args": args or [],
+            "status": "executed",
         }
 
     def get_documentation(self) -> Dict[str, Any]:
         """Get full documentation"""
-        docs = {
-            'total_tasks': len(self.tasks),
-            'categories': {}
-        }
+        docs = {"total_tasks": len(self.tasks), "categories": {}}
 
         for category, tasks in self.categories.items():
-            docs['categories'][category] = [
-                {
-                    'name': name,
-                    'description': self.tasks[name].description
-                }
+            docs["categories"][category] = [
+                {"name": name, "description": self.tasks[name].description}
                 for name in tasks
             ]
 

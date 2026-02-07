@@ -9,7 +9,6 @@ import pyautogui
 from .image import *
 from .textures import Arrow
 
-
 turn = 0
 refresh_rate = 7
 moves = []

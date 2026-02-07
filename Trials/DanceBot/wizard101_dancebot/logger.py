@@ -2,15 +2,15 @@ import argparse
 import logging
 import sys
 
-
 # Configure logging and arg parsing
 LOGGER = logging.getLogger(__name__)
 parser = argparse.ArgumentParser(
     prog="Wizard101 Dance Bot",
     description="Auto pet dancer",
 )
-parser.add_argument('-d', '--dev-mode', action='store_true',
-                    help='Enable dev mode (logs to stdout)')
+parser.add_argument(
+    "-d", "--dev-mode", action="store_true", help="Enable dev mode (logs to stdout)"
+)
 args = parser.parse_args()
 
 
@@ -45,14 +45,11 @@ def addLoggingLevel(levelName: str, levelNum: int, methodName: str = None) -> No
         methodName = levelName.lower()
 
     if hasattr(logging, levelName):
-        raise AttributeError(
-            '{} already defined in logging module'.format(levelName))
+        raise AttributeError("{} already defined in logging module".format(levelName))
     if hasattr(logging, methodName):
-        raise AttributeError(
-            '{} already defined in logging module'.format(methodName))
+        raise AttributeError("{} already defined in logging module".format(methodName))
     if hasattr(logging.getLoggerClass(), methodName):
-        raise AttributeError(
-            '{} already defined in logger class'.format(methodName))
+        raise AttributeError("{} already defined in logger class".format(methodName))
 
     # This method was inspired by the answers to Stack Overflow post
     # http://stackoverflow.com/q/2183233/2988730, especially
@@ -85,8 +82,14 @@ class CustomFormatter(logging.Formatter):
     reset = "\x1b[0m"
     FORMATS = {
         level: "%(asctime)s %(levelname_brackets)-10s %(stack_format)s %(message)s"
-        for level in [logging.TRACE, logging.DEBUG, logging.INFO,
-                      logging.WARNING, logging.ERROR, logging.CRITICAL]
+        for level in [
+            logging.TRACE,
+            logging.DEBUG,
+            logging.INFO,
+            logging.WARNING,
+            logging.ERROR,
+            logging.CRITICAL,
+        ]
     }
 
     def __init__(self, handler: logging.Handler) -> None:
@@ -98,7 +101,7 @@ class CustomFormatter(logging.Formatter):
                 logging.INFO: self.magenta,
                 logging.WARNING: self.yellow,
                 logging.ERROR: self.red,
-                logging.CRITICAL: self.bold_red
+                logging.CRITICAL: self.bold_red,
             }
             for key in self.FORMATS:
                 message = self.FORMATS[key]
@@ -110,8 +113,8 @@ class CustomFormatter(logging.Formatter):
             raise ValueError("Logging handlertype not supporting.")
 
     def format(self, record):
-        record.levelname_brackets = f'[{record.levelname}]'
-        stack_format = f'({record.filename}:{record.funcName}:{record.lineno})'
+        record.levelname_brackets = f"[{record.levelname}]"
+        stack_format = f"({record.filename}:{record.funcName}:{record.lineno})"
         record.stack_format = f"{stack_format:<36s}"
 
         log_fmt = self.FORMATS.get(record.levelno)
@@ -132,8 +135,11 @@ def configure_logging() -> None:
     open(crashlog_file, "w", encoding="utf-8").close()
 
     # set logging settings
-    handler = logging.StreamHandler(
-        sys.stdout) if args.dev_mode else logging.FileHandler(crashlog_file)
+    handler = (
+        logging.StreamHandler(sys.stdout)
+        if args.dev_mode
+        else logging.FileHandler(crashlog_file)
+    )
     handler.setFormatter(CustomFormatter(handler))
     root_logger.addHandler(handler)
 

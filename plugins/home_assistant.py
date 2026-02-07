@@ -8,6 +8,7 @@ from dataclasses import dataclass
 
 class DeviceType(Enum):
     """Supported device types"""
+
     LIGHT = "light"
     SWITCH = "switch"
     SENSOR = "sensor"
@@ -19,6 +20,7 @@ class DeviceType(Enum):
 @dataclass
 class Device:
     """Home Assistant device representation"""
+
     id: str
     name: str
     type: DeviceType
@@ -73,30 +75,30 @@ class HomeAssistantIntegration:
     def set_brightness(self, device_id: str, level: int) -> bool:
         """Set brightness (0-255)"""
         if device_id in self.devices and 0 <= level <= 255:
-            self.devices[device_id].attributes['brightness'] = level
+            self.devices[device_id].attributes["brightness"] = level
             return True
         return False
 
     def get_temperature(self, sensor_id: str) -> Optional[float]:
         """Get temperature from sensor"""
         if sensor_id in self.devices:
-            return self.devices[sensor_id].attributes.get('temperature')
+            return self.devices[sensor_id].attributes.get("temperature")
         return None
 
     def set_temperature(self, climate_id: str, temp: float) -> bool:
         """Set target temperature"""
         if climate_id in self.devices:
-            self.devices[climate_id].attributes['target_temp'] = temp
+            self.devices[climate_id].attributes["target_temp"] = temp
             return True
         return False
 
     def automate(self, trigger: str, action: str) -> Dict[str, Any]:
         """Create automation rule"""
         return {
-            'id': f'auto_{trigger}_{action}',
-            'trigger': trigger,
-            'action': action,
-            'enabled': True
+            "id": f"auto_{trigger}_{action}",
+            "trigger": trigger,
+            "action": action,
+            "enabled": True,
         }
 
     def get_state(self, device_id: str) -> Optional[str]:
@@ -117,7 +119,7 @@ class HomeAssistantIntegration:
             by_type[dtype] = by_type.get(dtype, 0) + 1
 
         return {
-            'connected': self.connected,
-            'device_count': len(self.devices),
-            'devices_by_type': by_type
+            "connected": self.connected,
+            "device_count": len(self.devices),
+            "devices_by_type": by_type,
         }

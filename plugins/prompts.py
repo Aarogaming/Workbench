@@ -12,6 +12,7 @@ from enum import Enum
 
 class PromptType(Enum):
     """Categories of prompt templates"""
+
     CHAT = "chat"
     COMPLETION = "completion"
     ANALYSIS = "analysis"
@@ -24,6 +25,7 @@ class PromptType(Enum):
 @dataclass
 class PromptTemplate:
     """Reusable prompt template"""
+
     id: str
     name: str
     prompt_type: PromptType
@@ -32,11 +34,11 @@ class PromptTemplate:
     description: str = ""
     tags: List[str] = field(default_factory=list)
     version: str = "1.0"
-    
+
     def render(self, **kwargs) -> str:
         """Fill in template variables"""
         return self.template_text.format(**kwargs)
-    
+
     def validate_variables(self, provided_vars: Dict[str, Any]) -> bool:
         """Check if all required variables are provided"""
         provided = set(provided_vars.keys())
@@ -46,11 +48,11 @@ class PromptTemplate:
 
 class PromptLibrary:
     """Repository of prompt templates"""
-    
+
     def __init__(self):
         self.templates: Dict[str, PromptTemplate] = {}
         self._init_default_templates()
-    
+
     def _init_default_templates(self):
         """Initialize built-in templates"""
         templates = [
@@ -62,7 +64,7 @@ class PromptLibrary:
                 template_text="You are a helpful assistant.\nUser: {input}\nAssistant:",
                 variables=["input"],
                 description="Simple chat completion template",
-                tags=["chat", "general"]
+                tags=["chat", "general"],
             ),
             PromptTemplate(
                 id="chat_contextual",
@@ -74,7 +76,7 @@ class PromptLibrary:
                 ),
                 variables=["system_role", "context", "input"],
                 description="Chat template with system role and contextual grounding",
-                tags=["chat", "context", "system"]
+                tags=["chat", "context", "system"],
             ),
             PromptTemplate(
                 id="chat_clarifying_question",
@@ -87,7 +89,7 @@ class PromptLibrary:
                 ),
                 variables=["input"],
                 description="Ask a focused clarifying question",
-                tags=["chat", "clarify"]
+                tags=["chat", "clarify"],
             ),
             # Completion templates
             PromptTemplate(
@@ -100,7 +102,7 @@ class PromptLibrary:
                 ),
                 variables=["tone", "text"],
                 description="Rewrite text with a specific tone",
-                tags=["completion", "rewrite"]
+                tags=["completion", "rewrite"],
             ),
             PromptTemplate(
                 id="completion_expand_outline",
@@ -112,7 +114,7 @@ class PromptLibrary:
                 ),
                 variables=["length", "outline"],
                 description="Expand outline into prose",
-                tags=["completion", "writing"]
+                tags=["completion", "writing"],
             ),
             # Analysis templates
             PromptTemplate(
@@ -127,7 +129,7 @@ Focus on: {focus_areas}
 Provide suggestions for improvement.""",
                 variables=["code", "focus_areas"],
                 description="Code review and analysis template",
-                tags=["analysis", "code-review"]
+                tags=["analysis", "code-review"],
             ),
             PromptTemplate(
                 id="analysis_bug_triage",
@@ -142,7 +144,7 @@ Provide suggestions for improvement.""",
                 ),
                 variables=["issue", "logs", "environment"],
                 description="Bug triage and root cause hints",
-                tags=["analysis", "debugging"]
+                tags=["analysis", "debugging"],
             ),
             PromptTemplate(
                 id="analysis_root_cause",
@@ -156,7 +158,7 @@ Provide suggestions for improvement.""",
                 ),
                 variables=["symptoms", "context"],
                 description="Root cause analysis template",
-                tags=["analysis", "debugging"]
+                tags=["analysis", "debugging"],
             ),
             PromptTemplate(
                 id="analysis_security_review",
@@ -170,7 +172,7 @@ Provide suggestions for improvement.""",
                 ),
                 variables=["threat_model", "code"],
                 description="Security audit template",
-                tags=["analysis", "security"]
+                tags=["analysis", "security"],
             ),
             PromptTemplate(
                 id="analysis_performance",
@@ -184,7 +186,7 @@ Provide suggestions for improvement.""",
                 ),
                 variables=["constraints", "code"],
                 description="Performance analysis template",
-                tags=["analysis", "performance"]
+                tags=["analysis", "performance"],
             ),
             # Generation templates
             PromptTemplate(
@@ -198,7 +200,7 @@ Provide suggestions for improvement.""",
                 ),
                 variables=["framework", "code"],
                 description="Unit test generation template",
-                tags=["generation", "testing"]
+                tags=["generation", "testing"],
             ),
             PromptTemplate(
                 id="generate_docstring",
@@ -211,7 +213,7 @@ Provide suggestions for improvement.""",
                 ),
                 variables=["function_signature", "behavior"],
                 description="Docstring generation template",
-                tags=["generation", "documentation"]
+                tags=["generation", "documentation"],
             ),
             PromptTemplate(
                 id="generate_api_docs",
@@ -224,7 +226,7 @@ Provide suggestions for improvement.""",
                 ),
                 variables=["audience", "module"],
                 description="API documentation template",
-                tags=["generation", "documentation"]
+                tags=["generation", "documentation"],
             ),
             PromptTemplate(
                 id="generate_release_notes",
@@ -237,7 +239,7 @@ Provide suggestions for improvement.""",
                 ),
                 variables=["version", "changes"],
                 description="Release notes template",
-                tags=["generation", "release"]
+                tags=["generation", "release"],
             ),
             PromptTemplate(
                 id="generate_brainstorm",
@@ -250,7 +252,7 @@ Provide suggestions for improvement.""",
                 ),
                 variables=["count", "problem", "constraints"],
                 description="Idea generation template",
-                tags=["generation", "brainstorm"]
+                tags=["generation", "brainstorm"],
             ),
             PromptTemplate(
                 id="generate_sql",
@@ -262,7 +264,7 @@ Provide suggestions for improvement.""",
                 ),
                 variables=["schema", "question"],
                 description="SQL query generation template",
-                tags=["generation", "data"]
+                tags=["generation", "data"],
             ),
             # Summarization templates
             PromptTemplate(
@@ -273,7 +275,7 @@ Provide suggestions for improvement.""",
 {text}""",
                 variables=["text", "max_sentences"],
                 description="Text summarization template",
-                tags=["summarization"]
+                tags=["summarization"],
             ),
             PromptTemplate(
                 id="summarize_meeting",
@@ -286,7 +288,7 @@ Provide suggestions for improvement.""",
                 ),
                 variables=["audience", "transcript"],
                 description="Meeting notes summarization template",
-                tags=["summarization", "meeting"]
+                tags=["summarization", "meeting"],
             ),
             PromptTemplate(
                 id="summarize_diff",
@@ -299,7 +301,7 @@ Provide suggestions for improvement.""",
                 ),
                 variables=["highlights", "diff"],
                 description="Pull request diff summary template",
-                tags=["summarization", "code-review"]
+                tags=["summarization", "code-review"],
             ),
             # Classification templates
             PromptTemplate(
@@ -314,7 +316,7 @@ Provide suggestions for improvement.""",
                 ),
                 variables=["utterance", "labels"],
                 description="User intent classification template",
-                tags=["classification"]
+                tags=["classification"],
             ),
             PromptTemplate(
                 id="classify_priority",
@@ -328,7 +330,7 @@ Provide suggestions for improvement.""",
                 ),
                 variables=["task", "criteria"],
                 description="Task priority classification template",
-                tags=["classification", "triage"]
+                tags=["classification", "triage"],
             ),
             PromptTemplate(
                 id="classify_sentiment",
@@ -340,7 +342,7 @@ Provide suggestions for improvement.""",
                 ),
                 variables=["text"],
                 description="Sentiment classification template",
-                tags=["classification", "sentiment"]
+                tags=["classification", "sentiment"],
             ),
             # Q&A templates
             PromptTemplate(
@@ -355,7 +357,7 @@ Provide suggestions for improvement.""",
                 ),
                 variables=["context", "question"],
                 description="FAQ question answering template",
-                tags=["q_and_a", "faq"]
+                tags=["q_and_a", "faq"],
             ),
             PromptTemplate(
                 id="qa_troubleshoot",
@@ -369,11 +371,11 @@ Provide suggestions for improvement.""",
                 ),
                 variables=["symptoms", "environment"],
                 description="Troubleshooting Q&A template",
-                tags=["q_and_a", "support"]
+                tags=["q_and_a", "support"],
             ),
         ]
         self.add_templates(templates)
-    
+
     def add_template(self, template: PromptTemplate) -> None:
         """Register new template"""
         self.templates[template.id] = template
@@ -392,7 +394,7 @@ Provide suggestions for improvement.""",
         variables: List[str],
         description: str = "",
         tags: Optional[List[str]] = None,
-        version: str = "1.0"
+        version: str = "1.0",
     ) -> PromptTemplate:
         """Create and register a custom template"""
         if template_id in self.templates:
@@ -409,18 +411,20 @@ Provide suggestions for improvement.""",
         )
         self.add_template(template)
         return template
-    
+
     def get_template(self, template_id: str) -> Optional[PromptTemplate]:
         """Retrieve template by ID"""
         return self.templates.get(template_id)
-    
-    def list_templates(self, prompt_type: Optional[PromptType] = None) -> List[PromptTemplate]:
+
+    def list_templates(
+        self, prompt_type: Optional[PromptType] = None
+    ) -> List[PromptTemplate]:
         """List templates, optionally filtered by type"""
         templates = list(self.templates.values())
         if prompt_type:
             templates = [t for t in templates if t.prompt_type == prompt_type]
         return templates
-    
+
     def find_by_tags(self, tags: List[str]) -> List[PromptTemplate]:
         """Find templates by tags"""
         result = []
@@ -432,22 +436,22 @@ Provide suggestions for improvement.""",
 
 class PromptComposer:
     """Compose complex prompts from templates and components"""
-    
+
     def __init__(self, library: PromptLibrary):
         self.library = library
-    
+
     def compose(self, template_id: str, **variables) -> str:
         """Compose prompt from template"""
         template = self.library.get_template(template_id)
         if not template:
             raise ValueError(f"Template {template_id} not found")
-        
+
         if not template.validate_variables(variables):
             missing = set(template.variables) - set(variables.keys())
             raise ValueError(f"Missing variables: {missing}")
-        
+
         return template.render(**variables)
-    
+
     def compose_multi(self, template_ids: List[str], **variables) -> str:
         """Compose multi-part prompt from multiple templates"""
         parts = []
@@ -455,11 +459,11 @@ class PromptComposer:
             part = self.compose(template_id, **variables)
             parts.append(part)
         return "\n\n".join(parts)
-    
+
     def with_system_message(self, system_role: str, user_prompt: str) -> str:
         """Combine system message with user prompt"""
         return f"System: {system_role}\n\nUser: {user_prompt}"
-    
+
     def with_context(self, context: str, prompt: str) -> str:
         """Add context to prompt"""
         return f"Context:\n{context}\n\nQuery:\n{prompt}"
@@ -467,7 +471,7 @@ class PromptComposer:
 
 class PromptOptimizer:
     """Optimize prompts for better AI responses"""
-    
+
     @staticmethod
     def add_clarity_markers(prompt: str) -> str:
         """Add clarity markers to structure prompt"""
@@ -482,13 +486,13 @@ INSTRUCTIONS:
 - Focus on accuracy
 - Provide examples if helpful
 """.strip()
-    
+
     @staticmethod
     def add_constraints(prompt: str, constraints: List[str]) -> str:
         """Add constraints to prompt"""
         constraint_str = "\n".join([f"- {c}" for c in constraints])
         return f"{prompt}\n\nConstraints:\n{constraint_str}"
-    
+
     @staticmethod
     def add_output_format(prompt: str, format_spec: str) -> str:
         """Specify output format"""
@@ -496,4 +500,10 @@ INSTRUCTIONS:
 
 
 # Export public API
-__all__ = ['PromptType', 'PromptTemplate', 'PromptLibrary', 'PromptComposer', 'PromptOptimizer']
+__all__ = [
+    "PromptType",
+    "PromptTemplate",
+    "PromptLibrary",
+    "PromptComposer",
+    "PromptOptimizer",
+]

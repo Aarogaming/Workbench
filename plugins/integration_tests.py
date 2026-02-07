@@ -8,6 +8,7 @@ from enum import Enum
 
 class TestStatus(Enum):
     """Test execution status"""
+
     PENDING = "pending"
     RUNNING = "running"
     PASSED = "passed"
@@ -18,6 +19,7 @@ class TestStatus(Enum):
 @dataclass
 class TestCase:
     """Single integration test case"""
+
     test_id: str
     name: str
     description: str
@@ -47,37 +49,33 @@ class IntegrationTestSuite:
     def run(self) -> Dict[str, Any]:
         """Run all tests in suite"""
         results = {
-            'suite_id': self.suite_id,
-            'total': len(self.tests),
-            'passed': 0,
-            'failed': 0,
-            'skipped': 0,
-            'tests': []
+            "suite_id": self.suite_id,
+            "total": len(self.tests),
+            "passed": 0,
+            "failed": 0,
+            "skipped": 0,
+            "tests": [],
         }
 
         for test in self.tests:
             test_result = self._run_test(test)
-            results['tests'].append(test_result)
+            results["tests"].append(test_result)
 
             if test.status == TestStatus.PASSED:
-                results['passed'] += 1
+                results["passed"] += 1
                 self.passed += 1
             elif test.status == TestStatus.FAILED:
-                results['failed'] += 1
+                results["failed"] += 1
                 self.failed += 1
             elif test.status == TestStatus.SKIPPED:
-                results['skipped'] += 1
+                results["skipped"] += 1
                 self.skipped += 1
 
         return results
 
     def _run_test(self, test: TestCase) -> Dict[str, Any]:
         """Run single test"""
-        test_result = {
-            'test_id': test.test_id,
-            'name': test.name,
-            'status': 'unknown'
-        }
+        test_result = {"test_id": test.test_id, "name": test.name, "status": "unknown"}
 
         try:
             test.status = TestStatus.RUNNING
@@ -94,20 +92,20 @@ class IntegrationTestSuite:
                 test.teardown()
 
             test.status = TestStatus.PASSED
-            test_result['status'] = 'passed'
-            test_result['result'] = result
+            test_result["status"] = "passed"
+            test_result["result"] = result
 
         except AssertionError as e:
             test.status = TestStatus.FAILED
             test.error = str(e)
-            test_result['status'] = 'failed'
-            test_result['error'] = str(e)
+            test_result["status"] = "failed"
+            test_result["error"] = str(e)
 
         except Exception as e:
             test.status = TestStatus.FAILED
             test.error = str(e)
-            test_result['status'] = 'failed'
-            test_result['error'] = str(e)
+            test_result["status"] = "failed"
+            test_result["error"] = str(e)
 
         return test_result
 
@@ -116,11 +114,11 @@ class IntegrationTestSuite:
         total = len(self.tests)
         pass_rate = (self.passed / total * 100) if total > 0 else 0
         return {
-            'total': total,
-            'passed': self.passed,
-            'failed': self.failed,
-            'skipped': self.skipped,
-            'pass_rate': pass_rate
+            "total": total,
+            "passed": self.passed,
+            "failed": self.failed,
+            "skipped": self.skipped,
+            "pass_rate": pass_rate,
         }
 
 
@@ -145,35 +143,33 @@ class IntegrationTestManager:
     def run_all(self) -> Dict[str, Any]:
         """Run all test suites"""
         overall = {
-            'total_suites': len(self.suites),
-            'total_tests': 0,
-            'total_passed': 0,
-            'total_failed': 0,
-            'suite_results': []
+            "total_suites": len(self.suites),
+            "total_tests": 0,
+            "total_passed": 0,
+            "total_failed": 0,
+            "suite_results": [],
         }
 
         for suite_id, suite in self.suites.items():
             result = suite.run()
             self.results.append(result)
 
-            overall['total_tests'] += result['total']
-            overall['total_passed'] += result['passed']
-            overall['total_failed'] += result['failed']
-            overall['suite_results'].append(result)
+            overall["total_tests"] += result["total"]
+            overall["total_passed"] += result["passed"]
+            overall["total_failed"] += result["failed"]
+            overall["suite_results"].append(result)
 
         return overall
 
     def get_summary(self) -> Dict[str, Any]:
         """Get test summary"""
-        total_passed = sum(r['passed'] for r in self.results)
-        total_tests = sum(r['total'] for r in self.results)
-        pass_rate = (
-            (total_passed / total_tests * 100)
-            if total_tests > 0 else 0)
+        total_passed = sum(r["passed"] for r in self.results)
+        total_tests = sum(r["total"] for r in self.results)
+        pass_rate = (total_passed / total_tests * 100) if total_tests > 0 else 0
 
         return {
-            'total_tests': total_tests,
-            'total_passed': total_passed,
-            'pass_rate': pass_rate,
-            'suites_run': len(self.results)
+            "total_tests": total_tests,
+            "total_passed": total_passed,
+            "pass_rate": pass_rate,
+            "suites_run": len(self.results),
         }

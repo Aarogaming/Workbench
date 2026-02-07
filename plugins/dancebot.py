@@ -8,6 +8,7 @@ from enum import Enum
 
 class DanceMove(Enum):
     """Available dance moves"""
+
     SPIN = "spin"
     HOP = "hop"
     SWAY = "sway"
@@ -19,6 +20,7 @@ class DanceMove(Enum):
 @dataclass
 class Move:
     """Represents a single dance move"""
+
     type: DanceMove
     duration: float
     intensity: float
@@ -31,11 +33,11 @@ class DanceSequence:
         """Initialize empty sequence"""
         self.moves: List[Move] = []
 
-    def add_move(self, move_type: DanceMove,
-                 duration: float, intensity: float = 1.0) -> None:
+    def add_move(
+        self, move_type: DanceMove, duration: float, intensity: float = 1.0
+    ) -> None:
         """Add move to sequence"""
-        move = Move(type=move_type, duration=duration,
-                    intensity=intensity)
+        move = Move(type=move_type, duration=duration, intensity=intensity)
         self.moves.append(move)
 
     def get_duration(self) -> float:
@@ -61,8 +63,7 @@ class DanceBot:
         self.music_playing = False
         self.choreographies: Dict[str, DanceSequence] = {}
 
-    def load_choreography(self, name: str,
-                          sequence: DanceSequence) -> None:
+    def load_choreography(self, name: str, sequence: DanceSequence) -> None:
         """Load a predefined choreography"""
         self.choreographies[name] = sequence
 
@@ -112,9 +113,9 @@ class DanceBot:
     def get_status(self) -> Dict[str, bool]:
         """Get DanceBot status"""
         return {
-            'is_dancing': self.is_dancing,
-            'music_playing': self.music_playing,
-            'sequence_loaded': self.current_sequence is not None
+            "is_dancing": self.is_dancing,
+            "music_playing": self.music_playing,
+            "sequence_loaded": self.current_sequence is not None,
         }
 
     def preset_waltz(self) -> DanceSequence:

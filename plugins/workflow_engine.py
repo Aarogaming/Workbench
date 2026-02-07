@@ -9,6 +9,7 @@ import time
 
 class ExecutionStatus(Enum):
     """Workflow execution status"""
+
     PENDING = "pending"
     RUNNING = "running"
     COMPLETED = "completed"
@@ -19,6 +20,7 @@ class ExecutionStatus(Enum):
 @dataclass
 class WorkflowStep:
     """Single step in workflow"""
+
     step_id: str
     action: str
     inputs: Dict[str, Any] = field(default_factory=dict)
@@ -52,17 +54,13 @@ class WorkflowDefinition:
     def to_dict(self) -> Dict[str, Any]:
         """Serialize workflow"""
         return {
-            'id': self.workflow_id,
-            'name': self.name,
-            'steps': [
-                {
-                    'id': s.step_id,
-                    'action': s.action,
-                    'inputs': s.inputs
-                }
+            "id": self.workflow_id,
+            "name": self.name,
+            "steps": [
+                {"id": s.step_id, "action": s.action, "inputs": s.inputs}
                 for s in self.steps
             ],
-            'metadata': self.metadata
+            "metadata": self.metadata,
         }
 
 
@@ -76,18 +74,14 @@ class WorkflowExecutor:
         self.execution_status = ExecutionStatus.PENDING
         self.results: Dict[str, Any] = {}
 
-    def register_handler(self, action: str,
-                        handler: Callable) -> None:
+    def register_handler(self, action: str, handler: Callable) -> None:
         """Register action handler"""
         self.handlers[action] = handler
 
     def execute(self, workflow: WorkflowDefinition) -> Dict[str, Any]:
         """Execute workflow"""
         if not workflow.validate():
-            return {
-                'success': False,
-                'error': 'Invalid workflow'
-            }
+            return {"success": False, "error": "Invalid workflow"}
 
         self.current_workflow = workflow
         self.execution_status = ExecutionStatus.RUNNING
@@ -98,22 +92,16 @@ class WorkflowExecutor:
                 if not self._execute_step(step):
                     self.execution_status = ExecutionStatus.FAILED
                     return {
-                        'success': False,
-                        'failed_step': step.step_id,
-                        'error': 'Step execution failed'
+                        "success": False,
+                        "failed_step": step.step_id,
+                        "error": "Step execution failed",
                     }
 
             self.execution_status = ExecutionStatus.COMPLETED
-            return {
-                'success': True,
-                'results': self.results
-            }
+            return {"success": True, "results": self.results}
         except Exception as e:
             self.execution_status = ExecutionStatus.FAILED
-            return {
-                'success': False,
-                'error': str(e)
-            }
+            return {"success": False, "error": str(e)}
 
     def _execute_step(self, step: WorkflowStep) -> bool:
         """Execute single step"""
@@ -138,7 +126,7 @@ class WorkflowExecutor:
     def resume(self) -> Dict[str, Any]:
         """Resume workflow execution"""
         if self.current_workflow is None:
-            return {'success': False}
+            return {"success": False}
 
         self.execution_status = ExecutionStatus.RUNNING
         return self.execute(self.current_workflow)
@@ -146,11 +134,11 @@ class WorkflowExecutor:
     def get_status(self) -> Dict[str, Any]:
         """Get execution status"""
         return {
-            'status': self.execution_status.value,
-            'workflow_id': (
-                self.current_workflow.workflow_id
-                if self.current_workflow else None),
-            'results_count': len(self.results)
+            "status": self.execution_status.value,
+            "workflow_id": (
+                self.current_workflow.workflow_id if self.current_workflow else None
+            ),
+            "results_count": len(self.results),
         }
 
 
@@ -162,28 +150,29 @@ class WorkflowScheduler:
         self.scheduled: Dict[str, Dict[str, Any]] = {}
         self.executor = WorkflowExecutor()
 
-    def schedule(self, workflow: WorkflowDefinition,
-                 trigger: str, delay: float = 0.0) -> str:
+    def schedule(
+        self, workflow: WorkflowDefinition, trigger: str, delay: float = 0.0
+    ) -> str:
         """Schedule workflow for execution"""
         schedule_id = f"sched_{len(self.scheduled)}"
         self.scheduled[schedule_id] = {
-            'workflow': workflow,
-            'trigger': trigger,
-            'delay': delay,
-            'created_at': time.time(),
-            'executed': False
+            "workflow": workflow,
+            "trigger": trigger,
+            "delay": delay,
+            "created_at": time.time(),
+            "executed": False,
         }
         return schedule_id
 
     def run_scheduled(self, schedule_id: str) -> Dict[str, Any]:
         """Run scheduled workflow"""
         if schedule_id not in self.scheduled:
-            return {'success': False}
+            return {"success": False}
 
         sched = self.scheduled[schedule_id]
-        result = self.executor.execute(sched['workflow'])
-        sched['executed'] = True
-        sched['executed_at'] = time.time()
+        result = self.executor.execute(sched["workflow"])
+        sched["executed"] = True
+        sched["executed_at"] = time.time()
         return result
 
     def list_scheduled(self) -> List[Dict[str, Any]]:
