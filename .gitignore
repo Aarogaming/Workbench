@@ -33,3 +33,7 @@ publish/
 Thumbs.db
 desktop.ini
 *.lnk
+
+# Local/generated indexes
+asset_index.json
+Assets/asset_index.json
