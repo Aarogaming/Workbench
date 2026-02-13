@@ -4,7 +4,7 @@
       "event_bus",
       "outbox"
     ],
-    "require_ack": false,
+    "require_ack": true,
     "retries": 1,
     "heartbeat_sec": 45
   },
