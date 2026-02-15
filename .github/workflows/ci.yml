@@ -24,6 +24,9 @@ jobs:
         with:
           python-version: "3.12"
 
+      - name: Install test/runtime dependencies
+        run: python3 -m pip install --upgrade pip pytest requests
+
       - name: Secret hygiene guard
         run: python scripts/check_secret_hygiene.py --all --strict
 
