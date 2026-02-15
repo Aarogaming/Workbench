@@ -1,0 +1,17 @@
+{
+  "workflow_count": 9,
+  "issue_count": 0,
+  "excepted_count": 0,
+  "exception_summary": {
+    "exceptions_file": ".github/workflow-pinning-exceptions.json",
+    "active_count": 0,
+    "invalid_count": 0,
+    "expired_count": 0
+  },
+  "exceptions": {
+    "invalid": [],
+    "expired": [],
+    "applied": []
+  },
+  "issues": []
+}

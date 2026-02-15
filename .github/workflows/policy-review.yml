@@ -1,0 +1,13 @@
+name: Policy Review
+
+on:
+  schedule:
+    - cron: "0 9 * * 1"
+  workflow_dispatch:
+
+jobs:
+  policy-review:
+    uses: ./.github/workflows/reusable-policy-review.yml
+    with:
+      repository: ${{ github.repository }}
+      repository_private: ${{ github.event.repository.private }}

@@ -1,0 +1,32 @@
+{
+  "scenarios": [
+    {
+      "id": "workflow_pause_resume",
+      "enabled": true
+    },
+    {
+      "id": "workflow_delay_contract",
+      "enabled": true
+    },
+    {
+      "id": "mcp_auth_invalid_credentials",
+      "enabled": true
+    },
+    {
+      "id": "mcp_auth_verified_contract",
+      "enabled": true
+    },
+    {
+      "id": "plugin_contract_audit",
+      "enabled": true
+    },
+    {
+      "id": "workflow_pinning_audit",
+      "enabled": true
+    },
+    {
+      "id": "workflow_pinning_exceptions_review",
+      "enabled": true
+    }
+  ]
+}

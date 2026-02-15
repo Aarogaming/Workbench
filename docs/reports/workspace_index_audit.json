@@ -1,0 +1,443 @@
+{
+  "generated_utc": "2026-02-15T10:07:04Z",
+  "suite_root": "/mnt/c/Dev library/AaroneousAutomationSuite",
+  "policy_path": "/mnt/c/Dev library/AaroneousAutomationSuite/Workbench/scripts/workspace_index_targets.json",
+  "targets": [
+    {
+      "target": "Workbench",
+      "path": "/mnt/c/Dev library/AaroneousAutomationSuite/Workbench",
+      "baseline_enforced": true,
+      "optional_absent": false,
+      "policy_note": "Primary managed module.",
+      "exists": true,
+      "is_git_repo": true,
+      "submodule": {
+        "path": "Workbench",
+        "url": "https://github.com/Aarogaming/Workbench.git"
+      },
+      "missing": [],
+      "context_missing": [],
+      "warnings": [],
+      "notes": [],
+      "index_missing_paths": [],
+      "hive_policy": {
+        "require_ack": true,
+        "retries": 1,
+        "heartbeat_sec": 45,
+        "channels": [
+          "event_bus",
+          "outbox"
+        ]
+      },
+      "ok": true
+    },
+    {
+      "target": "Utilities",
+      "path": "/mnt/c/Dev library/AaroneousAutomationSuite/Utilities",
+      "baseline_enforced": false,
+      "optional_absent": false,
+      "policy_note": "Neighboring context directory; not currently managed as an AAS module baseline.",
+      "exists": true,
+      "is_git_repo": false,
+      "submodule": {},
+      "missing": [],
+      "context_missing": [],
+      "warnings": [],
+      "notes": [],
+      "index_missing_paths": [],
+      "hive_policy": {
+        "require_ack": null,
+        "retries": null,
+        "heartbeat_sec": null,
+        "channels": []
+      },
+      "ok": true
+    },
+    {
+      "target": "ToolsShared",
+      "path": "/mnt/c/Dev library/AaroneousAutomationSuite/ToolsShared",
+      "baseline_enforced": false,
+      "optional_absent": true,
+      "policy_note": "Legacy/optional neighbor path used for context discovery when present.",
+      "exists": false,
+      "is_git_repo": false,
+      "submodule": {},
+      "missing": [],
+      "context_missing": [],
+      "warnings": [],
+      "notes": [
+        "optional target path is absent"
+      ],
+      "index_missing_paths": [],
+      "hive_policy": {
+        "require_ack": null,
+        "retries": null,
+        "heartbeat_sec": null,
+        "channels": []
+      },
+      "ok": true
+    }
+  ],
+  "plugins": {
+    "path": "/mnt/c/Dev library/AaroneousAutomationSuite/Workbench/plugins",
+    "exists": true,
+    "manifest_dirs": [
+      "asset_cleanup",
+      "asset_indexer",
+      "asset_search",
+      "asset_size_analysis",
+      "dpi_audit",
+      "kernel",
+      "license_consolidator",
+      "repo_compare",
+      "repo_size_guard"
+    ],
+    "manifest_invalid": [],
+    "manifest_missing_entry_file": [],
+    "directory_plugins_without_manifest": [],
+    "manifest_export_mismatch": [],
+    "duplicate_capabilities": {},
+    "flat_python_files": [
+      "async_executor.py",
+      "build_cache_manager.py",
+      "context_summarization.py",
+      "custom_nodes.py",
+      "dancebot.py",
+      "datadog_validator.py",
+      "di_container.py",
+      "fuzz_testing.py",
+      "gradle_cache_manager.py",
+      "gui_cli_helper.py",
+      "gui_cli_wrapper.py",
+      "gui_hub_connector.py",
+      "gui_tray_status.py",
+      "home_assistant.py",
+      "https_release_enforcer.py",
+      "integration_engine.py",
+      "integration_tests.py",
+      "lint_baseline_manager.py",
+      "load_testing.py",
+      "log_export_manager.py",
+      "mcp_auth.py",
+      "multi_agent_conversations.py",
+      "periodic_check_workmanager.py",
+      "prompts.py",
+      "rbac.py",
+      "sandboxing.py",
+      "security_audit.py",
+      "settings_screen.py",
+      "status_history.py",
+      "url_edit_test_manager.py",
+      "versioning.py",
+      "versioning_strategy.py",
+      "voice.py",
+      "workflow_engine.py"
+    ],
+    "flat_legacy_plugin_candidates": [],
+    "flat_helper_modules": [
+      "async_executor.py",
+      "build_cache_manager.py",
+      "context_summarization.py",
+      "custom_nodes.py",
+      "dancebot.py",
+      "datadog_validator.py",
+      "di_container.py",
+      "fuzz_testing.py",
+      "gradle_cache_manager.py",
+      "gui_cli_helper.py",
+      "gui_cli_wrapper.py",
+      "gui_hub_connector.py",
+      "gui_tray_status.py",
+      "home_assistant.py",
+      "https_release_enforcer.py",
+      "integration_engine.py",
+      "integration_tests.py",
+      "lint_baseline_manager.py",
+      "load_testing.py",
+      "log_export_manager.py",
+      "mcp_auth.py",
+      "multi_agent_conversations.py",
+      "periodic_check_workmanager.py",
+      "prompts.py",
+      "rbac.py",
+      "sandboxing.py",
+      "security_audit.py",
+      "settings_screen.py",
+      "status_history.py",
+      "url_edit_test_manager.py",
+      "versioning.py",
+      "versioning_strategy.py",
+      "voice.py",
+      "workflow_engine.py"
+    ],
+    "warnings": [],
+    "ok": true
+  },
+  "cross_repo_references": {
+    "scanned_files": 43,
+    "total_references": 4,
+    "missing_references": [],
+    "warnings": []
+  },
+  "submodules": {
+    "available": true,
+    "entries": [
+      {
+        "path": "AndroidApp",
+        "state": "drifted",
+        "prefix": "+",
+        "checkout_sha": "4d0db0902cb12e3257cbe26eb4f0bbe627cca9ca",
+        "head_sha": "1c71029f9374524b030580657ad82222aa18e0a9",
+        "index_sha": "1c71029f9374524b030580657ad82222aa18e0a9",
+        "branch": "main...origin/main",
+        "dirty_files": 27,
+        "untracked_files": 11,
+        "status_available": true,
+        "status_error": "",
+        "checkout_behind_index": 0,
+        "checkout_ahead_of_index": 1
+      },
+      {
+        "path": "Library",
+        "state": "drifted",
+        "prefix": "+",
+        "checkout_sha": "dbc9f1196fa655176dfefa5b5526814b4357c5f3",
+        "head_sha": "f2737f3202cad95e4ce546e24212ab0567193dcb",
+        "index_sha": "f2737f3202cad95e4ce546e24212ab0567193dcb",
+        "branch": "main...origin/main [ahead 10]",
+        "dirty_files": 4,
+        "untracked_files": 1,
+        "status_available": true,
+        "status_error": "",
+        "checkout_behind_index": 0,
+        "checkout_ahead_of_index": 10
+      },
+      {
+        "path": "Maelstrom",
+        "state": "drifted",
+        "prefix": "+",
+        "checkout_sha": "fd2f0d92993b2f7f719a0f76776082d95453a4c2",
+        "head_sha": "b48008fca939792bf9591d063c972f0996f35cf0",
+        "index_sha": "b48008fca939792bf9591d063c972f0996f35cf0",
+        "branch": "main...origin/main",
+        "dirty_files": 22,
+        "untracked_files": 18,
+        "status_available": true,
+        "status_error": "",
+        "checkout_behind_index": 0,
+        "checkout_ahead_of_index": 1
+      },
+      {
+        "path": "Merlin",
+        "state": "drifted",
+        "prefix": "+",
+        "checkout_sha": "407ab2e1dbdd8de4433f4e06ee10c2b0d0a5f43c",
+        "head_sha": "50547c33d841d66cc048269df7a490db0eeae480",
+        "index_sha": "50547c33d841d66cc048269df7a490db0eeae480",
+        "branch": "main...origin/main",
+        "dirty_files": 40,
+        "untracked_files": 92,
+        "status_available": true,
+        "status_error": "",
+        "checkout_behind_index": 0,
+        "checkout_ahead_of_index": 1
+      },
+      {
+        "path": "MyFortress",
+        "state": "drifted",
+        "prefix": "+",
+        "checkout_sha": "a76b72af6a132b87ceb3440ab61175e2121a3cba",
+        "head_sha": "a9c0d93706d2b1b478b7b9b3a9d518414d4b004e",
+        "index_sha": "a9c0d93706d2b1b478b7b9b3a9d518414d4b004e",
+        "branch": "main...origin/main",
+        "dirty_files": 16,
+        "untracked_files": 5,
+        "status_available": true,
+        "status_error": "",
+        "checkout_behind_index": 0,
+        "checkout_ahead_of_index": 1
+      },
+      {
+        "path": "Workbench",
+        "state": "drifted",
+        "prefix": "+",
+        "checkout_sha": "aaa947c74da18ba325b8cf4016e737797a792d7c",
+        "head_sha": "9f360a4ed49a3d6ed1878acc74e3cd989188f4ad",
+        "index_sha": "9f360a4ed49a3d6ed1878acc74e3cd989188f4ad",
+        "branch": "main...origin/main",
+        "dirty_files": 50,
+        "untracked_files": 30,
+        "status_available": true,
+        "status_error": "",
+        "checkout_behind_index": 0,
+        "checkout_ahead_of_index": 2
+      },
+      {
+        "path": "guild",
+        "state": "clean",
+        "prefix": " ",
+        "checkout_sha": "b58d314fe65b713d7e5497fc382b853b5058afba",
+        "head_sha": "b58d314fe65b713d7e5497fc382b853b5058afba",
+        "index_sha": "b58d314fe65b713d7e5497fc382b853b5058afba",
+        "branch": "main...origin/main",
+        "dirty_files": 6,
+        "untracked_files": 11,
+        "status_available": true,
+        "status_error": "",
+        "checkout_behind_index": 0,
+        "checkout_ahead_of_index": 0
+      }
+    ],
+    "warnings": [],
+    "error": null
+  },
+  "alignment_snapshot": {
+    "available": true,
+    "entries": [
+      {
+        "repo": "AndroidApp",
+        "snapshot_sha": "1c71029f9374524b030580657ad82222aa18e0a9",
+        "head_sha": "1c71029f9374524b030580657ad82222aa18e0a9",
+        "status": "match"
+      },
+      {
+        "repo": "Library",
+        "snapshot_sha": "f2737f3202cad95e4ce546e24212ab0567193dcb",
+        "head_sha": "f2737f3202cad95e4ce546e24212ab0567193dcb",
+        "status": "match"
+      },
+      {
+        "repo": "Maelstrom",
+        "snapshot_sha": "b48008fca939792bf9591d063c972f0996f35cf0",
+        "head_sha": "b48008fca939792bf9591d063c972f0996f35cf0",
+        "status": "match"
+      },
+      {
+        "repo": "Merlin",
+        "snapshot_sha": "50547c33d841d66cc048269df7a490db0eeae480",
+        "head_sha": "50547c33d841d66cc048269df7a490db0eeae480",
+        "status": "match"
+      },
+      {
+        "repo": "MyFortress",
+        "snapshot_sha": "a9c0d93706d2b1b478b7b9b3a9d518414d4b004e",
+        "head_sha": "a9c0d93706d2b1b478b7b9b3a9d518414d4b004e",
+        "status": "match"
+      },
+      {
+        "repo": "Workbench",
+        "snapshot_sha": "9f360a4ed49a3d6ed1878acc74e3cd989188f4ad",
+        "head_sha": "9f360a4ed49a3d6ed1878acc74e3cd989188f4ad",
+        "status": "match"
+      }
+    ],
+    "warnings": []
+  },
+  "recommended_actions": [],
+  "issue_summary": {
+    "total": 0,
+    "by_severity": {
+      "error": 0,
+      "warning": 0,
+      "info": 0
+    },
+    "by_category": {},
+    "items": []
+  },
+  "submodule_reconciliation_plan": [
+    {
+      "path": "AndroidApp",
+      "state": "drifted",
+      "ahead": 1,
+      "behind": 0,
+      "dirty_files": 27,
+      "untracked_files": 11,
+      "risk": "high",
+      "action": "preserve_local_work",
+      "note": "commit/stash before submodule sync",
+      "command": "git -C ../AndroidApp status --short --branch"
+    },
+    {
+      "path": "Library",
+      "state": "drifted",
+      "ahead": 10,
+      "behind": 0,
+      "dirty_files": 4,
+      "untracked_files": 1,
+      "risk": "high",
+      "action": "preserve_local_work",
+      "note": "commit/stash before submodule sync",
+      "command": "git -C ../Library status --short --branch"
+    },
+    {
+      "path": "Maelstrom",
+      "state": "drifted",
+      "ahead": 1,
+      "behind": 0,
+      "dirty_files": 22,
+      "untracked_files": 18,
+      "risk": "high",
+      "action": "preserve_local_work",
+      "note": "commit/stash before submodule sync",
+      "command": "git -C ../Maelstrom status --short --branch"
+    },
+    {
+      "path": "Merlin",
+      "state": "drifted",
+      "ahead": 1,
+      "behind": 0,
+      "dirty_files": 40,
+      "untracked_files": 92,
+      "risk": "high",
+      "action": "preserve_local_work",
+      "note": "commit/stash before submodule sync",
+      "command": "git -C ../Merlin status --short --branch"
+    },
+    {
+      "path": "MyFortress",
+      "state": "drifted",
+      "ahead": 1,
+      "behind": 0,
+      "dirty_files": 16,
+      "untracked_files": 5,
+      "risk": "high",
+      "action": "preserve_local_work",
+      "note": "commit/stash before submodule sync",
+      "command": "git -C ../MyFortress status --short --branch"
+    },
+    {
+      "path": "Workbench",
+      "state": "drifted",
+      "ahead": 2,
+      "behind": 0,
+      "dirty_files": 50,
+      "untracked_files": 30,
+      "risk": "high",
+      "action": "preserve_local_work",
+      "note": "commit/stash before submodule sync",
+      "command": "git -C ../Workbench status --short --branch"
+    },
+    {
+      "path": "guild",
+      "state": "clean",
+      "ahead": 0,
+      "behind": 0,
+      "dirty_files": 6,
+      "untracked_files": 11,
+      "risk": "high",
+      "action": "preserve_local_work",
+      "note": "commit/stash before submodule sync",
+      "command": "git -C ../guild status --short --branch"
+    }
+  ],
+  "template_path": "/mnt/c/Dev library/AaroneousAutomationSuite/Library/templates/protocols/AGENT_INTEROP_V1_TEMPLATE.md",
+  "template_source": "pinned-submodule:Library@f2737f3202cad95e4ce546e24212ab0567193dcb:templates/protocols/AGENT_INTEROP_V1_TEMPLATE.md",
+  "run_options": {
+    "targets_explicit": [],
+    "include_all_submodule_targets": false,
+    "strict": false,
+    "strict_enforced_only": true,
+    "ignore_submodule_dirty": true,
+    "ignore_submodule_ahead": true
+  }
+}

@@ -1,0 +1,22 @@
+{
+  "targets": [
+    {
+      "name": "Workbench",
+      "enforce_baseline": true,
+      "optional_absent": false,
+      "note": "Primary managed module."
+    },
+    {
+      "name": "Utilities",
+      "enforce_baseline": false,
+      "optional_absent": false,
+      "note": "Neighboring context directory; not currently managed as an AAS module baseline."
+    },
+    {
+      "name": "ToolsShared",
+      "enforce_baseline": false,
+      "optional_absent": true,
+      "note": "Legacy/optional neighbor path used for context discovery when present."
+    }
+  ]
+}

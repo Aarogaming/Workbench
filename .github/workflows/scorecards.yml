@@ -1,0 +1,13 @@
+name: Scorecards
+
+on:
+  schedule:
+    - cron: "30 1 * * 6"
+  workflow_dispatch:
+
+jobs:
+  scorecards:
+    uses: ./.github/workflows/reusable-scorecards.yml
+    with:
+      repository: ${{ github.repository }}
+      repository_private: ${{ github.event.repository.private }}

@@ -1,0 +1,7 @@
+{
+  "min_score": 6.0,
+  "min_checks": {
+    "Dangerous-Workflow": 10.0,
+    "Pinned-Dependencies": 8.0
+  }
+}

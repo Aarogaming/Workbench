@@ -1,0 +1,12 @@
+{
+  "min_pass_rate": 1.0,
+  "required_pass": [
+    "workflow_pause_resume",
+    "workflow_delay_contract",
+    "mcp_auth_invalid_credentials",
+    "mcp_auth_verified_contract",
+    "plugin_contract_audit",
+    "workflow_pinning_audit",
+    "workflow_pinning_exceptions_review"
+  ]
+}

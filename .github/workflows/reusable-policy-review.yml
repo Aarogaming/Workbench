@@ -1,0 +1,51 @@
+name: Reusable Policy Review
+
+on:
+  workflow_call:
+    inputs:
+      repository:
+        required: true
+        type: string
+      repository_private:
+        required: true
+        type: boolean
+
+jobs:
+  workflow-policy-review:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
+
+      - name: Set up Python
+        uses: actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065 # v5.6.0
+        with:
+          python-version: "3.12"
+
+      - name: Workflow pinning audit
+        run: python3 scripts/check_workflow_pinning.py
+
+      - name: Workflow pinning exceptions review
+        run: python3 scripts/check_workflow_pinning_exceptions.py --warn-days 21 --fail-on-warning
+
+      - name: Scorecard threshold review
+        if: ${{ inputs.repository_private == false }}
+        run: |
+          python3 scripts/check_scorecard_threshold.py \
+            --repo "${{ inputs.repository }}" \
+            --allow-unavailable
+
+      - name: Update scorecard history
+        if: ${{ inputs.repository_private == false }}
+        run: python3 scripts/update_scorecard_history.py
+
+      - name: Upload policy review artifacts
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4.6.2
+        with:
+          name: workflow-policy-reports
+          path: |
+            docs/reports/workflow_pinning_audit.json
+            docs/reports/workflow_pinning_exceptions_review.json
+            docs/reports/scorecard_threshold_audit.json
+            docs/reports/scorecard_history.json
+            docs/reports/scorecard_history.md

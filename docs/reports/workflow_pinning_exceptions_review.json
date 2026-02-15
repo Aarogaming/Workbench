@@ -1,0 +1,19 @@
+{
+  "generated_utc": "2026-02-15T10:07:04Z",
+  "exceptions_file": ".github/workflow-pinning-exceptions.json",
+  "warn_days": 30,
+  "summary": {
+    "reviewed_count": 0,
+    "invalid_count": 0,
+    "stale_count": 0,
+    "expired_count": 0,
+    "due_soon_count": 0,
+    "active_count": 0
+  },
+  "invalid": [],
+  "stale": [],
+  "expired": [],
+  "due_soon": [],
+  "active": [],
+  "reviewed": []
+}

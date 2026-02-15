@@ -1,0 +1,31 @@
+{
+  "entries": [
+    {
+      "generated_utc": "2026-02-15T09:56:31Z",
+      "project": "github.com/ossf/scorecard",
+      "available": true,
+      "gate_pass": true,
+      "score": 9.3,
+      "check_scores": {
+        "Maintained": 10.0,
+        "Dependency-Update-Tool": 10.0,
+        "Token-Permissions": 9.0,
+        "Dangerous-Workflow": 10.0,
+        "Code-Review": 10.0,
+        "Security-Policy": 10.0,
+        "Binary-Artifacts": 10.0,
+        "License": 10.0,
+        "Pinned-Dependencies": 9.0,
+        "Packaging": 10.0,
+        "CII-Best-Practices": 5.0,
+        "Fuzzing": 10.0,
+        "Vulnerabilities": 4.0,
+        "SAST": 10.0,
+        "Branch-Protection": -1.0,
+        "Signed-Releases": 10.0,
+        "CI-Tests": 10.0,
+        "Contributors": 10.0
+      }
+    }
+  ]
+}

@@ -1,0 +1,803 @@
+{
+  "generated_utc": "2026-02-14T03:19:11Z",
+  "suite_root": "/mnt/c/Dev library/AaroneousAutomationSuite",
+  "policy_path": "/mnt/c/Dev library/AaroneousAutomationSuite/Workbench/scripts/workspace_index_targets.json",
+  "targets": [
+    {
+      "target": "Workbench",
+      "path": "/mnt/c/Dev library/AaroneousAutomationSuite/Workbench",
+      "baseline_enforced": true,
+      "optional_absent": false,
+      "policy_note": "Primary managed module.",
+      "exists": true,
+      "is_git_repo": true,
+      "submodule": {
+        "path": "Workbench",
+        "url": "https://github.com/Aarogaming/Workbench.git"
+      },
+      "missing": [],
+      "context_missing": [],
+      "warnings": [],
+      "notes": [],
+      "index_missing_paths": [],
+      "hive_policy": {
+        "require_ack": true,
+        "retries": 1,
+        "heartbeat_sec": 45,
+        "channels": [
+          "event_bus",
+          "outbox"
+        ]
+      },
+      "ok": true
+    },
+    {
+      "target": "Utilities",
+      "path": "/mnt/c/Dev library/AaroneousAutomationSuite/Utilities",
+      "baseline_enforced": false,
+      "optional_absent": false,
+      "policy_note": "Neighboring context directory; not currently managed as an AAS module baseline.",
+      "exists": true,
+      "is_git_repo": false,
+      "submodule": {},
+      "missing": [],
+      "context_missing": [],
+      "warnings": [],
+      "notes": [],
+      "index_missing_paths": [],
+      "hive_policy": {
+        "require_ack": null,
+        "retries": null,
+        "heartbeat_sec": null,
+        "channels": []
+      },
+      "ok": true
+    },
+    {
+      "target": "ToolsShared",
+      "path": "/mnt/c/Dev library/AaroneousAutomationSuite/ToolsShared",
+      "baseline_enforced": false,
+      "optional_absent": true,
+      "policy_note": "Legacy/optional neighbor path used for context discovery when present.",
+      "exists": false,
+      "is_git_repo": false,
+      "submodule": {},
+      "missing": [],
+      "context_missing": [],
+      "warnings": [],
+      "notes": [
+        "optional target path is absent"
+      ],
+      "index_missing_paths": [],
+      "hive_policy": {
+        "require_ack": null,
+        "retries": null,
+        "heartbeat_sec": null,
+        "channels": []
+      },
+      "ok": true
+    },
+    {
+      "target": "AndroidApp",
+      "path": "/mnt/c/Dev library/AaroneousAutomationSuite/AndroidApp",
+      "baseline_enforced": true,
+      "optional_absent": false,
+      "policy_note": "",
+      "exists": true,
+      "is_git_repo": true,
+      "submodule": {
+        "path": "AndroidApp",
+        "url": "https://github.com/Aarogaming/AndroidApp.git"
+      },
+      "missing": [],
+      "context_missing": [],
+      "warnings": [],
+      "notes": [],
+      "index_missing_paths": [],
+      "hive_policy": {
+        "require_ack": true,
+        "retries": 1,
+        "heartbeat_sec": 30,
+        "channels": [
+          "event_bus",
+          "outbox"
+        ]
+      },
+      "ok": true
+    },
+    {
+      "target": "guild",
+      "path": "/mnt/c/Dev library/AaroneousAutomationSuite/guild",
+      "baseline_enforced": true,
+      "optional_absent": false,
+      "policy_note": "",
+      "exists": true,
+      "is_git_repo": true,
+      "submodule": {
+        "path": "guild",
+        "url": "https://github.com/Aarogaming/Guild.git"
+      },
+      "missing": [],
+      "context_missing": [],
+      "warnings": [],
+      "notes": [],
+      "index_missing_paths": [],
+      "hive_policy": {
+        "require_ack": true,
+        "retries": 2,
+        "heartbeat_sec": 25,
+        "channels": [
+          "event_bus",
+          "outbox",
+          "nats"
+        ]
+      },
+      "ok": true
+    },
+    {
+      "target": "Library",
+      "path": "/mnt/c/Dev library/AaroneousAutomationSuite/Library",
+      "baseline_enforced": true,
+      "optional_absent": false,
+      "policy_note": "",
+      "exists": true,
+      "is_git_repo": true,
+      "submodule": {
+        "path": "Library",
+        "url": "https://github.com/Aarogaming/Library.git"
+      },
+      "missing": [],
+      "context_missing": [],
+      "warnings": [],
+      "notes": [],
+      "index_missing_paths": [],
+      "hive_policy": {
+        "require_ack": true,
+        "retries": 2,
+        "heartbeat_sec": 30,
+        "channels": [
+          "event_bus",
+          "outbox",
+          "ipc"
+        ]
+      },
+      "ok": true
+    },
+    {
+      "target": "Maelstrom",
+      "path": "/mnt/c/Dev library/AaroneousAutomationSuite/Maelstrom",
+      "baseline_enforced": true,
+      "optional_absent": false,
+      "policy_note": "",
+      "exists": true,
+      "is_git_repo": true,
+      "submodule": {
+        "path": "Maelstrom",
+        "url": "https://github.com/Aarogaming/Maelstrom.git"
+      },
+      "missing": [],
+      "context_missing": [],
+      "warnings": [],
+      "notes": [],
+      "index_missing_paths": [],
+      "hive_policy": {
+        "require_ack": true,
+        "retries": 2,
+        "heartbeat_sec": 20,
+        "channels": [
+          "event_bus",
+          "outbox",
+          "ipc"
+        ]
+      },
+      "ok": true
+    },
+    {
+      "target": "Merlin",
+      "path": "/mnt/c/Dev library/AaroneousAutomationSuite/Merlin",
+      "baseline_enforced": true,
+      "optional_absent": false,
+      "policy_note": "",
+      "exists": true,
+      "is_git_repo": true,
+      "submodule": {
+        "path": "Merlin",
+        "url": "https://github.com/Aarogaming/Merlin.git"
+      },
+      "missing": [],
+      "context_missing": [],
+      "warnings": [],
+      "notes": [],
+      "index_missing_paths": [],
+      "hive_policy": {
+        "require_ack": true,
+        "retries": 2,
+        "heartbeat_sec": 30,
+        "channels": [
+          "event_bus",
+          "nats",
+          "outbox"
+        ]
+      },
+      "ok": true
+    },
+    {
+      "target": "MyFortress",
+      "path": "/mnt/c/Dev library/AaroneousAutomationSuite/MyFortress",
+      "baseline_enforced": true,
+      "optional_absent": false,
+      "policy_note": "",
+      "exists": true,
+      "is_git_repo": true,
+      "submodule": {
+        "path": "MyFortress",
+        "url": "https://github.com/Aarogaming/MyFortress.git"
+      },
+      "missing": [],
+      "context_missing": [],
+      "warnings": [],
+      "notes": [],
+      "index_missing_paths": [],
+      "hive_policy": {
+        "require_ack": true,
+        "retries": 2,
+        "heartbeat_sec": 25,
+        "channels": [
+          "event_bus",
+          "outbox"
+        ]
+      },
+      "ok": true
+    }
+  ],
+  "plugins": {
+    "path": "/mnt/c/Dev library/AaroneousAutomationSuite/Workbench/plugins",
+    "exists": true,
+    "manifest_dirs": [
+      "asset_cleanup",
+      "asset_indexer",
+      "asset_search",
+      "asset_size_analysis",
+      "dpi_audit",
+      "kernel",
+      "license_consolidator",
+      "repo_compare",
+      "repo_size_guard"
+    ],
+    "manifest_invalid": [],
+    "manifest_missing_entry_file": [],
+    "directory_plugins_without_manifest": [],
+    "manifest_export_mismatch": [],
+    "duplicate_capabilities": {},
+    "flat_python_files": [
+      "async_executor.py",
+      "build_cache_manager.py",
+      "context_summarization.py",
+      "custom_nodes.py",
+      "dancebot.py",
+      "datadog_validator.py",
+      "di_container.py",
+      "fuzz_testing.py",
+      "gradle_cache_manager.py",
+      "gui_cli_helper.py",
+      "gui_cli_wrapper.py",
+      "gui_hub_connector.py",
+      "gui_tray_status.py",
+      "home_assistant.py",
+      "https_release_enforcer.py",
+      "integration_engine.py",
+      "integration_tests.py",
+      "lint_baseline_manager.py",
+      "load_testing.py",
+      "log_export_manager.py",
+      "mcp_auth.py",
+      "multi_agent_conversations.py",
+      "periodic_check_workmanager.py",
+      "prompts.py",
+      "rbac.py",
+      "sandboxing.py",
+      "security_audit.py",
+      "settings_screen.py",
+      "status_history.py",
+      "url_edit_test_manager.py",
+      "versioning.py",
+      "versioning_strategy.py",
+      "voice.py",
+      "workflow_engine.py"
+    ],
+    "flat_legacy_plugin_candidates": [],
+    "flat_helper_modules": [
+      "async_executor.py",
+      "build_cache_manager.py",
+      "context_summarization.py",
+      "custom_nodes.py",
+      "dancebot.py",
+      "datadog_validator.py",
+      "di_container.py",
+      "fuzz_testing.py",
+      "gradle_cache_manager.py",
+      "gui_cli_helper.py",
+      "gui_cli_wrapper.py",
+      "gui_hub_connector.py",
+      "gui_tray_status.py",
+      "home_assistant.py",
+      "https_release_enforcer.py",
+      "integration_engine.py",
+      "integration_tests.py",
+      "lint_baseline_manager.py",
+      "load_testing.py",
+      "log_export_manager.py",
+      "mcp_auth.py",
+      "multi_agent_conversations.py",
+      "periodic_check_workmanager.py",
+      "prompts.py",
+      "rbac.py",
+      "sandboxing.py",
+      "security_audit.py",
+      "settings_screen.py",
+      "status_history.py",
+      "url_edit_test_manager.py",
+      "versioning.py",
+      "versioning_strategy.py",
+      "voice.py",
+      "workflow_engine.py"
+    ],
+    "warnings": [],
+    "ok": true
+  },
+  "cross_repo_references": {
+    "scanned_files": 43,
+    "total_references": 4,
+    "missing_references": [],
+    "warnings": []
+  },
+  "submodules": {
+    "available": true,
+    "entries": [
+      {
+        "path": "AndroidApp",
+        "state": "drifted",
+        "prefix": "+",
+        "checkout_sha": "4d0db0902cb12e3257cbe26eb4f0bbe627cca9ca",
+        "head_sha": "1c71029f9374524b030580657ad82222aa18e0a9",
+        "index_sha": "1c71029f9374524b030580657ad82222aa18e0a9",
+        "branch": "main...origin/main",
+        "dirty_files": 20,
+        "untracked_files": 4,
+        "status_available": true,
+        "status_error": "",
+        "checkout_behind_index": 0,
+        "checkout_ahead_of_index": 1
+      },
+      {
+        "path": "Library",
+        "state": "drifted",
+        "prefix": "+",
+        "checkout_sha": "5727ba139bb6498db9f95c5ff4f25200ac798ba4",
+        "head_sha": "f2737f3202cad95e4ce546e24212ab0567193dcb",
+        "index_sha": "f2737f3202cad95e4ce546e24212ab0567193dcb",
+        "branch": "main...origin/main [ahead 7]",
+        "dirty_files": 0,
+        "untracked_files": 0,
+        "status_available": true,
+        "status_error": "",
+        "checkout_behind_index": 0,
+        "checkout_ahead_of_index": 7
+      },
+      {
+        "path": "Maelstrom",
+        "state": "drifted",
+        "prefix": "+",
+        "checkout_sha": "fd2f0d92993b2f7f719a0f76776082d95453a4c2",
+        "head_sha": "b48008fca939792bf9591d063c972f0996f35cf0",
+        "index_sha": "b48008fca939792bf9591d063c972f0996f35cf0",
+        "branch": "main...origin/main",
+        "dirty_files": 21,
+        "untracked_files": 18,
+        "status_available": true,
+        "status_error": "",
+        "checkout_behind_index": 0,
+        "checkout_ahead_of_index": 1
+      },
+      {
+        "path": "Merlin",
+        "state": "drifted",
+        "prefix": "+",
+        "checkout_sha": "407ab2e1dbdd8de4433f4e06ee10c2b0d0a5f43c",
+        "head_sha": "50547c33d841d66cc048269df7a490db0eeae480",
+        "index_sha": "50547c33d841d66cc048269df7a490db0eeae480",
+        "branch": "main...origin/main",
+        "dirty_files": 32,
+        "untracked_files": 89,
+        "status_available": true,
+        "status_error": "",
+        "checkout_behind_index": 0,
+        "checkout_ahead_of_index": 1
+      },
+      {
+        "path": "MyFortress",
+        "state": "drifted",
+        "prefix": "+",
+        "checkout_sha": "a76b72af6a132b87ceb3440ab61175e2121a3cba",
+        "head_sha": "a9c0d93706d2b1b478b7b9b3a9d518414d4b004e",
+        "index_sha": "a9c0d93706d2b1b478b7b9b3a9d518414d4b004e",
+        "branch": "main...origin/main",
+        "dirty_files": 15,
+        "untracked_files": 5,
+        "status_available": true,
+        "status_error": "",
+        "checkout_behind_index": 0,
+        "checkout_ahead_of_index": 1
+      },
+      {
+        "path": "Workbench",
+        "state": "drifted",
+        "prefix": "+",
+        "checkout_sha": "aaa947c74da18ba325b8cf4016e737797a792d7c",
+        "head_sha": "9f360a4ed49a3d6ed1878acc74e3cd989188f4ad",
+        "index_sha": "9f360a4ed49a3d6ed1878acc74e3cd989188f4ad",
+        "branch": "main...origin/main",
+        "dirty_files": 50,
+        "untracked_files": 7,
+        "status_available": true,
+        "status_error": "",
+        "checkout_behind_index": 0,
+        "checkout_ahead_of_index": 2
+      },
+      {
+        "path": "guild",
+        "state": "clean",
+        "prefix": " ",
+        "checkout_sha": "b58d314fe65b713d7e5497fc382b853b5058afba",
+        "head_sha": "b58d314fe65b713d7e5497fc382b853b5058afba",
+        "index_sha": "b58d314fe65b713d7e5497fc382b853b5058afba",
+        "branch": "main...origin/main",
+        "dirty_files": 0,
+        "untracked_files": 2,
+        "status_available": true,
+        "status_error": "",
+        "checkout_behind_index": 0,
+        "checkout_ahead_of_index": 0
+      }
+    ],
+    "warnings": [
+      "submodule `AndroidApp` checkout state is `drifted` (4d0db0902cb12e3257cbe26eb4f0bbe627cca9ca)",
+      "submodule `AndroidApp` checkout SHA differs from index pointer (1c71029f9374524b030580657ad82222aa18e0a9 vs 4d0db0902cb12e3257cbe26eb4f0bbe627cca9ca)",
+      "submodule `AndroidApp` checkout is ahead of index by 1 commit(s)",
+      "submodule `AndroidApp` has local worktree changes (dirty=20 untracked=4)",
+      "submodule `Library` checkout state is `drifted` (5727ba139bb6498db9f95c5ff4f25200ac798ba4)",
+      "submodule `Library` checkout SHA differs from index pointer (f2737f3202cad95e4ce546e24212ab0567193dcb vs 5727ba139bb6498db9f95c5ff4f25200ac798ba4)",
+      "submodule `Library` checkout is ahead of index by 7 commit(s)",
+      "submodule `Library` branch divergence detected (main...origin/main [ahead 7])",
+      "submodule `Maelstrom` checkout state is `drifted` (fd2f0d92993b2f7f719a0f76776082d95453a4c2)",
+      "submodule `Maelstrom` checkout SHA differs from index pointer (b48008fca939792bf9591d063c972f0996f35cf0 vs fd2f0d92993b2f7f719a0f76776082d95453a4c2)",
+      "submodule `Maelstrom` checkout is ahead of index by 1 commit(s)",
+      "submodule `Maelstrom` has local worktree changes (dirty=21 untracked=18)",
+      "submodule `Merlin` checkout state is `drifted` (407ab2e1dbdd8de4433f4e06ee10c2b0d0a5f43c)",
+      "submodule `Merlin` checkout SHA differs from index pointer (50547c33d841d66cc048269df7a490db0eeae480 vs 407ab2e1dbdd8de4433f4e06ee10c2b0d0a5f43c)",
+      "submodule `Merlin` checkout is ahead of index by 1 commit(s)",
+      "submodule `Merlin` has local worktree changes (dirty=32 untracked=89)",
+      "submodule `MyFortress` checkout state is `drifted` (a76b72af6a132b87ceb3440ab61175e2121a3cba)",
+      "submodule `MyFortress` checkout SHA differs from index pointer (a9c0d93706d2b1b478b7b9b3a9d518414d4b004e vs a76b72af6a132b87ceb3440ab61175e2121a3cba)",
+      "submodule `MyFortress` checkout is ahead of index by 1 commit(s)",
+      "submodule `MyFortress` has local worktree changes (dirty=15 untracked=5)",
+      "submodule `Workbench` checkout state is `drifted` (aaa947c74da18ba325b8cf4016e737797a792d7c)",
+      "submodule `Workbench` checkout SHA differs from index pointer (9f360a4ed49a3d6ed1878acc74e3cd989188f4ad vs aaa947c74da18ba325b8cf4016e737797a792d7c)",
+      "submodule `Workbench` checkout is ahead of index by 2 commit(s)",
+      "submodule `Workbench` has local worktree changes (dirty=50 untracked=7)",
+      "submodule `guild` has local worktree changes (dirty=0 untracked=2)"
+    ],
+    "error": null
+  },
+  "alignment_snapshot": {
+    "available": true,
+    "entries": [
+      {
+        "repo": "AndroidApp",
+        "snapshot_sha": "1c71029f9374524b030580657ad82222aa18e0a9",
+        "head_sha": "1c71029f9374524b030580657ad82222aa18e0a9",
+        "status": "match"
+      },
+      {
+        "repo": "Library",
+        "snapshot_sha": "f2737f3202cad95e4ce546e24212ab0567193dcb",
+        "head_sha": "f2737f3202cad95e4ce546e24212ab0567193dcb",
+        "status": "match"
+      },
+      {
+        "repo": "Maelstrom",
+        "snapshot_sha": "b48008fca939792bf9591d063c972f0996f35cf0",
+        "head_sha": "b48008fca939792bf9591d063c972f0996f35cf0",
+        "status": "match"
+      },
+      {
+        "repo": "Merlin",
+        "snapshot_sha": "50547c33d841d66cc048269df7a490db0eeae480",
+        "head_sha": "50547c33d841d66cc048269df7a490db0eeae480",
+        "status": "match"
+      },
+      {
+        "repo": "MyFortress",
+        "snapshot_sha": "a9c0d93706d2b1b478b7b9b3a9d518414d4b004e",
+        "head_sha": "a9c0d93706d2b1b478b7b9b3a9d518414d4b004e",
+        "status": "match"
+      },
+      {
+        "repo": "Workbench",
+        "snapshot_sha": "9f360a4ed49a3d6ed1878acc74e3cd989188f4ad",
+        "head_sha": "9f360a4ed49a3d6ed1878acc74e3cd989188f4ad",
+        "status": "match"
+      }
+    ],
+    "warnings": []
+  },
+  "recommended_actions": [
+    "Submodule pointer/checkout drift detected (AndroidApp, Library, Maelstrom, Merlin, MyFortress, Workbench); inspect with `git -C .. submodule status --recursive`, then reconcile via `git -C .. submodule update --init --recursive AndroidApp Library Maelstrom Merlin MyFortress Workbench` when ready.",
+    "Submodule checkouts ahead of pinned pointer (AndroidApp, Library, Maelstrom, Merlin, MyFortress, Workbench); if intended, update superproject submodule pointer to include those commits.",
+    "Drifted submodules have local edits (AndroidApp, Maelstrom, Merlin, MyFortress, Workbench); preserve work first (`git -C ../AndroidApp status --short --branch`) and commit/stash before running `git -C .. submodule update --init --recursive AndroidApp Library Maelstrom Merlin MyFortress Workbench`.",
+    "Multiple submodules have local worktree churn (AndroidApp, Library, Maelstrom, Merlin, MyFortress, Workbench, guild); commit/stash/push as intended before treating workspace snapshots as a stable protocol baseline."
+  ],
+  "issue_summary": {
+    "total": 25,
+    "by_severity": {
+      "error": 0,
+      "warning": 25,
+      "info": 0
+    },
+    "by_category": {
+      "submodule_ahead": 6,
+      "submodule_branch_divergence": 1,
+      "submodule_checkout_state": 6,
+      "submodule_dirty_worktree": 6,
+      "submodule_pointer_mismatch": 6
+    },
+    "items": [
+      {
+        "severity": "warning",
+        "category": "submodule_checkout_state",
+        "scope": "submodules",
+        "message": "submodule `AndroidApp` checkout state is `drifted` (4d0db0902cb12e3257cbe26eb4f0bbe627cca9ca)"
+      },
+      {
+        "severity": "warning",
+        "category": "submodule_pointer_mismatch",
+        "scope": "submodules",
+        "message": "submodule `AndroidApp` checkout SHA differs from index pointer (1c71029f9374524b030580657ad82222aa18e0a9 vs 4d0db0902cb12e3257cbe26eb4f0bbe627cca9ca)"
+      },
+      {
+        "severity": "warning",
+        "category": "submodule_ahead",
+        "scope": "submodules",
+        "message": "submodule `AndroidApp` checkout is ahead of index by 1 commit(s)"
+      },
+      {
+        "severity": "warning",
+        "category": "submodule_dirty_worktree",
+        "scope": "submodules",
+        "message": "submodule `AndroidApp` has local worktree changes (dirty=20 untracked=4)"
+      },
+      {
+        "severity": "warning",
+        "category": "submodule_checkout_state",
+        "scope": "submodules",
+        "message": "submodule `Library` checkout state is `drifted` (5727ba139bb6498db9f95c5ff4f25200ac798ba4)"
+      },
+      {
+        "severity": "warning",
+        "category": "submodule_pointer_mismatch",
+        "scope": "submodules",
+        "message": "submodule `Library` checkout SHA differs from index pointer (f2737f3202cad95e4ce546e24212ab0567193dcb vs 5727ba139bb6498db9f95c5ff4f25200ac798ba4)"
+      },
+      {
+        "severity": "warning",
+        "category": "submodule_ahead",
+        "scope": "submodules",
+        "message": "submodule `Library` checkout is ahead of index by 7 commit(s)"
+      },
+      {
+        "severity": "warning",
+        "category": "submodule_branch_divergence",
+        "scope": "submodules",
+        "message": "submodule `Library` branch divergence detected (main...origin/main [ahead 7])"
+      },
+      {
+        "severity": "warning",
+        "category": "submodule_checkout_state",
+        "scope": "submodules",
+        "message": "submodule `Maelstrom` checkout state is `drifted` (fd2f0d92993b2f7f719a0f76776082d95453a4c2)"
+      },
+      {
+        "severity": "warning",
+        "category": "submodule_pointer_mismatch",
+        "scope": "submodules",
+        "message": "submodule `Maelstrom` checkout SHA differs from index pointer (b48008fca939792bf9591d063c972f0996f35cf0 vs fd2f0d92993b2f7f719a0f76776082d95453a4c2)"
+      },
+      {
+        "severity": "warning",
+        "category": "submodule_ahead",
+        "scope": "submodules",
+        "message": "submodule `Maelstrom` checkout is ahead of index by 1 commit(s)"
+      },
+      {
+        "severity": "warning",
+        "category": "submodule_dirty_worktree",
+        "scope": "submodules",
+        "message": "submodule `Maelstrom` has local worktree changes (dirty=21 untracked=18)"
+      },
+      {
+        "severity": "warning",
+        "category": "submodule_checkout_state",
+        "scope": "submodules",
+        "message": "submodule `Merlin` checkout state is `drifted` (407ab2e1dbdd8de4433f4e06ee10c2b0d0a5f43c)"
+      },
+      {
+        "severity": "warning",
+        "category": "submodule_pointer_mismatch",
+        "scope": "submodules",
+        "message": "submodule `Merlin` checkout SHA differs from index pointer (50547c33d841d66cc048269df7a490db0eeae480 vs 407ab2e1dbdd8de4433f4e06ee10c2b0d0a5f43c)"
+      },
+      {
+        "severity": "warning",
+        "category": "submodule_ahead",
+        "scope": "submodules",
+        "message": "submodule `Merlin` checkout is ahead of index by 1 commit(s)"
+      },
+      {
+        "severity": "warning",
+        "category": "submodule_dirty_worktree",
+        "scope": "submodules",
+        "message": "submodule `Merlin` has local worktree changes (dirty=32 untracked=89)"
+      },
+      {
+        "severity": "warning",
+        "category": "submodule_checkout_state",
+        "scope": "submodules",
+        "message": "submodule `MyFortress` checkout state is `drifted` (a76b72af6a132b87ceb3440ab61175e2121a3cba)"
+      },
+      {
+        "severity": "warning",
+        "category": "submodule_pointer_mismatch",
+        "scope": "submodules",
+        "message": "submodule `MyFortress` checkout SHA differs from index pointer (a9c0d93706d2b1b478b7b9b3a9d518414d4b004e vs a76b72af6a132b87ceb3440ab61175e2121a3cba)"
+      },
+      {
+        "severity": "warning",
+        "category": "submodule_ahead",
+        "scope": "submodules",
+        "message": "submodule `MyFortress` checkout is ahead of index by 1 commit(s)"
+      },
+      {
+        "severity": "warning",
+        "category": "submodule_dirty_worktree",
+        "scope": "submodules",
+        "message": "submodule `MyFortress` has local worktree changes (dirty=15 untracked=5)"
+      },
+      {
+        "severity": "warning",
+        "category": "submodule_checkout_state",
+        "scope": "submodules",
+        "message": "submodule `Workbench` checkout state is `drifted` (aaa947c74da18ba325b8cf4016e737797a792d7c)"
+      },
+      {
+        "severity": "warning",
+        "category": "submodule_pointer_mismatch",
+        "scope": "submodules",
+        "message": "submodule `Workbench` checkout SHA differs from index pointer (9f360a4ed49a3d6ed1878acc74e3cd989188f4ad vs aaa947c74da18ba325b8cf4016e737797a792d7c)"
+      },
+      {
+        "severity": "warning",
+        "category": "submodule_ahead",
+        "scope": "submodules",
+        "message": "submodule `Workbench` checkout is ahead of index by 2 commit(s)"
+      },
+      {
+        "severity": "warning",
+        "category": "submodule_dirty_worktree",
+        "scope": "submodules",
+        "message": "submodule `Workbench` has local worktree changes (dirty=50 untracked=7)"
+      },
+      {
+        "severity": "warning",
+        "category": "submodule_dirty_worktree",
+        "scope": "submodules",
+        "message": "submodule `guild` has local worktree changes (dirty=0 untracked=2)"
+      }
+    ]
+  },
+  "submodule_reconciliation_plan": [
+    {
+      "path": "AndroidApp",
+      "state": "drifted",
+      "ahead": 1,
+      "behind": 0,
+      "dirty_files": 20,
+      "untracked_files": 4,
+      "risk": "high",
+      "action": "preserve_local_work",
+      "note": "commit/stash before submodule sync",
+      "command": "git -C ../AndroidApp status --short --branch"
+    },
+    {
+      "path": "Library",
+      "state": "drifted",
+      "ahead": 7,
+      "behind": 0,
+      "dirty_files": 0,
+      "untracked_files": 0,
+      "risk": "medium",
+      "action": "choose_pointer_or_reset",
+      "note": "checkout ahead of pin; update pointer or reset checkout",
+      "command": "git -C ../Library status --short --branch && git -C .. submodule update --init --recursive Library"
+    },
+    {
+      "path": "Maelstrom",
+      "state": "drifted",
+      "ahead": 1,
+      "behind": 0,
+      "dirty_files": 21,
+      "untracked_files": 18,
+      "risk": "high",
+      "action": "preserve_local_work",
+      "note": "commit/stash before submodule sync",
+      "command": "git -C ../Maelstrom status --short --branch"
+    },
+    {
+      "path": "Merlin",
+      "state": "drifted",
+      "ahead": 1,
+      "behind": 0,
+      "dirty_files": 32,
+      "untracked_files": 89,
+      "risk": "high",
+      "action": "preserve_local_work",
+      "note": "commit/stash before submodule sync",
+      "command": "git -C ../Merlin status --short --branch"
+    },
+    {
+      "path": "MyFortress",
+      "state": "drifted",
+      "ahead": 1,
+      "behind": 0,
+      "dirty_files": 15,
+      "untracked_files": 5,
+      "risk": "high",
+      "action": "preserve_local_work",
+      "note": "commit/stash before submodule sync",
+      "command": "git -C ../MyFortress status --short --branch"
+    },
+    {
+      "path": "Workbench",
+      "state": "drifted",
+      "ahead": 2,
+      "behind": 0,
+      "dirty_files": 50,
+      "untracked_files": 7,
+      "risk": "high",
+      "action": "preserve_local_work",
+      "note": "commit/stash before submodule sync",
+      "command": "git -C ../Workbench status --short --branch"
+    },
+    {
+      "path": "guild",
+      "state": "clean",
+      "ahead": 0,
+      "behind": 0,
+      "dirty_files": 0,
+      "untracked_files": 2,
+      "risk": "high",
+      "action": "preserve_local_work",
+      "note": "commit/stash before submodule sync",
+      "command": "git -C ../guild status --short --branch"
+    }
+  ],
+  "template_path": "/mnt/c/Dev library/AaroneousAutomationSuite/Library/templates/protocols/AGENT_INTEROP_V1_TEMPLATE.md",
+  "template_source": "pinned-submodule:Library@f2737f3202cad95e4ce546e24212ab0567193dcb:templates/protocols/AGENT_INTEROP_V1_TEMPLATE.md",
+  "run_options": {
+    "targets_explicit": [],
+    "include_all_submodule_targets": true,
+    "strict": false,
+    "strict_enforced_only": false,
+    "ignore_submodule_dirty": false,
+    "ignore_submodule_ahead": false
+  }
+}

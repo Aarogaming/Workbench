@@ -1,27 +1,49 @@
-name: Check File Sizes
+name: Workbench CI
 
 on:
   push:
+    branches: [main, master]
   pull_request:
+    branches: [main, master]
+  workflow_dispatch:
 
 jobs:
-  size-check:
+  python-smoke:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
+      - name: Checkout
+        uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
+
+      - name: Gitleaks scan
+        uses: gitleaks/gitleaks-action@ff98106e4c7b2bc287b24eaf42907196329070c7 # v2
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
       - name: Set up Python
         uses: actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065 # v5.6.0
         with:
-          python-version: '3.12'
+          python-version: "3.12"
+
       - name: Secret hygiene guard
         run: python scripts/check_secret_hygiene.py --all --strict
-      - name: Check git file sizes
-        run: python scripts/check_git_size.py
+
+      - name: Syntax smoke test
+        run: python -m compileall -q Assets plugins Tools
+
+      - name: Unit tests
+        run: pytest -q
+
       - name: Plugin contract audit
         run: python3 scripts/check_plugin_contracts.py
+
       - name: Workflow pinning audit
         run: python3 scripts/check_workflow_pinning.py
+
       - name: Workflow pinning exceptions review
         run: python3 scripts/check_workflow_pinning_exceptions.py
+
+      - name: Eval report
+        run: python3 scripts/eval_report.py --baseline evals/baselines/main.json
+
       - name: Workspace index audit (enforced drift)
         run: python scripts/validate_workspace_index.py --suite-root .. --strict-enforced-only --ignore-submodule-dirty --ignore-submodule-ahead

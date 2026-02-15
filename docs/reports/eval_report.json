@@ -1,0 +1,66 @@
+{
+  "generated_utc": "2026-02-15T10:07:04Z",
+  "scenario_path": "/mnt/c/Dev library/AaroneousAutomationSuite/Workbench/evals/scenarios/main.json",
+  "baseline_path": "/mnt/c/Dev library/AaroneousAutomationSuite/Workbench/evals/baselines/main.json",
+  "summary": {
+    "total": 7,
+    "passed": 7,
+    "failed": 0,
+    "pass_rate": 1.0
+  },
+  "results": [
+    {
+      "eval_id": "workflow_pause_resume",
+      "passed": true,
+      "score": 1.0,
+      "max_score": 1.0,
+      "details": "paused=paused first=1 second=1"
+    },
+    {
+      "eval_id": "workflow_delay_contract",
+      "passed": true,
+      "score": 1.0,
+      "max_score": 1.0,
+      "details": "early=schedule_not_ready ready=True"
+    },
+    {
+      "eval_id": "mcp_auth_invalid_credentials",
+      "passed": true,
+      "score": 1.0,
+      "max_score": 1.0,
+      "details": "error_code=invalid_credentials"
+    },
+    {
+      "eval_id": "mcp_auth_verified_contract",
+      "passed": true,
+      "score": 1.0,
+      "max_score": 1.0,
+      "details": "success=True verified=True"
+    },
+    {
+      "eval_id": "plugin_contract_audit",
+      "passed": true,
+      "score": 1.0,
+      "max_score": 1.0,
+      "details": "exit_code=0"
+    },
+    {
+      "eval_id": "workflow_pinning_audit",
+      "passed": true,
+      "score": 1.0,
+      "max_score": 1.0,
+      "details": "exit_code=0"
+    },
+    {
+      "eval_id": "workflow_pinning_exceptions_review",
+      "passed": true,
+      "score": 1.0,
+      "max_score": 1.0,
+      "details": "exit_code=0"
+    }
+  ],
+  "gate": {
+    "pass": true,
+    "reasons": []
+  }
+}

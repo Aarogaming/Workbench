@@ -1,0 +1,60 @@
+name: Verify Nightly Attestations
+
+on:
+  workflow_run:
+    workflows: ["Nightly Evals"]
+    types: [completed]
+  workflow_dispatch:
+    inputs:
+      run_id:
+        description: "Nightly Evals run id to verify"
+        required: true
+        type: string
+
+jobs:
+  verify-attestations:
+    if: ${{ github.event_name == 'workflow_dispatch' || github.event.workflow_run.conclusion == 'success' }}
+    runs-on: ubuntu-latest
+    permissions:
+      actions: read
+      contents: read
+      attestations: read
+    steps:
+      - name: Checkout
+        uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
+
+      - name: Resolve run id
+        id: runid
+        run: |
+          if [ "${{ github.event_name }}" = "workflow_dispatch" ]; then
+            echo "value=${{ inputs.run_id }}" >> "$GITHUB_OUTPUT"
+          else
+            echo "value=${{ github.event.workflow_run.id }}" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Download nightly eval artifact
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          gh run download "${{ steps.runid.outputs.value }}" \
+            --repo "${{ github.repository }}" \
+            --name nightly-eval-report \
+            --dir attested_artifacts
+
+      - name: Verify artifact attestations
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          python3 scripts/verify_attestations.py \
+            --repo "${{ github.repository }}" \
+            --subject attested_artifacts/eval_report.json \
+            --subject attested_artifacts/eval_report.md \
+            --retries 5 \
+            --retry-delay 20 \
+            --json-out docs/reports/attestation_verify_report.json
+
+      - name: Upload attestation verify report
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4.6.2
+        with:
+          name: attestation-verify-report
+          path: docs/reports/attestation_verify_report.json
