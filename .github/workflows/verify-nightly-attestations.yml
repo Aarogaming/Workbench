@@ -13,7 +13,7 @@ on:
 
 jobs:
   verify-attestations:
-    if: ${{ github.event_name == 'workflow_dispatch' || github.event.workflow_run.conclusion == 'success' }}
+    if: ${{ github.event.repository.private == false && (github.event_name == 'workflow_dispatch' || github.event.workflow_run.conclusion == 'success') }}
     runs-on: ubuntu-latest
     permissions:
       actions: read
