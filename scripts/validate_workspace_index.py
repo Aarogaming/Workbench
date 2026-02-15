@@ -1151,6 +1151,7 @@ def _render_markdown(report: dict[str, Any]) -> str:
             "include_all_submodule_targets",
             "strict",
             "strict_enforced_only",
+            "ignore_cross_repo_warnings",
             "ignore_submodule_dirty",
             "ignore_submodule_ahead",
         ]:
@@ -1587,6 +1588,14 @@ def main() -> int:
         ),
     )
     parser.add_argument(
+        "--ignore-cross-repo-warnings",
+        action="store_true",
+        help=(
+            "Ignore cross-repo reference warnings in strict modes. "
+            "Useful for standalone checkouts that do not include neighbor repositories."
+        ),
+    )
+    parser.add_argument(
         "--ignore-submodule-dirty",
         action="store_true",
         help=(
@@ -1725,6 +1734,7 @@ def main() -> int:
             "include_all_submodule_targets": bool(args.include_all_submodule_targets),
             "strict": bool(args.strict),
             "strict_enforced_only": bool(args.strict_enforced_only),
+            "ignore_cross_repo_warnings": bool(args.ignore_cross_repo_warnings),
             "ignore_submodule_dirty": bool(args.ignore_submodule_dirty),
             "ignore_submodule_ahead": bool(args.ignore_submodule_ahead),
         },
@@ -1750,6 +1760,9 @@ def main() -> int:
     )
     plugin_warning_count = len(plugins["warnings"])
     reference_warning_count = len(references["warnings"])
+    effective_reference_warning_count = (
+        0 if args.ignore_cross_repo_warnings else reference_warning_count
+    )
     submodule_warning_count = len(submodule_state["warnings"])
     alignment_warning_count = len(alignment_snapshot["warnings"])
     template_warning_count = 1 if template_warning else 0
@@ -1757,7 +1770,7 @@ def main() -> int:
         enforced_warning_count
         + context_warning_count
         + plugin_warning_count
-        + reference_warning_count
+        + effective_reference_warning_count
         + submodule_warning_count
         + alignment_warning_count
         + template_warning_count
@@ -1772,6 +1785,8 @@ def main() -> int:
     print(f"  context-target warnings: {context_warning_count}")
     print(f"  plugin warnings: {plugin_warning_count}")
     print(f"  cross-repo reference warnings: {reference_warning_count}")
+    if args.ignore_cross_repo_warnings and reference_warning_count:
+        print("  cross-repo reference warnings (ignored in exit status)")
     print(f"  submodule warnings: {submodule_warning_count}")
     print(f"  alignment warnings: {alignment_warning_count}")
     print(f"  template warnings: {template_warning_count}")
@@ -1785,7 +1800,7 @@ def main() -> int:
     enforced_warning_total = (
         enforced_warning_count
         + plugin_warning_count
-        + reference_warning_count
+        + effective_reference_warning_count
         + submodule_warning_count
         + alignment_warning_count
         + template_warning_count

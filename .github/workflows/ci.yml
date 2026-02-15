@@ -49,4 +49,4 @@ jobs:
         run: python3 scripts/eval_report.py --baseline evals/baselines/main.json
 
       - name: Workspace index audit (enforced drift)
-        run: python scripts/validate_workspace_index.py --suite-root .. --strict-enforced-only --ignore-submodule-dirty --ignore-submodule-ahead
+        run: python scripts/validate_workspace_index.py --suite-root .. --strict-enforced-only --ignore-cross-repo-warnings --ignore-submodule-dirty --ignore-submodule-ahead

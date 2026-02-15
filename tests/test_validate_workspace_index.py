@@ -398,6 +398,7 @@ def test_render_markdown_includes_run_options():
             "include_all_submodule_targets": True,
             "strict": False,
             "strict_enforced_only": True,
+            "ignore_cross_repo_warnings": True,
             "ignore_submodule_dirty": True,
             "ignore_submodule_ahead": False,
         },
@@ -433,4 +434,5 @@ def test_render_markdown_includes_run_options():
     assert "- run_options:" in output
     assert "targets_explicit" in output
     assert "strict_enforced_only" in output
+    assert "ignore_cross_repo_warnings" in output
     assert "## Issue Summary" in output
