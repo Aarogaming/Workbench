@@ -1,0 +1,29 @@
+{
+  "schema_version": "cp2.fetch_index.v1",
+  "generated_at_utc": "2026-02-17T07:29:35Z",
+  "repo": "owner/repo",
+  "run_id": "123456789",
+  "incident_id": null,
+  "run_attempt": null,
+  "dry_run": true,
+  "artifacts": [
+    {
+      "class": "eval",
+      "artifact_name": "nightly-eval-report",
+      "status": "dry-run",
+      "dir": "artifacts/cutover/CP6-CANARY/123456789-a1/eval"
+    },
+    {
+      "class": "attestations",
+      "artifact_name": "attestation-verify-report",
+      "status": "dry-run",
+      "dir": "artifacts/cutover/CP6-CANARY/123456789-a1/attestations"
+    },
+    {
+      "class": "policy",
+      "artifact_name": "workflow-policy-reports",
+      "status": "dry-run",
+      "dir": "artifacts/cutover/CP6-CANARY/123456789-a1/policy"
+    }
+  ]
+}

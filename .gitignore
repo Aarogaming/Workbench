@@ -22,6 +22,7 @@ obj/
 dist/
 build/
 publish/
+Tools/ui-audit/*.zip
 
 # Logs
 *.log

@@ -1,0 +1,49 @@
+{
+  "schema": "workbench.reusable_workflow_inventory.v1",
+  "generated_at": "2026-02-17T10:00:04Z",
+  "entry_count": 6,
+  "entries": [
+    {
+      "consumer_workflow": ".github/workflows/ci.yml",
+      "line": 178,
+      "scope": "local",
+      "target_workflow": "./.github/workflows/reusable-forge-gates.yml",
+      "ref": "local"
+    },
+    {
+      "consumer_workflow": ".github/workflows/nightly-evals.yml",
+      "line": 101,
+      "scope": "local",
+      "target_workflow": "./.github/workflows/reusable-forge-gates.yml",
+      "ref": "local"
+    },
+    {
+      "consumer_workflow": ".github/workflows/policy-review.yml",
+      "line": 13,
+      "scope": "local",
+      "target_workflow": "./.github/workflows/reusable-policy-review.yml",
+      "ref": "local"
+    },
+    {
+      "consumer_workflow": ".github/workflows/policy-review.yml",
+      "line": 19,
+      "scope": "local",
+      "target_workflow": "./.github/workflows/reusable-forge-gates.yml",
+      "ref": "local"
+    },
+    {
+      "consumer_workflow": ".github/workflows/scorecards.yml",
+      "line": 17,
+      "scope": "local",
+      "target_workflow": "./.github/workflows/reusable-scorecards.yml",
+      "ref": "local"
+    },
+    {
+      "consumer_workflow": ".github/workflows/size-check.yml",
+      "line": 122,
+      "scope": "local",
+      "target_workflow": "./.github/workflows/reusable-forge-gates.yml",
+      "ref": "local"
+    }
+  ]
+}

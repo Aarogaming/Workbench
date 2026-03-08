@@ -1,0 +1,8 @@
+repo=owner/repo
+run_id=555444333
+incident_id=CUTOVER-CP4B-IMPLEMENT
+run_attempt=1
+dry_run=1
+classes=eval,policy
+class=eval artifact=nightly-eval-report status=dry-run dir=artifacts/cutover/CP4B-IMPLEMENT/555444333-a1/eval
+class=policy artifact=workflow-policy-reports status=dry-run dir=artifacts/cutover/CP4B-IMPLEMENT/555444333-a1/policy

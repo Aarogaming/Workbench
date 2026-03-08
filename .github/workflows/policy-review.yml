@@ -5,9 +5,15 @@ on:
     - cron: "0 9 * * 1"
   workflow_dispatch:
 
+permissions:
+  contents: read
+
 jobs:
   policy-review:
     uses: ./.github/workflows/reusable-policy-review.yml
     with:
       repository: ${{ github.repository }}
       repository_private: ${{ github.event.repository.private }}
+
+  forge-gates:
+    uses: ./.github/workflows/reusable-forge-gates.yml

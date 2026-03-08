@@ -27,10 +27,30 @@ def _load_module():
 
 def test_build_command_contains_expected_flags():
     module = _load_module()
-    cmd = module._build_command("/tmp/file.bin", "owner/repo")
+    cmd = module._build_command(
+        "/tmp/file.bin",
+        "owner/repo",
+        "owner/repo/.github/workflows/build.yml",
+        "https://slsa.dev/provenance/v1",
+    )
     assert cmd[:4] == ["gh", "attestation", "verify", "/tmp/file.bin"]
     assert "-R" in cmd
+    assert "--signer-workflow" in cmd
+    assert "--predicate-type" in cmd
     assert "--format" in cmd
+
+
+def test_build_command_includes_bundle_when_provided():
+    module = _load_module()
+    cmd = module._build_command(
+        "/tmp/file.bin",
+        "owner/repo",
+        "owner/repo/.github/workflows/build.yml",
+        "https://slsa.dev/provenance/v1",
+        "/tmp/bundle.jsonl",
+    )
+    assert "--bundle" in cmd
+    assert "/tmp/bundle.jsonl" in cmd
 
 
 def test_parse_dotenv_reads_key_values(tmp_path):
@@ -87,6 +107,9 @@ def test_verify_subject_retries_then_passes():
     result = module._verify_subject(
         subject="/tmp/file.bin",
         repository="owner/repo",
+        signer_workflow="owner/repo/.github/workflows/build.yml",
+        predicate_type="https://slsa.dev/provenance/v1",
+        bundle_path=None,
         retries=3,
         retry_delay=0.0,
         run_fn=fake_run,
@@ -108,6 +131,9 @@ def test_verify_subject_fails_after_max_attempts():
     result = module._verify_subject(
         subject="/tmp/file.bin",
         repository="owner/repo",
+        signer_workflow="owner/repo/.github/workflows/build.yml",
+        predicate_type="https://slsa.dev/provenance/v1",
+        bundle_path=None,
         retries=2,
         retry_delay=0.0,
         run_fn=fake_run,

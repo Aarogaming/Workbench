@@ -1,0 +1,29 @@
+{
+  "model": "gpt-5-mini",
+  "parallel_tool_calls": false,
+  "response_format": {
+    "type": "json_schema",
+    "json_schema": {
+      "name": "terminal_campaign_report_v1",
+      "schema": {
+        "type": "object",
+        "required": [
+          "campaign_id",
+          "status",
+          "summary",
+          "artifacts"
+        ],
+        "properties": {
+          "campaign_id": { "type": "string" },
+          "status": { "type": "string", "enum": ["completed", "failed", "cancelled"] },
+          "summary": { "type": "string" },
+          "artifacts": {
+            "type": "array",
+            "items": { "type": "string" }
+          }
+        },
+        "additionalProperties": false
+      }
+    }
+  }
+}

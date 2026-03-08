@@ -1,0 +1,69 @@
+{
+  "schema_version": "workbench.dora_reliability.v1",
+  "measurement_mode": "pilot",
+  "generated_at": "2026-02-17T08:10:00Z",
+  "window": {
+    "cadence": "weekly",
+    "start_date": "2026-02-10",
+    "end_date": "2026-02-16"
+  },
+  "metrics": {
+    "dora": {
+      "deployment_frequency_per_week": {
+        "value": 3.0,
+        "target_min": 1.0,
+        "status": "green",
+        "source": "Workbench CI + Check File Sizes + Nightly Evals successful baseline runs"
+      },
+      "lead_time_for_changes_median_hours": {
+        "value": 18.0,
+        "target_max": 24.0,
+        "status": "green",
+        "source": "CP4-B pilot estimate from campaign wave execution window"
+      },
+      "change_failure_rate_pct": {
+        "value": 0.0,
+        "target_max": 15.0,
+        "status": "green",
+        "source": "No required-gate failures in sampled control-plane wave"
+      },
+      "time_to_restore_service_median_hours": {
+        "value": 0.0,
+        "target_max": 24.0,
+        "status": "green",
+        "source": "No service-restoration incidents recorded in sampled wave"
+      }
+    },
+    "reliability": {
+      "quality_gate_pass_rate_pct": {
+        "value": 100.0,
+        "target_min": 95.0,
+        "status": "green",
+        "source": "python3 scripts/run_quality_gates.py --skip-tests --skip-evals"
+      },
+      "hard_block_rate_pct": {
+        "value": 0.0,
+        "target_max": 10.0,
+        "status": "green",
+        "source": "docs/research/CHIMERA_V2_CP4B_NEXT_ACTIONS.md implemented tracker state"
+      },
+      "cp4b_sla_breach_count": {
+        "value": 0,
+        "target_max": 0,
+        "status": "green",
+        "source": "python3 scripts/check_cp4b_sla.py"
+      },
+      "incident_handoff_completeness_pct": {
+        "value": 100.0,
+        "target_min": 100.0,
+        "status": "green",
+        "source": "Run-summary + fetch-index + CHIMERA packet checks"
+      }
+    }
+  },
+  "overall_status": "green",
+  "notes": [
+    "Initial weekly DORA + reliability scoreboard for CP4-B campaign operations.",
+    "Lead-time and restore-time values are pilot measurements and can be replaced by event-derived automation in a later pass."
+  ]
+}

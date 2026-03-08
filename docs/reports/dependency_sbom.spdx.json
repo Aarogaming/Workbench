@@ -1,0 +1,925 @@
+{
+  "SPDXID": "SPDXRef-DOCUMENT",
+  "creationInfo": {
+    "created": "2026-02-17T09:12:44Z",
+    "creators": [
+      "Tool: Workbench generate_dependency_inventory.py"
+    ]
+  },
+  "dataLicense": "CC0-1.0",
+  "documentNamespace": "https://aaroneousautomation.local/workbench/dependency-inventory/2026-02-17T09-12-44Z",
+  "name": "workbench-dependency-inventory",
+  "packages": [
+    {
+      "SPDXID": "SPDXRef-Package-1",
+      "downloadLocation": "NOASSERTION",
+      "filesAnalyzed": false,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "NOASSERTION",
+      "name": "aiofiles",
+      "supplier": "NOASSERTION",
+      "versionInfo": "23.2.1"
+    },
+    {
+      "SPDXID": "SPDXRef-Package-2",
+      "downloadLocation": "NOASSERTION",
+      "filesAnalyzed": false,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "NOASSERTION",
+      "name": "annotated-types",
+      "supplier": "NOASSERTION",
+      "versionInfo": "0.7.0"
+    },
+    {
+      "SPDXID": "SPDXRef-Package-3",
+      "downloadLocation": "NOASSERTION",
+      "filesAnalyzed": false,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "NOASSERTION",
+      "name": "anyio",
+      "supplier": "NOASSERTION",
+      "versionInfo": "4.2.0"
+    },
+    {
+      "SPDXID": "SPDXRef-Package-4",
+      "downloadLocation": "NOASSERTION",
+      "filesAnalyzed": false,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "NOASSERTION",
+      "name": "attrs",
+      "supplier": "NOASSERTION",
+      "versionInfo": "23.2.0"
+    },
+    {
+      "SPDXID": "SPDXRef-Package-5",
+      "downloadLocation": "NOASSERTION",
+      "filesAnalyzed": false,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "NOASSERTION",
+      "name": "Automat",
+      "supplier": "NOASSERTION",
+      "versionInfo": "22.10.0"
+    },
+    {
+      "SPDXID": "SPDXRef-Package-6",
+      "downloadLocation": "NOASSERTION",
+      "filesAnalyzed": false,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "NOASSERTION",
+      "name": "Babel",
+      "supplier": "NOASSERTION",
+      "versionInfo": "2.10.3"
+    },
+    {
+      "SPDXID": "SPDXRef-Package-7",
+      "downloadLocation": "NOASSERTION",
+      "filesAnalyzed": false,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "NOASSERTION",
+      "name": "bcrypt",
+      "supplier": "NOASSERTION",
+      "versionInfo": "3.2.2"
+    },
+    {
+      "SPDXID": "SPDXRef-Package-8",
+      "downloadLocation": "NOASSERTION",
+      "filesAnalyzed": false,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "NOASSERTION",
+      "name": "blinker",
+      "supplier": "NOASSERTION",
+      "versionInfo": "1.7.0"
+    },
+    {
+      "SPDXID": "SPDXRef-Package-9",
+      "downloadLocation": "NOASSERTION",
+      "filesAnalyzed": false,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "NOASSERTION",
+      "name": "certifi",
+      "supplier": "NOASSERTION",
+      "versionInfo": "2023.11.17"
+    },
+    {
+      "SPDXID": "SPDXRef-Package-10",
+      "downloadLocation": "NOASSERTION",
+      "filesAnalyzed": false,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "NOASSERTION",
+      "name": "chardet",
+      "supplier": "NOASSERTION",
+      "versionInfo": "5.2.0"
+    },
+    {
+      "SPDXID": "SPDXRef-Package-11",
+      "downloadLocation": "NOASSERTION",
+      "filesAnalyzed": false,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "NOASSERTION",
+      "name": "click",
+      "supplier": "NOASSERTION",
+      "versionInfo": "8.1.6"
+    },
+    {
+      "SPDXID": "SPDXRef-Package-12",
+      "downloadLocation": "NOASSERTION",
+      "filesAnalyzed": false,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "NOASSERTION",
+      "name": "cloud-init",
+      "supplier": "NOASSERTION",
+      "versionInfo": "25.1.4"
+    },
+    {
+      "SPDXID": "SPDXRef-Package-13",
+      "downloadLocation": "NOASSERTION",
+      "filesAnalyzed": false,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "NOASSERTION",
+      "name": "colorama",
+      "supplier": "NOASSERTION",
+      "versionInfo": "0.4.6"
+    },
+    {
+      "SPDXID": "SPDXRef-Package-14",
+      "downloadLocation": "NOASSERTION",
+      "filesAnalyzed": false,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "NOASSERTION",
+      "name": "command-not-found",
+      "supplier": "NOASSERTION",
+      "versionInfo": "0.3"
+    },
+    {
+      "SPDXID": "SPDXRef-Package-15",
+      "downloadLocation": "NOASSERTION",
+      "filesAnalyzed": false,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "NOASSERTION",
+      "name": "configobj",
+      "supplier": "NOASSERTION",
+      "versionInfo": "5.0.8"
+    },
+    {
+      "SPDXID": "SPDXRef-Package-16",
+      "downloadLocation": "NOASSERTION",
+      "filesAnalyzed": false,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "NOASSERTION",
+      "name": "constantly",
+      "supplier": "NOASSERTION",
+      "versionInfo": "23.10.4"
+    },
+    {
+      "SPDXID": "SPDXRef-Package-17",
+      "downloadLocation": "NOASSERTION",
+      "filesAnalyzed": false,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "NOASSERTION",
+      "name": "cryptography",
+      "supplier": "NOASSERTION",
+      "versionInfo": "41.0.7"
+    },
+    {
+      "SPDXID": "SPDXRef-Package-18",
+      "downloadLocation": "NOASSERTION",
+      "filesAnalyzed": false,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "NOASSERTION",
+      "name": "dbus-python",
+      "supplier": "NOASSERTION",
+      "versionInfo": "1.3.2"
+    },
+    {
+      "SPDXID": "SPDXRef-Package-19",
+      "downloadLocation": "NOASSERTION",
+      "filesAnalyzed": false,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "NOASSERTION",
+      "name": "distro-info",
+      "supplier": "NOASSERTION",
+      "versionInfo": "1.7+build1"
+    },
+    {
+      "SPDXID": "SPDXRef-Package-20",
+      "downloadLocation": "NOASSERTION",
+      "filesAnalyzed": false,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "NOASSERTION",
+      "name": "distro",
+      "supplier": "NOASSERTION",
+      "versionInfo": "1.9.0"
+    },
+    {
+      "SPDXID": "SPDXRef-Package-21",
+      "downloadLocation": "NOASSERTION",
+      "filesAnalyzed": false,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "NOASSERTION",
+      "name": "fastapi",
+      "supplier": "NOASSERTION",
+      "versionInfo": "0.101.0"
+    },
+    {
+      "SPDXID": "SPDXRef-Package-22",
+      "downloadLocation": "NOASSERTION",
+      "filesAnalyzed": false,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "NOASSERTION",
+      "name": "greenlet",
+      "supplier": "NOASSERTION",
+      "versionInfo": "3.3.0"
+    },
+    {
+      "SPDXID": "SPDXRef-Package-23",
+      "downloadLocation": "NOASSERTION",
+      "filesAnalyzed": false,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "NOASSERTION",
+      "name": "grpcio",
+      "supplier": "NOASSERTION",
+      "versionInfo": "1.51.1"
+    },
+    {
+      "SPDXID": "SPDXRef-Package-24",
+      "downloadLocation": "NOASSERTION",
+      "filesAnalyzed": false,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "NOASSERTION",
+      "name": "h11",
+      "supplier": "NOASSERTION",
+      "versionInfo": "0.14.0"
+    },
+    {
+      "SPDXID": "SPDXRef-Package-25",
+      "downloadLocation": "NOASSERTION",
+      "filesAnalyzed": false,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "NOASSERTION",
+      "name": "httpcore",
+      "supplier": "NOASSERTION",
+      "versionInfo": "1.0.2"
+    },
+    {
+      "SPDXID": "SPDXRef-Package-26",
+      "downloadLocation": "NOASSERTION",
+      "filesAnalyzed": false,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "NOASSERTION",
+      "name": "httplib2",
+      "supplier": "NOASSERTION",
+      "versionInfo": "0.20.4"
+    },
+    {
+      "SPDXID": "SPDXRef-Package-27",
+      "downloadLocation": "NOASSERTION",
+      "filesAnalyzed": false,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "NOASSERTION",
+      "name": "httpx",
+      "supplier": "NOASSERTION",
+      "versionInfo": "0.26.0"
+    },
+    {
+      "SPDXID": "SPDXRef-Package-28",
+      "downloadLocation": "NOASSERTION",
+      "filesAnalyzed": false,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "NOASSERTION",
+      "name": "hyperlink",
+      "supplier": "NOASSERTION",
+      "versionInfo": "21.0.0"
+    },
+    {
+      "SPDXID": "SPDXRef-Package-29",
+      "downloadLocation": "NOASSERTION",
+      "filesAnalyzed": false,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "NOASSERTION",
+      "name": "idna",
+      "supplier": "NOASSERTION",
+      "versionInfo": "3.6"
+    },
+    {
+      "SPDXID": "SPDXRef-Package-30",
+      "downloadLocation": "NOASSERTION",
+      "filesAnalyzed": false,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "NOASSERTION",
+      "name": "incremental",
+      "supplier": "NOASSERTION",
+      "versionInfo": "22.10.0"
+    },
+    {
+      "SPDXID": "SPDXRef-Package-31",
+      "downloadLocation": "NOASSERTION",
+      "filesAnalyzed": false,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "NOASSERTION",
+      "name": "iniconfig",
+      "supplier": "NOASSERTION",
+      "versionInfo": "2.3.0"
+    },
+    {
+      "SPDXID": "SPDXRef-Package-32",
+      "downloadLocation": "NOASSERTION",
+      "filesAnalyzed": false,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "NOASSERTION",
+      "name": "itsdangerous",
+      "supplier": "NOASSERTION",
+      "versionInfo": "2.1.2"
+    },
+    {
+      "SPDXID": "SPDXRef-Package-33",
+      "downloadLocation": "NOASSERTION",
+      "filesAnalyzed": false,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "NOASSERTION",
+      "name": "Jinja2",
+      "supplier": "NOASSERTION",
+      "versionInfo": "3.1.2"
+    },
+    {
+      "SPDXID": "SPDXRef-Package-34",
+      "downloadLocation": "NOASSERTION",
+      "filesAnalyzed": false,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "NOASSERTION",
+      "name": "jsonpatch",
+      "supplier": "NOASSERTION",
+      "versionInfo": "1.32"
+    },
+    {
+      "SPDXID": "SPDXRef-Package-35",
+      "downloadLocation": "NOASSERTION",
+      "filesAnalyzed": false,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "NOASSERTION",
+      "name": "jsonpointer",
+      "supplier": "NOASSERTION",
+      "versionInfo": "2.0"
+    },
+    {
+      "SPDXID": "SPDXRef-Package-36",
+      "downloadLocation": "NOASSERTION",
+      "filesAnalyzed": false,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "NOASSERTION",
+      "name": "jsonschema",
+      "supplier": "NOASSERTION",
+      "versionInfo": "4.10.3"
+    },
+    {
+      "SPDXID": "SPDXRef-Package-37",
+      "downloadLocation": "NOASSERTION",
+      "filesAnalyzed": false,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "NOASSERTION",
+      "name": "launchpadlib",
+      "supplier": "NOASSERTION",
+      "versionInfo": "1.11.0"
+    },
+    {
+      "SPDXID": "SPDXRef-Package-38",
+      "downloadLocation": "NOASSERTION",
+      "filesAnalyzed": false,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "NOASSERTION",
+      "name": "lazr.restfulclient",
+      "supplier": "NOASSERTION",
+      "versionInfo": "0.14.6"
+    },
+    {
+      "SPDXID": "SPDXRef-Package-39",
+      "downloadLocation": "NOASSERTION",
+      "filesAnalyzed": false,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "NOASSERTION",
+      "name": "lazr.uri",
+      "supplier": "NOASSERTION",
+      "versionInfo": "1.0.6"
+    },
+    {
+      "SPDXID": "SPDXRef-Package-40",
+      "downloadLocation": "NOASSERTION",
+      "filesAnalyzed": false,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "NOASSERTION",
+      "name": "Mako",
+      "supplier": "NOASSERTION",
+      "versionInfo": "1.3.2.dev0"
+    },
+    {
+      "SPDXID": "SPDXRef-Package-41",
+      "downloadLocation": "NOASSERTION",
+      "filesAnalyzed": false,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "NOASSERTION",
+      "name": "markdown-it-py",
+      "supplier": "NOASSERTION",
+      "versionInfo": "3.0.0"
+    },
+    {
+      "SPDXID": "SPDXRef-Package-42",
+      "downloadLocation": "NOASSERTION",
+      "filesAnalyzed": false,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "NOASSERTION",
+      "name": "Markdown",
+      "supplier": "NOASSERTION",
+      "versionInfo": "3.5.2"
+    },
+    {
+      "SPDXID": "SPDXRef-Package-43",
+      "downloadLocation": "NOASSERTION",
+      "filesAnalyzed": false,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "NOASSERTION",
+      "name": "MarkupSafe",
+      "supplier": "NOASSERTION",
+      "versionInfo": "2.1.5"
+    },
+    {
+      "SPDXID": "SPDXRef-Package-44",
+      "downloadLocation": "NOASSERTION",
+      "filesAnalyzed": false,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "NOASSERTION",
+      "name": "mdurl",
+      "supplier": "NOASSERTION",
+      "versionInfo": "0.1.2"
+    },
+    {
+      "SPDXID": "SPDXRef-Package-45",
+      "downloadLocation": "NOASSERTION",
+      "filesAnalyzed": false,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "NOASSERTION",
+      "name": "netifaces",
+      "supplier": "NOASSERTION",
+      "versionInfo": "0.11.0"
+    },
+    {
+      "SPDXID": "SPDXRef-Package-46",
+      "downloadLocation": "NOASSERTION",
+      "filesAnalyzed": false,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "NOASSERTION",
+      "name": "oauthlib",
+      "supplier": "NOASSERTION",
+      "versionInfo": "3.2.2"
+    },
+    {
+      "SPDXID": "SPDXRef-Package-47",
+      "downloadLocation": "NOASSERTION",
+      "filesAnalyzed": false,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "NOASSERTION",
+      "name": "packaging",
+      "supplier": "NOASSERTION",
+      "versionInfo": "24.0"
+    },
+    {
+      "SPDXID": "SPDXRef-Package-48",
+      "downloadLocation": "NOASSERTION",
+      "filesAnalyzed": false,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "NOASSERTION",
+      "name": "pluggy",
+      "supplier": "NOASSERTION",
+      "versionInfo": "1.6.0"
+    },
+    {
+      "SPDXID": "SPDXRef-Package-49",
+      "downloadLocation": "NOASSERTION",
+      "filesAnalyzed": false,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "NOASSERTION",
+      "name": "protobuf",
+      "supplier": "NOASSERTION",
+      "versionInfo": "4.21.12"
+    },
+    {
+      "SPDXID": "SPDXRef-Package-50",
+      "downloadLocation": "NOASSERTION",
+      "filesAnalyzed": false,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "NOASSERTION",
+      "name": "pyasn1-modules",
+      "supplier": "NOASSERTION",
+      "versionInfo": "0.2.8"
+    },
+    {
+      "SPDXID": "SPDXRef-Package-51",
+      "downloadLocation": "NOASSERTION",
+      "filesAnalyzed": false,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "NOASSERTION",
+      "name": "pyasn1",
+      "supplier": "NOASSERTION",
+      "versionInfo": "0.4.8"
+    },
+    {
+      "SPDXID": "SPDXRef-Package-52",
+      "downloadLocation": "NOASSERTION",
+      "filesAnalyzed": false,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "NOASSERTION",
+      "name": "pycurl",
+      "supplier": "NOASSERTION",
+      "versionInfo": "7.45.3"
+    },
+    {
+      "SPDXID": "SPDXRef-Package-53",
+      "downloadLocation": "NOASSERTION",
+      "filesAnalyzed": false,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "NOASSERTION",
+      "name": "pydantic-settings",
+      "supplier": "NOASSERTION",
+      "versionInfo": "2.12.0"
+    },
+    {
+      "SPDXID": "SPDXRef-Package-54",
+      "downloadLocation": "NOASSERTION",
+      "filesAnalyzed": false,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "NOASSERTION",
+      "name": "pydantic",
+      "supplier": "NOASSERTION",
+      "versionInfo": "2.12.5"
+    },
+    {
+      "SPDXID": "SPDXRef-Package-55",
+      "downloadLocation": "NOASSERTION",
+      "filesAnalyzed": false,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "NOASSERTION",
+      "name": "pydantic_core",
+      "supplier": "NOASSERTION",
+      "versionInfo": "2.41.5"
+    },
+    {
+      "SPDXID": "SPDXRef-Package-56",
+      "downloadLocation": "NOASSERTION",
+      "filesAnalyzed": false,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "NOASSERTION",
+      "name": "Pygments",
+      "supplier": "NOASSERTION",
+      "versionInfo": "2.17.2"
+    },
+    {
+      "SPDXID": "SPDXRef-Package-57",
+      "downloadLocation": "NOASSERTION",
+      "filesAnalyzed": false,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "NOASSERTION",
+      "name": "PyGObject",
+      "supplier": "NOASSERTION",
+      "versionInfo": "3.48.2"
+    },
+    {
+      "SPDXID": "SPDXRef-Package-58",
+      "downloadLocation": "NOASSERTION",
+      "filesAnalyzed": false,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "NOASSERTION",
+      "name": "PyHamcrest",
+      "supplier": "NOASSERTION",
+      "versionInfo": "2.1.0"
+    },
+    {
+      "SPDXID": "SPDXRef-Package-59",
+      "downloadLocation": "NOASSERTION",
+      "filesAnalyzed": false,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "NOASSERTION",
+      "name": "PyJWT",
+      "supplier": "NOASSERTION",
+      "versionInfo": "2.7.0"
+    },
+    {
+      "SPDXID": "SPDXRef-Package-60",
+      "downloadLocation": "NOASSERTION",
+      "filesAnalyzed": false,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "NOASSERTION",
+      "name": "pyOpenSSL",
+      "supplier": "NOASSERTION",
+      "versionInfo": "23.2.0"
+    },
+    {
+      "SPDXID": "SPDXRef-Package-61",
+      "downloadLocation": "NOASSERTION",
+      "filesAnalyzed": false,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "NOASSERTION",
+      "name": "pyparsing",
+      "supplier": "NOASSERTION",
+      "versionInfo": "3.1.1"
+    },
+    {
+      "SPDXID": "SPDXRef-Package-62",
+      "downloadLocation": "NOASSERTION",
+      "filesAnalyzed": false,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "NOASSERTION",
+      "name": "pyrsistent",
+      "supplier": "NOASSERTION",
+      "versionInfo": "0.20.0"
+    },
+    {
+      "SPDXID": "SPDXRef-Package-63",
+      "downloadLocation": "NOASSERTION",
+      "filesAnalyzed": false,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "NOASSERTION",
+      "name": "pyserial",
+      "supplier": "NOASSERTION",
+      "versionInfo": "3.5"
+    },
+    {
+      "SPDXID": "SPDXRef-Package-64",
+      "downloadLocation": "NOASSERTION",
+      "filesAnalyzed": false,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "NOASSERTION",
+      "name": "pytest",
+      "supplier": "NOASSERTION",
+      "versionInfo": "9.0.2"
+    },
+    {
+      "SPDXID": "SPDXRef-Package-65",
+      "downloadLocation": "NOASSERTION",
+      "filesAnalyzed": false,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "NOASSERTION",
+      "name": "python-apt",
+      "supplier": "NOASSERTION",
+      "versionInfo": "2.7.7+ubuntu5.1"
+    },
+    {
+      "SPDXID": "SPDXRef-Package-66",
+      "downloadLocation": "NOASSERTION",
+      "filesAnalyzed": false,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "NOASSERTION",
+      "name": "python-dotenv",
+      "supplier": "NOASSERTION",
+      "versionInfo": "1.2.1"
+    },
+    {
+      "SPDXID": "SPDXRef-Package-67",
+      "downloadLocation": "NOASSERTION",
+      "filesAnalyzed": false,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "NOASSERTION",
+      "name": "python-multipart",
+      "supplier": "NOASSERTION",
+      "versionInfo": "0.0.9"
+    },
+    {
+      "SPDXID": "SPDXRef-Package-68",
+      "downloadLocation": "NOASSERTION",
+      "filesAnalyzed": false,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "NOASSERTION",
+      "name": "pytz",
+      "supplier": "NOASSERTION",
+      "versionInfo": "2024.1"
+    },
+    {
+      "SPDXID": "SPDXRef-Package-69",
+      "downloadLocation": "NOASSERTION",
+      "filesAnalyzed": false,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "NOASSERTION",
+      "name": "PyYAML",
+      "supplier": "NOASSERTION",
+      "versionInfo": "6.0.1"
+    },
+    {
+      "SPDXID": "SPDXRef-Package-70",
+      "downloadLocation": "NOASSERTION",
+      "filesAnalyzed": false,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "NOASSERTION",
+      "name": "requests",
+      "supplier": "NOASSERTION",
+      "versionInfo": "2.31.0"
+    },
+    {
+      "SPDXID": "SPDXRef-Package-71",
+      "downloadLocation": "NOASSERTION",
+      "filesAnalyzed": false,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "NOASSERTION",
+      "name": "rich",
+      "supplier": "NOASSERTION",
+      "versionInfo": "13.7.1"
+    },
+    {
+      "SPDXID": "SPDXRef-Package-72",
+      "downloadLocation": "NOASSERTION",
+      "filesAnalyzed": false,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "NOASSERTION",
+      "name": "service-identity",
+      "supplier": "NOASSERTION",
+      "versionInfo": "24.1.0"
+    },
+    {
+      "SPDXID": "SPDXRef-Package-73",
+      "downloadLocation": "NOASSERTION",
+      "filesAnalyzed": false,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "NOASSERTION",
+      "name": "setuptools",
+      "supplier": "NOASSERTION",
+      "versionInfo": "68.1.2"
+    },
+    {
+      "SPDXID": "SPDXRef-Package-74",
+      "downloadLocation": "NOASSERTION",
+      "filesAnalyzed": false,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "NOASSERTION",
+      "name": "simplejson",
+      "supplier": "NOASSERTION",
+      "versionInfo": "3.19.2"
+    },
+    {
+      "SPDXID": "SPDXRef-Package-75",
+      "downloadLocation": "NOASSERTION",
+      "filesAnalyzed": false,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "NOASSERTION",
+      "name": "six",
+      "supplier": "NOASSERTION",
+      "versionInfo": "1.16.0"
+    },
+    {
+      "SPDXID": "SPDXRef-Package-76",
+      "downloadLocation": "NOASSERTION",
+      "filesAnalyzed": false,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "NOASSERTION",
+      "name": "sniffio",
+      "supplier": "NOASSERTION",
+      "versionInfo": "1.3.0"
+    },
+    {
+      "SPDXID": "SPDXRef-Package-77",
+      "downloadLocation": "NOASSERTION",
+      "filesAnalyzed": false,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "NOASSERTION",
+      "name": "SQLAlchemy",
+      "supplier": "NOASSERTION",
+      "versionInfo": "2.0.46"
+    },
+    {
+      "SPDXID": "SPDXRef-Package-78",
+      "downloadLocation": "NOASSERTION",
+      "filesAnalyzed": false,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "NOASSERTION",
+      "name": "starlette",
+      "supplier": "NOASSERTION",
+      "versionInfo": "0.31.1"
+    },
+    {
+      "SPDXID": "SPDXRef-Package-79",
+      "downloadLocation": "NOASSERTION",
+      "filesAnalyzed": false,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "NOASSERTION",
+      "name": "systemd-python",
+      "supplier": "NOASSERTION",
+      "versionInfo": "235"
+    },
+    {
+      "SPDXID": "SPDXRef-Package-80",
+      "downloadLocation": "NOASSERTION",
+      "filesAnalyzed": false,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "NOASSERTION",
+      "name": "Twisted",
+      "supplier": "NOASSERTION",
+      "versionInfo": "24.3.0"
+    },
+    {
+      "SPDXID": "SPDXRef-Package-81",
+      "downloadLocation": "NOASSERTION",
+      "filesAnalyzed": false,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "NOASSERTION",
+      "name": "typing-inspection",
+      "supplier": "NOASSERTION",
+      "versionInfo": "0.4.2"
+    },
+    {
+      "SPDXID": "SPDXRef-Package-82",
+      "downloadLocation": "NOASSERTION",
+      "filesAnalyzed": false,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "NOASSERTION",
+      "name": "typing_extensions",
+      "supplier": "NOASSERTION",
+      "versionInfo": "4.15.0"
+    },
+    {
+      "SPDXID": "SPDXRef-Package-83",
+      "downloadLocation": "NOASSERTION",
+      "filesAnalyzed": false,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "NOASSERTION",
+      "name": "ubuntu-pro-client",
+      "supplier": "NOASSERTION",
+      "versionInfo": "8001"
+    },
+    {
+      "SPDXID": "SPDXRef-Package-84",
+      "downloadLocation": "NOASSERTION",
+      "filesAnalyzed": false,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "NOASSERTION",
+      "name": "unattended-upgrades",
+      "supplier": "NOASSERTION",
+      "versionInfo": "0.1"
+    },
+    {
+      "SPDXID": "SPDXRef-Package-85",
+      "downloadLocation": "NOASSERTION",
+      "filesAnalyzed": false,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "NOASSERTION",
+      "name": "urllib3",
+      "supplier": "NOASSERTION",
+      "versionInfo": "2.0.7"
+    },
+    {
+      "SPDXID": "SPDXRef-Package-86",
+      "downloadLocation": "NOASSERTION",
+      "filesAnalyzed": false,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "NOASSERTION",
+      "name": "uvicorn",
+      "supplier": "NOASSERTION",
+      "versionInfo": "0.27.1"
+    },
+    {
+      "SPDXID": "SPDXRef-Package-87",
+      "downloadLocation": "NOASSERTION",
+      "filesAnalyzed": false,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "NOASSERTION",
+      "name": "uvloop",
+      "supplier": "NOASSERTION",
+      "versionInfo": "0.19.0"
+    },
+    {
+      "SPDXID": "SPDXRef-Package-88",
+      "downloadLocation": "NOASSERTION",
+      "filesAnalyzed": false,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "NOASSERTION",
+      "name": "wadllib",
+      "supplier": "NOASSERTION",
+      "versionInfo": "1.3.6"
+    },
+    {
+      "SPDXID": "SPDXRef-Package-89",
+      "downloadLocation": "NOASSERTION",
+      "filesAnalyzed": false,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "NOASSERTION",
+      "name": "wheel",
+      "supplier": "NOASSERTION",
+      "versionInfo": "0.42.0"
+    },
+    {
+      "SPDXID": "SPDXRef-Package-90",
+      "downloadLocation": "NOASSERTION",
+      "filesAnalyzed": false,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "NOASSERTION",
+      "name": "wsproto",
+      "supplier": "NOASSERTION",
+      "versionInfo": "1.2.0"
+    },
+    {
+      "SPDXID": "SPDXRef-Package-91",
+      "downloadLocation": "NOASSERTION",
+      "filesAnalyzed": false,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "NOASSERTION",
+      "name": "zope.interface",
+      "supplier": "NOASSERTION",
+      "versionInfo": "6.1"
+    }
+  ],
+  "spdxVersion": "SPDX-2.3"
+}

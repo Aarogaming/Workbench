@@ -10,7 +10,7 @@ function Check-Policy {
     $envFile = Join-Path $repo ".env"
     if (Test-Path $envFile) {
         $content = Get-Content $envFile
-        if ($content -match "ALLOW_LIVE_AUTOMATION=false") {
+        if ($content -match "ALLOW_LIVE_AUTOMATION\s*=\s*(false|0|off|no)\b") {
             Write-AASLog "WARNING: Live automation DISABLED in $ProjectName" "WARN"
         } else {
             Write-AASLog "Policy check passed for $ProjectName (Live automation enabled)" "SUCCESS"

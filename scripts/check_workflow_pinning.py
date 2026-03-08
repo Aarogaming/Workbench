@@ -158,7 +158,7 @@ def _scan_workflow(
 ) -> tuple[list[Issue], list[dict[str, str]]]:
     issues: list[Issue] = []
     excepted: list[dict[str, str]] = []
-    rel_path = str(path.relative_to(root))
+    rel_path = path.relative_to(root).as_posix()
     lines = path.read_text(encoding="utf-8").splitlines()
     for idx, line in enumerate(lines, start=1):
         match = USES_RE.match(line)

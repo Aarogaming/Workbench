@@ -1,16 +1,27 @@
 import json
 import sys
-import os
+from pathlib import Path
+
+WORKBENCH_ROOT = Path(__file__).resolve().parents[1]
 
 
-def search_assets(query):
-    index_path = "asset_index.json"
-    if not os.path.exists(index_path):
+def resolve_index_path(index_path: str = "asset_index.json") -> Path:
+    candidate = Path(index_path)
+    if candidate.is_absolute():
+        return candidate
+    cwd_candidate = Path.cwd() / candidate
+    if cwd_candidate.exists():
+        return cwd_candidate
+    return WORKBENCH_ROOT / candidate
+
+
+def search_assets(query: str):
+    index_path = resolve_index_path("asset_index.json")
+    if not index_path.exists():
         print("Error: asset_index.json not found. Run index_assets.py first.")
         return
 
-    with open(index_path, "r") as f:
-        assets = json.load(f)
+    assets = json.loads(index_path.read_text(encoding="utf-8"))
 
     results = []
     query = query.lower()

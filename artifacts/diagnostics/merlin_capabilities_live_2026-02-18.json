@@ -1,0 +1,34 @@
+{
+  "schema_name": "AAS.RepoCapabilityManifest",
+  "schema_version": "1.0.0",
+  "repo": "AaroneousAutomationSuite/Merlin",
+  "service": "merlin_api_server_mock",
+  "endpoint": "/merlin/operations",
+  "capabilities": [
+    {
+      "name": "merlin.research.manager.session.create",
+      "version": "1.0.0",
+      "stability": "stable"
+    },
+    {
+      "name": "merlin.research.manager.session.get",
+      "version": "1.0.0",
+      "stability": "stable"
+    },
+    {
+      "name": "merlin.research.manager.session.signal.add",
+      "version": "1.0.0",
+      "stability": "stable"
+    },
+    {
+      "name": "merlin.research.manager.sessions.list",
+      "version": "1.0.0",
+      "stability": "stable"
+    },
+    {
+      "name": "merlin.research.manager.brief.get",
+      "version": "1.0.0",
+      "stability": "stable"
+    }
+  ]
+}

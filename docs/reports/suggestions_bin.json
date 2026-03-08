@@ -1,0 +1,527 @@
+{
+  "schema_version": "cp4b.suggestions_bin_report.v1",
+  "generated_utc": "2026-02-19T04:27:55Z",
+  "source_doc": "docs/SUGGESTIONS_BIN.md",
+  "status_values": [
+    "new",
+    "reviewing",
+    "approved",
+    "scheduled",
+    "implemented",
+    "rejected"
+  ],
+  "summary": {
+    "total": 100,
+    "implemented": 90,
+    "status_counts": {
+      "new": 10,
+      "reviewing": 0,
+      "approved": 0,
+      "scheduled": 0,
+      "implemented": 90,
+      "rejected": 0
+    }
+  },
+  "items": [
+    {
+      "id": "WB-SUG-053",
+      "title": "Add `Hephaestus Seal` pre-promotion policy: artifact must pass provenance verification before promotion.",
+      "status": "implemented"
+    },
+    {
+      "id": "WB-SUG-054",
+      "title": "Add `Arsenal Dock` release lane: batch PRs for timed merge windows with precomputed compatibility checks.",
+      "status": "implemented"
+    },
+    {
+      "id": "WB-SUG-055",
+      "title": "Ensure every required CI workflow listens to both `pull_request` and `merge_group` for queue parity.",
+      "status": "implemented"
+    },
+    {
+      "id": "WB-SUG-056",
+      "title": "Add an always-run required-check sentinel to avoid skipped-but-required deadlocks.",
+      "status": "implemented"
+    },
+    {
+      "id": "WB-SUG-057",
+      "title": "Set strict required status checks for `main` in high-concurrency waves.",
+      "status": "implemented"
+    },
+    {
+      "id": "WB-SUG-058",
+      "title": "Require successful deployment to a `staging` environment before merge to protected branches.",
+      "status": "implemented"
+    },
+    {
+      "id": "WB-SUG-059",
+      "title": "Enforce environment required reviewers with prevent-self-review for promotion jobs.",
+      "status": "implemented"
+    },
+    {
+      "id": "WB-SUG-060",
+      "title": "Enable ruleset-level required code-scanning results for protected branches.",
+      "status": "implemented"
+    },
+    {
+      "id": "WB-SUG-061",
+      "title": "Add ruleset path/file-size restrictions for high-risk locations and oversized artifacts.",
+      "status": "implemented"
+    },
+    {
+      "id": "WB-SUG-062",
+      "title": "Require linear history on protected branches and align merge method policy.",
+      "status": "implemented"
+    },
+    {
+      "id": "WB-SUG-063",
+      "title": "Pilot signed-commit enforcement on the most sensitive branch set first, then expand.",
+      "status": "implemented"
+    },
+    {
+      "id": "WB-SUG-064",
+      "title": "If self-hosted runners are introduced, require runner groups and private-repo-only policy from day zero.",
+      "status": "implemented"
+    },
+    {
+      "id": "WB-SUG-065",
+      "title": "Pin required status checks to the intended GitHub App source.",
+      "status": "implemented"
+    },
+    {
+      "id": "WB-SUG-066",
+      "title": "Add `Master Bench` CODEOWNERS policy for workflow and gate-script paths.",
+      "status": "implemented"
+    },
+    {
+      "id": "WB-SUG-067",
+      "title": "Add merge-queue timeout triage playbook linked to PR removal reasons.",
+      "status": "implemented"
+    },
+    {
+      "id": "WB-SUG-068",
+      "title": "Submit build-time dependency snapshots to GitHub Dependency Graph on every CI run.",
+      "status": "implemented"
+    },
+    {
+      "id": "WB-SUG-069",
+      "title": "Add SBOM generation and snapshot submission (`CycloneDX`/`SPDX`) as a policy-review artifact.",
+      "status": "implemented"
+    },
+    {
+      "id": "WB-SUG-070",
+      "title": "Add a reusable workflow for \u201cforge gates\u201d and call it from all primary pipelines to remove drift.",
+      "status": "implemented"
+    },
+    {
+      "id": "WB-SUG-071",
+      "title": "Add runner scale-set readiness plan for peak 8+ agent periods (even if using hosted runners today).",
+      "status": "implemented"
+    },
+    {
+      "id": "WB-SUG-072",
+      "title": "If self-hosted is adopted, enforce ephemeral-job runners and forbid long-lived shared runner state.",
+      "status": "implemented"
+    },
+    {
+      "id": "WB-SUG-073",
+      "title": "Add script-injection lint check for workflow files (untrusted context to shell sink patterns).",
+      "status": "implemented"
+    },
+    {
+      "id": "WB-SUG-074",
+      "title": "Add transactional outbox semantics to campaign-event writes (`write + publish` atomicity) where dual-write risk exists.",
+      "status": "implemented"
+    },
+    {
+      "id": "WB-SUG-075",
+      "title": "Add consumer idempotency ledger for campaign/event processors with replay-safe semantics.",
+      "status": "implemented"
+    },
+    {
+      "id": "WB-SUG-076",
+      "title": "Wrap external API/tool calls in explicit circuit-breaker policy during campaign loops.",
+      "status": "implemented"
+    },
+    {
+      "id": "WB-SUG-077",
+      "title": "Use Little\u2019s Law to set lane WIP limits from observed throughput and lead-time metrics.",
+      "status": "implemented"
+    },
+    {
+      "id": "WB-SUG-078",
+      "title": "Move low-priority eval expansion jobs to OpenAI Batch API queue for cost and rate headroom.",
+      "status": "implemented"
+    },
+    {
+      "id": "WB-SUG-079",
+      "title": "Add AI RMF-based risk register for autonomous campaign features (`Govern/Map/Measure/Manage` tags per campaign).",
+      "status": "implemented"
+    },
+    {
+      "id": "WB-SUG-080",
+      "title": "Add `Daedalus Diagram` for each campaign: planned path, fallback branches, and escape hatch.",
+      "status": "implemented"
+    },
+    {
+      "id": "WB-SUG-081",
+      "title": "Add `Hermes Relay` handoff packet standard for cross-lane baton passes.",
+      "status": "implemented"
+    },
+    {
+      "id": "WB-SUG-082",
+      "title": "Add attestation lifecycle pruning job for stale/untrusted subjects.",
+      "status": "implemented"
+    },
+    {
+      "id": "WB-SUG-083",
+      "title": "Enable immutable releases for promotion-ready artifacts and enforce draft-first publish flow.",
+      "status": "implemented"
+    },
+    {
+      "id": "WB-SUG-084",
+      "title": "Add release integrity verification (`gh release verify` and `gh release verify-asset`) to promotion runbook.",
+      "status": "implemented"
+    },
+    {
+      "id": "WB-SUG-085",
+      "title": "Restrict reusable workflow sharing to a dedicated \u201cToolsmith\u201d repo and document log-visibility caveats.",
+      "status": "implemented"
+    },
+    {
+      "id": "WB-SUG-086",
+      "title": "Group Dependabot security updates by ecosystem/risk tier to reduce PR storms during active campaign waves.",
+      "status": "implemented"
+    },
+    {
+      "id": "WB-SUG-087",
+      "title": "Enforce enterprise/org Actions policy to require full SHA pinning and restrict external reusable workflows.",
+      "status": "implemented"
+    },
+    {
+      "id": "WB-SUG-088",
+      "title": "Instrument CI pipeline spans/logs with OpenTelemetry CICD semantic conventions.",
+      "status": "implemented"
+    },
+    {
+      "id": "WB-SUG-089",
+      "title": "Standardize CICD error taxonomy using `error.type` and mandatory run identifiers.",
+      "status": "implemented"
+    },
+    {
+      "id": "WB-SUG-090",
+      "title": "Use JetStream KV with TTL and watchers for lane-lease coordination in high-concurrency waves.",
+      "status": "implemented"
+    },
+    {
+      "id": "WB-SUG-091",
+      "title": "Apply JetStream dedupe IDs + double-ack patterns for critical campaign event delivery.",
+      "status": "implemented"
+    },
+    {
+      "id": "WB-SUG-092",
+      "title": "Add webhook signature verification as mandatory for any OpenAI async callback path.",
+      "status": "implemented"
+    },
+    {
+      "id": "WB-SUG-093",
+      "title": "Use `previous_response_id` conversation chaining for campaign loop continuity by default.",
+      "status": "implemented"
+    },
+    {
+      "id": "WB-SUG-094",
+      "title": "Add mandatory exponential backoff + jitter wrapper for OpenAI calls in loop scripts.",
+      "status": "implemented"
+    },
+    {
+      "id": "WB-SUG-095",
+      "title": "Separate OpenAI staging vs production projects and enforce per-project spend/rate caps in campaign policy.",
+      "status": "implemented"
+    },
+    {
+      "id": "WB-SUG-096",
+      "title": "Enable CodeQL analysis for GitHub Actions workflow files (`actions` language) in advanced setup.",
+      "status": "implemented"
+    },
+    {
+      "id": "WB-SUG-097",
+      "title": "Add policy gate for high-signal CodeQL Actions queries (`untrusted checkout`, `artifact poisoning`, `missing-workflow-permissions`).",
+      "status": "implemented"
+    },
+    {
+      "id": "WB-SUG-098",
+      "title": "Add explicit `workflow_run` trust boundary rule: treat downloaded artifacts/workspace as untrusted unless provenance-verified.",
+      "status": "implemented"
+    },
+    {
+      "id": "WB-SUG-099",
+      "title": "Define matrix `max-parallel` defaults per workflow class (`ci`, `nightly`, `policy`) and enforce via review checklist.",
+      "status": "implemented"
+    },
+    {
+      "id": "WB-SUG-100",
+      "title": "Require explicit `fail-fast` and `continue-on-error` declarations in every matrix job.",
+      "status": "implemented"
+    },
+    {
+      "id": "WB-SUG-101",
+      "title": "Add reusable-workflow depth cap policy (`<=3`) even though platform permits deeper nesting.",
+      "status": "implemented"
+    },
+    {
+      "id": "WB-SUG-102",
+      "title": "Add monthly inventory report of reusable workflow consumers and refs.",
+      "status": "implemented"
+    },
+    {
+      "id": "WB-SUG-103",
+      "title": "Add private-workflow sharing warning checklist to onboarding/runbook (log visibility + token scope implications).",
+      "status": "implemented"
+    },
+    {
+      "id": "WB-SUG-104",
+      "title": "For any self-hosted future, require `runs-on` group + labels in all jobs (no broad `self-hosted` only selector).",
+      "status": "implemented"
+    },
+    {
+      "id": "WB-SUG-105",
+      "title": "Default new NATS/JetStream consumers to pull mode for campaign workloads unless replay-only semantics are needed.",
+      "status": "implemented"
+    },
+    {
+      "id": "WB-SUG-106",
+      "title": "Use JetStream `AckSync` for critical side-effecting event processors.",
+      "status": "implemented"
+    },
+    {
+      "id": "WB-SUG-107",
+      "title": "Add poison-message policy for `MaxDeliver` exhaustion (alert + quarantine path).",
+      "status": "implemented"
+    },
+    {
+      "id": "WB-SUG-108",
+      "title": "Standardize OpenAI background-mode usage policy with explicit terminal-state polling and cancellation handling.",
+      "status": "implemented"
+    },
+    {
+      "id": "WB-SUG-109",
+      "title": "Add automatic `/responses/compact` trigger when loop context approaches threshold.",
+      "status": "implemented"
+    },
+    {
+      "id": "WB-SUG-110",
+      "title": "Default campaign loop state chaining to `previous_response_id` unless explicit conversation object is required.",
+      "status": "implemented"
+    },
+    {
+      "id": "WB-SUG-111",
+      "title": "Add per-project OpenAI budget alarms and hard caps in campaign preflight checks.",
+      "status": "implemented"
+    },
+    {
+      "id": "WB-SUG-112",
+      "title": "Tune dependency review policy file with `fail-on-scopes`, `fail-on-severity`, and package deny-groups for supply-chain guardrails.",
+      "status": "implemented"
+    },
+    {
+      "id": "WB-SUG-113",
+      "title": "Add custom deployment protection rule integration for promotion environments (service-health gate before deploy).",
+      "status": "implemented"
+    },
+    {
+      "id": "WB-SUG-114",
+      "title": "Enforce environment wait-timer + required-reviewer policy on all promotion jobs.",
+      "status": "implemented"
+    },
+    {
+      "id": "WB-SUG-115",
+      "title": "Require deployment branch/tag allowlists per environment (`release-*`, `hotfix-*` only for prod-like targets).",
+      "status": "implemented"
+    },
+    {
+      "id": "WB-SUG-116",
+      "title": "Add explicit \u201callow admin bypass = false\u201d policy for guarded environments.",
+      "status": "implemented"
+    },
+    {
+      "id": "WB-SUG-117",
+      "title": "Add dedicated CodeQL Actions security workflow and treat critical findings as merge blockers.",
+      "status": "implemented"
+    },
+    {
+      "id": "WB-SUG-118",
+      "title": "Add \u201cworkflow artifact trust boundary\u201d checklist item whenever `workflow_run` consumes artifacts.",
+      "status": "implemented"
+    },
+    {
+      "id": "WB-SUG-119",
+      "title": "Emit JetStream advisories into a retained ops stream and review weekly.",
+      "status": "implemented"
+    },
+    {
+      "id": "WB-SUG-120",
+      "title": "Define default consumer class policy: pull+durable for workers, ordered consumer only for analysis/replay.",
+      "status": "implemented"
+    },
+    {
+      "id": "WB-SUG-121",
+      "title": "Add JetStream redelivery policy baseline (`AckWait`, `MaxDeliver`) per campaign workload type.",
+      "status": "implemented"
+    },
+    {
+      "id": "WB-SUG-122",
+      "title": "Require Structured Outputs for terminal campaign reports and set `parallel_tool_calls: false` in schema-critical steps.",
+      "status": "implemented"
+    },
+    {
+      "id": "WB-SUG-123",
+      "title": "Add automatic compaction threshold policy for long-running campaign loops.",
+      "status": "implemented"
+    },
+    {
+      "id": "WB-SUG-124",
+      "title": "Add background-task timeout + cancellation SLO for async campaign tasks.",
+      "status": "implemented"
+    },
+    {
+      "id": "WB-SUG-125",
+      "title": "Add `Argus Watchtower` multi-signal promotion gate (CI pass + provenance pass + advisory health pass).",
+      "status": "implemented"
+    },
+    {
+      "id": "WB-SUG-126",
+      "title": "Add `Janus Gate` two-stage promotion policy (review gate then runtime health gate) with mandatory evidence artifact.",
+      "status": "implemented"
+    },
+    {
+      "id": "WB-SUG-127",
+      "title": "Add a mandatory \u201crun summary contract\u201d step in every workflow using `GITHUB_STEP_SUMMARY`.",
+      "status": "implemented"
+    },
+    {
+      "id": "WB-SUG-128",
+      "title": "Add standardized annotation emission (`notice`/`warning`/`error`) for gate scripts.",
+      "status": "implemented"
+    },
+    {
+      "id": "WB-SUG-129",
+      "title": "Add a \u201crerun failed with debug\u201d operator command snippet to runbook and campaign handoff packets.",
+      "status": "implemented"
+    },
+    {
+      "id": "WB-SUG-130",
+      "title": "Add \u201cpause switch\u201d policy for non-critical workflows using workflow disable/enable commands during incident windows.",
+      "status": "implemented"
+    },
+    {
+      "id": "WB-SUG-131",
+      "title": "Add a dedicated \u201cworkflow health board\u201d doc section with badge links for core workflows (`ci`, `size-check`, `nightly`, `policy`).",
+      "status": "implemented"
+    },
+    {
+      "id": "WB-SUG-132",
+      "title": "Add cancellation-safe cleanup policy (`if: cancelled()`) for post-failure artifact hygiene steps.",
+      "status": "implemented"
+    },
+    {
+      "id": "WB-SUG-133",
+      "title": "Add an explicit visualization-graph checkpoint in triage runbook before deep log analysis.",
+      "status": "implemented"
+    },
+    {
+      "id": "WB-SUG-134",
+      "title": "Add \u201cForeman Bench\u201d environment custom protection service that blocks deploy if JetStream advisories show instability.",
+      "status": "implemented"
+    },
+    {
+      "id": "WB-SUG-135",
+      "title": "Define JetStream consumer baseline profile by workload (`interactive`, `batch`, `critical`) with tuned `MaxAckPending`.",
+      "status": "implemented"
+    },
+    {
+      "id": "WB-SUG-136",
+      "title": "Adopt explicit redelivery backoff arrays (not implicit immediate redelivery) for long-running campaign tasks.",
+      "status": "implemented"
+    },
+    {
+      "id": "WB-SUG-137",
+      "title": "Add DLQ implementation policy based on JetStream `MaxDeliver` advisories and message sequence retrieval.",
+      "status": "implemented"
+    },
+    {
+      "id": "WB-SUG-138",
+      "title": "Use OpenAI prompt objects/versioning for canonical campaign prompts and keep version refs in approval packets.",
+      "status": "implemented"
+    },
+    {
+      "id": "WB-SUG-139",
+      "title": "Add `prompt_cache_key` policy per campaign family to improve cache hit consistency under parallel load.",
+      "status": "implemented"
+    },
+    {
+      "id": "WB-SUG-140",
+      "title": "Add compaction-and-resume playbook: compact context, persist checkpoint, resume with `previous_response_id`.",
+      "status": "implemented"
+    },
+    {
+      "id": "WB-SUG-141",
+      "title": "Add a suggestions-bin status governance gate to enforce per-item status and evidence references.",
+      "status": "implemented"
+    },
+    {
+      "id": "WB-SUG-142",
+      "title": "Add suggestions-bin report-sync gate (`--check`) to fail fast when committed report drifts from markdown source.",
+      "status": "implemented"
+    },
+    {
+      "id": "WB-SUG-143",
+      "title": "Add repo-local `pyproject.toml` to define Python toolchain and test/lint contracts.",
+      "status": "new"
+    },
+    {
+      "id": "WB-SUG-144",
+      "title": "Adopt `uv` lockfile-managed dependency installs for CI and local smoke workflows.",
+      "status": "new"
+    },
+    {
+      "id": "WB-SUG-145",
+      "title": "Add `ruff` lint/format gate in pre-commit and quality gates.",
+      "status": "new"
+    },
+    {
+      "id": "WB-SUG-146",
+      "title": "Add targeted strict type-checking (`mypy`/`pyright`) for control-plane critical modules.",
+      "status": "new"
+    },
+    {
+      "id": "WB-SUG-147",
+      "title": "Enforce branch coverage thresholds for critical script/plugin paths.",
+      "status": "new"
+    },
+    {
+      "id": "WB-SUG-148",
+      "title": "Add direct runtime unit suites for high-risk plugins (`workflow_engine`, `mcp_auth`, `gui_hub_connector`).",
+      "status": "new"
+    },
+    {
+      "id": "WB-SUG-149",
+      "title": "Add property-based tests for workflow state machine invariants (`pause/resume/schedule`).",
+      "status": "new"
+    },
+    {
+      "id": "WB-SUG-150",
+      "title": "Standardize JSON schema validation across generated report artifacts.",
+      "status": "new"
+    },
+    {
+      "id": "WB-SUG-151",
+      "title": "Add shared HTTP resilience policy (timeouts, retries, backoff) for external calls.",
+      "status": "new"
+    },
+    {
+      "id": "WB-SUG-152",
+      "title": "Refactor `scripts/validate_workspace_index.py` into modular subcommands with incremental mode.",
+      "status": "new"
+    }
+  ]
+}

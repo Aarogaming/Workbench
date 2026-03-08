@@ -8,6 +8,15 @@ from typing import Any, Dict, List
 from core.plugin_manifest import get_hive_metadata
 from loguru import logger
 
+DEFAULT_ROOT = Path(__file__).resolve().parents[2]
+
+
+def _resolve_root_dir(root_dir: str) -> Path:
+    candidate = (root_dir or ".").strip()
+    if candidate in {"", "."}:
+        return DEFAULT_ROOT
+    return Path(candidate).resolve()
+
 
 def _consolidate(root: Path, apply_changes: bool) -> List[Dict[str, Any]]:
     license_dir = root / "Docs" / "Licenses"
@@ -18,7 +27,8 @@ def _consolidate(root: Path, apply_changes: bool) -> List[Dict[str, Any]]:
         license_dir.mkdir(parents=True, exist_ok=True)
 
     for current_root, _, files in os.walk(root):
-        if "Docs" in current_root or "tools" in current_root:
+        parts = {part.casefold() for part in Path(current_root).parts}
+        if "docs" in parts or "tools" in parts or ".git" in parts:
             continue
         for file in files:
             if "license" in file.lower() and file.endswith(".txt"):
@@ -48,7 +58,7 @@ class Plugin:
         return {"workbench.license.consolidate": self.consolidate}
 
     def consolidate(self, root_dir: str = ".", apply_changes: bool = False) -> Dict[str, Any]:
-        root = Path(root_dir).resolve()
+        root = _resolve_root_dir(root_dir)
         if not root.exists():
             return {"ok": False, "error": f"Root not found: {root}"}
 

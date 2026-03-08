@@ -1,0 +1,21 @@
+{
+  "schema_version": "cp2.run_summary.v1",
+  "cycle_id": "CHIMERA-V2-RESEARCH-AND-EXECUTION-2026-02-15",
+  "phase": "CP4-A",
+  "incident_id": "CUTOVER-2026-02-15-IMPLEMENT",
+  "terminal_class": "hard_block",
+  "failure_taxonomy": "script",
+  "repo": "owner/repo",
+  "workflow": "Workbench CI",
+  "run_id": "246813579",
+  "run_attempt": 2,
+  "head_sha": "deadbeef",
+  "failing_job": "python-smoke",
+  "failing_step": "Unit tests",
+  "rerun_debug_cmd": "gh run rerun 246813579 --repo owner/repo --failed --debug",
+  "artifact_fetch_cmd": "bash scripts/fetch_workbench_artifacts.sh --run-id 246813579 --repo owner/repo --incident-id CUTOVER-2026-02-15-IMPLEMENT --run-attempt 2 --class eval --class attestations --class policy",
+  "next_owner": "lane-workbench",
+  "requires_handoff_by_utc": "2026-02-17T04:49:35Z",
+  "generated_at_utc": "2026-02-17T02:49:35Z",
+  "missing_artifacts": []
+}

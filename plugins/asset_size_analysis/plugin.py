@@ -7,6 +7,8 @@ from typing import Any, Dict
 from core.plugin_manifest import get_hive_metadata
 from loguru import logger
 
+DEFAULT_ROOT = Path(__file__).resolve().parents[2]
+
 
 def _format_size(size: float) -> str:
     for unit in ["B", "KB", "MB", "GB", "TB"]:
@@ -14,6 +16,13 @@ def _format_size(size: float) -> str:
             return f"{size:.2f} {unit}"
         size /= 1024
     return f"{size:.2f} PB"
+
+
+def _resolve_root_dir(root_dir: str) -> Path:
+    candidate = (root_dir or ".").strip()
+    if candidate in {"", "."}:
+        return DEFAULT_ROOT
+    return Path(candidate).resolve()
 
 
 class Plugin:
@@ -27,7 +36,7 @@ class Plugin:
         return {"workbench.asset.size_analysis": self.analyze_size}
 
     def analyze_size(self, root_dir: str = ".") -> Dict[str, Any]:
-        root = Path(root_dir).resolve()
+        root = _resolve_root_dir(root_dir)
         if not root.exists():
             return {"ok": False, "error": f"Root not found: {root}"}
 
@@ -35,9 +44,8 @@ class Plugin:
         total_size = 0
 
         try:
-            for root_dir_path, _, files in os.walk(root):
-                if "tools" in root_dir_path or ".git" in root_dir_path:
-                    continue
+            for root_dir_path, dirs, files in os.walk(root):
+                dirs[:] = [d for d in dirs if d.casefold() not in {"tools", ".git"}]
                 for file in files:
                     path = Path(root_dir_path) / file
                     try:

@@ -1,2 +1,7 @@
 # Default owners
 * @Aarogaming
+
+# Master Bench control-plane ownership
+/.github/workflows/** @Aarogaming
+/scripts/check_*.py @Aarogaming
+/scripts/run_quality_gates.py @Aarogaming

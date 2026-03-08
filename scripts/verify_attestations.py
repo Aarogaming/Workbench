@@ -16,6 +16,7 @@ from typing import Any, Callable
 
 RunFn = Callable[..., subprocess.CompletedProcess[str]]
 SleepFn = Callable[[float], None]
+DEFAULT_PREDICATE_TYPE = "https://slsa.dev/provenance/v1"
 
 
 @dataclass
@@ -87,29 +88,51 @@ def _discover_github_token(root: Path, env_file: str | None = None) -> tuple[str
     return None, "not_found"
 
 
-def _build_command(subject: str, repository: str) -> list[str]:
-    return [
+def _build_command(
+    subject: str,
+    repository: str,
+    signer_workflow: str,
+    predicate_type: str,
+    bundle_path: str | None = None,
+) -> list[str]:
+    cmd = [
         "gh",
         "attestation",
         "verify",
         subject,
         "-R",
         repository,
+        "--signer-workflow",
+        signer_workflow,
+        "--predicate-type",
+        predicate_type,
         "--format",
         "json",
     ]
+    if bundle_path:
+        cmd.extend(["--bundle", bundle_path])
+    return cmd
 
 
 def _verify_subject(
     subject: str,
     repository: str,
+    signer_workflow: str,
+    predicate_type: str,
+    bundle_path: str | None,
     retries: int,
     retry_delay: float,
     run_fn: RunFn = subprocess.run,
     sleep_fn: SleepFn = time.sleep,
 ) -> VerificationResult:
     attempts = max(1, retries)
-    cmd = _build_command(subject, repository)
+    cmd = _build_command(
+        subject=subject,
+        repository=repository,
+        signer_workflow=signer_workflow,
+        predicate_type=predicate_type,
+        bundle_path=bundle_path,
+    )
     last = subprocess.CompletedProcess(cmd, returncode=1, stdout="", stderr="not run")
     for idx in range(1, attempts + 1):
         try:
@@ -158,6 +181,30 @@ def main() -> int:
         help="Repository slug owner/name (default: $GITHUB_REPOSITORY).",
     )
     parser.add_argument(
+        "--signer-workflow",
+        required=True,
+        help=(
+            "Expected signer workflow identity, formatted like "
+            "<owner>/<repo>/.github/workflows/<workflow>.yml"
+        ),
+    )
+    parser.add_argument(
+        "--predicate-type",
+        default=DEFAULT_PREDICATE_TYPE,
+        help=(
+            "Expected attestation predicate type "
+            f"(default: {DEFAULT_PREDICATE_TYPE})."
+        ),
+    )
+    parser.add_argument(
+        "--bundle",
+        default=None,
+        help=(
+            "Optional local attestation bundle file (.json/.jsonl) for offline "
+            "verification mode."
+        ),
+    )
+    parser.add_argument(
         "--subject",
         action="append",
         default=[],
@@ -190,6 +237,12 @@ def main() -> int:
     if not args.repo:
         print("Missing repository slug; pass --repo owner/name or set GITHUB_REPOSITORY.")
         return 1
+    if not args.signer_workflow.strip():
+        print("Missing signer workflow; pass --signer-workflow.")
+        return 1
+    if not args.predicate_type.strip():
+        print("Missing predicate type; pass --predicate-type.")
+        return 1
     if not args.subject:
         print("At least one --subject is required.")
         return 1
@@ -197,6 +250,19 @@ def main() -> int:
     root = Path(__file__).resolve().parents[1]
     out_path = (root / args.json_out).resolve()
     repository = args.repo.strip()
+    signer_workflow = args.signer_workflow.strip()
+    predicate_type = args.predicate_type.strip()
+    bundle_path: str | None = None
+    verification_mode = "online_api"
+    if args.bundle:
+        candidate = Path(args.bundle)
+        if not candidate.is_absolute():
+            candidate = (root / candidate).resolve()
+        if not candidate.exists():
+            print(f"Missing bundle path: {candidate}")
+            return 1
+        bundle_path = str(candidate)
+        verification_mode = "offline_bundle"
     token, auth_source = _discover_github_token(root, env_file=args.env_file)
     if token:
         # gh uses GH_TOKEN; keep auth source in report and avoid printing token values.
@@ -210,6 +276,9 @@ def main() -> int:
         _verify_subject(
             subject=subject,
             repository=repository,
+            signer_workflow=signer_workflow,
+            predicate_type=predicate_type,
+            bundle_path=bundle_path,
             retries=args.retries,
             retry_delay=args.retry_delay,
         )
@@ -220,6 +289,15 @@ def main() -> int:
     report: dict[str, Any] = {
         "generated_utc": dt.datetime.now(dt.timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ"),
         "repository": repository,
+        "identity": {
+            "repository": repository,
+            "signer_workflow": signer_workflow,
+            "predicate_type": predicate_type,
+        },
+        "verification": {
+            "mode": verification_mode,
+            "bundle_path": bundle_path,
+        },
         "auth": {
             "token_detected": bool(token),
             "source": auth_source,
@@ -253,6 +331,11 @@ def main() -> int:
     out_path.write_text(json.dumps(report, indent=2) + "\n", encoding="utf-8")
 
     print(f"Repository: {repository}")
+    print(
+        "Identity policy: "
+        f"signer_workflow={signer_workflow} predicate_type={predicate_type}"
+    )
+    print(f"Verification mode: {verification_mode}")
     print(f"Auth token detected: {bool(token)} (source: {auth_source})")
     for row in results:
         print(

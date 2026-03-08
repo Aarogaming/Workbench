@@ -5,6 +5,13 @@ on:
     - cron: "0 8 * * *"
   workflow_dispatch:
 
+permissions:
+  contents: read
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+
 jobs:
   nightly-evals:
     runs-on: ubuntu-latest
@@ -31,6 +38,14 @@ jobs:
       - name: Eval report
         run: python3 scripts/eval_report.py --baseline evals/baselines/main.json
 
+      - name: Generate artifact digest report
+        run: |
+          python3 scripts/generate_artifact_digest_report.py \
+            --source "nightly-evals" \
+            --artifact eval_report_json=docs/reports/eval_report.json \
+            --artifact eval_report_md=docs/reports/eval_report.md \
+            --output docs/reports/artifact_digest_report.json
+
       - name: Attest eval artifacts (public repos)
         if: ${{ github.event.repository.private == false }}
         uses: actions/attest-build-provenance@96278af6caaf10aea03fd8d33a09a777ca52d62f # v3.2.0
@@ -46,3 +61,45 @@ jobs:
           path: |
             docs/reports/eval_report.json
             docs/reports/eval_report.md
+            docs/reports/artifact_digest_report.json
+          retention-days: 30
+
+      - name: Generate run summary
+        if: ${{ failure() || cancelled() }}
+        run: |
+          python3 scripts/generate_run_summary.py \
+            --phase CP4-A \
+            --cycle-id CHIMERA-V2-RESEARCH-AND-EXECUTION-2026-02-15 \
+            --repo "${{ github.repository }}" \
+            --workflow "${{ github.workflow }}" \
+            --run-id "${{ github.run_id }}" \
+            --run-attempt "${{ github.run_attempt }}" \
+            --head-sha "${{ github.sha }}" \
+            --job-status "${{ job.status }}" \
+            --failure-taxonomy "$(python3 scripts/select_failure_taxonomy.py --workflow "${{ github.workflow }}" --job "${{ github.job }}")" \
+            --failing-job "nightly-evals" \
+            --failing-step "see job logs" \
+            --next-owner "lane-evals" \
+            --incident-id "CUTOVER-${{ github.run_id }}" \
+            --output-dir run_summary
+
+      - name: Validate run summary
+        if: ${{ failure() || cancelled() }}
+        run: python3 scripts/validate_run_summary.py --path run_summary/run_summary.json
+
+      - name: Upload run summary artifact
+        if: ${{ failure() || cancelled() }}
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4.6.2
+        with:
+          name: run-summary-nightly-evals
+          path: |
+            run_summary/run_summary.json
+            run_summary/run_summary.md
+          retention-days: 7
+
+      - name: Cancellation-safe cleanup dry-run
+        if: ${{ cancelled() }}
+        run: python3 scripts/clean_cutover_artifacts.py --retention-class short --dry-run
+
+  forge-gates:
+    uses: ./.github/workflows/reusable-forge-gates.yml

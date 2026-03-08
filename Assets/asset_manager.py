@@ -1,17 +1,21 @@
 import json
-import os
 import shutil
+from pathlib import Path
+
+WORKBENCH_ROOT = Path(__file__).resolve().parents[1]
 
 
 class AssetManager:
     def __init__(self, index_path="asset_index.json"):
-        self.index_path = index_path
+        path = Path(index_path)
+        if not path.is_absolute():
+            path = WORKBENCH_ROOT / path
+        self.index_path = path
         self.assets = self._load_index()
 
     def _load_index(self):
-        if os.path.exists(self.index_path):
-            with open(self.index_path, "r") as f:
-                return json.load(f)
+        if self.index_path.exists():
+            return json.loads(self.index_path.read_text(encoding="utf-8"))
         return []
 
     def find_assets(self, query):
@@ -25,11 +29,12 @@ class AssetManager:
     def request_asset(self, asset_name, destination):
         for asset in self.assets:
             if asset["name"] == asset_name:
-                src = asset["path"]
-                if os.path.exists(src):
-                    os.makedirs(destination, exist_ok=True)
-                    shutil.copy2(src, os.path.join(destination, asset_name))
-                    print(f"Asset {asset_name} delivered to {destination}")
+                src = WORKBENCH_ROOT / asset["path"]
+                if src.exists():
+                    destination_path = Path(destination)
+                    destination_path.mkdir(parents=True, exist_ok=True)
+                    shutil.copy2(src, destination_path / asset_name)
+                    print(f"Asset {asset_name} delivered to {destination_path}")
                     return True
         print(f"Asset {asset_name} not found.")
         return False

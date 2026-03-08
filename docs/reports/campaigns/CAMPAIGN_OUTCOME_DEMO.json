@@ -1,0 +1,16 @@
+{
+  "schemaName": "WorkbenchCampaignOutcome",
+  "schemaVersion": "1.0.0",
+  "generated_utc": "2026-02-19T06:26:22Z",
+  "campaign": {
+    "id": "WB-CAMPAIGN-DEMO",
+    "owner_lane": "A0",
+    "trace_path": ""
+  },
+  "terminal_outcome": "complete",
+  "summary": "demo pass",
+  "changed_paths": [],
+  "hard_block": {
+    "required_unblock_inputs": []
+  }
+}

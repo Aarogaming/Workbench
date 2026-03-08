@@ -1,0 +1,41 @@
+{
+  "overall_status": "PASS",
+  "checks": [
+    {
+      "index": 1,
+      "command": "python3 -m pytest -q tests/test_merlin_research_manager_consumer.py",
+      "status": "PASS",
+      "returncode": 0,
+      "output_summary": "============================= test session starts ==============================\nplatform linux -- Python 3.12.3, pytest-9.0.2, pluggy-1.6.0\nrootdir: /mnt/c/Dev library/AaroneousAutomationSuite\nconfigfile: pytest.ini\nplugins: cov-7.0.0, anyio-4.2.0\ncollected 7 items\n\ntests/test_merlin_research_manager_consumer.py .......                   [100%]\n\n============================== 7 passed in 0.73s ==============================="
+    },
+    {
+      "index": 2,
+      "command": "python3 -m pytest -q tests/test_merlin_research_manager_consumer.py -k test_envelope_builders_emit_create_signal_brief_operations",
+      "status": "PASS",
+      "returncode": 0,
+      "output_summary": "============================= test session starts ==============================\nplatform linux -- Python 3.12.3, pytest-9.0.2, pluggy-1.6.0\nrootdir: /mnt/c/Dev library/AaroneousAutomationSuite\nconfigfile: pytest.ini\nplugins: cov-7.0.0, anyio-4.2.0\ncollected 7 items / 6 deselected / 1 selected\n\ntests/test_merlin_research_manager_consumer.py .                         [100%]\n\n======================= 1 passed, 6 deselected in 0.44s ========================"
+    },
+    {
+      "index": 3,
+      "command": "python3 -m pytest -q tests/test_merlin_research_manager_consumer.py -k \"test_read_only_error_selects_non_mutating_fallback or test_validation_error_maps_to_expected_fallback\"",
+      "status": "PASS",
+      "returncode": 0,
+      "output_summary": "============================= test session starts ==============================\nplatform linux -- Python 3.12.3, pytest-9.0.2, pluggy-1.6.0\nrootdir: /mnt/c/Dev library/AaroneousAutomationSuite\nconfigfile: pytest.ini\nplugins: cov-7.0.0, anyio-4.2.0\ncollected 7 items / 5 deselected / 2 selected\n\ntests/test_merlin_research_manager_consumer.py ..                        [100%]\n\n======================= 2 passed, 5 deselected in 0.42s ========================"
+    },
+    {
+      "index": 4,
+      "command": "python3 - <<'PY'\nimport json, requests\nfrom pathlib import Path\np=Path('artifacts/diagnostics/merlin_capabilities_live_2026-02-18.json'); p.parent.mkdir(parents=True, exist_ok=True)\np.write_text(json.dumps(requests.get('http://localhost:8001/merlin/operations/capabilities', headers={'X-Merlin-Key':'merlin-secret-key'}, timeout=20).json(), indent=2)+'\\n', encoding='utf-8')\nprint(p.as_posix())\nPY",
+      "status": "PASS",
+      "returncode": 0,
+      "output_summary": "artifacts/diagnostics/merlin_capabilities_live_2026-02-18.json",
+      "mock_server_status": "mock_server_exit_code=0"
+    },
+    {
+      "index": 5,
+      "command": "python3 scripts/merlin_research_manager_consumer.py --capabilities-json artifacts/diagnostics/merlin_capabilities_live_2026-02-18.json",
+      "status": "PASS",
+      "returncode": 0,
+      "output_summary": "{\n  \"capability_gate\": {\n    \"research_manager_enabled\": true,\n    \"selected_path\": \"research_manager\",\n    \"reason\": \"research_manager_capabilities_available\",\n    \"available_operations\": [\n      \"merlin.research.manager.brief.get\",\n      \"merlin.research.manager.session.create\",\n      \"merlin.research.manager.session.get\",\n      \"merlin.research.manager.session.signal.add\",\n      \"merlin.research.manager.sessions.list\"\n    ],\n    \"available_optional_operations\": [\n      \"merlin.research.manager.session.signal.add\",\n      \"merlin.research.manager.sessions.list\"\n    ],\n    \"missing_core_operations\": []\n  }\n}"
+    }
+  ]
+}

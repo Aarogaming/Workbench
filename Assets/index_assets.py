@@ -1,38 +1,48 @@
-import os
 import json
-import hashlib
+import os
+from pathlib import Path
+
+WORKBENCH_ROOT = Path(__file__).resolve().parents[1]
+DEFAULT_EXTENSIONS = {".zip", ".7z", ".exe", ".url", ".txt"}
 
 
-def get_file_size(path):
+def get_file_size(path: Path) -> int:
     try:
-        return os.path.getsize(path)
-    except:
+        return path.stat().st_size
+    except OSError:
         return 0
 
 
-def generate_index(root_dir):
-    asset_index = []
-    for root, dirs, files in os.walk(root_dir):
-        if "tools" in root or ".git" in root:
-            continue
-        for file in files:
-            if file.endswith((".zip", ".7z", ".exe", ".url", ".txt")):
-                full_path = os.path.join(root, file)
-                rel_path = os.path.relpath(full_path, root_dir)
-                asset_index.append(
-                    {
-                        "name": file,
-                        "path": rel_path.replace("\\", "/"),
-                        "size": get_file_size(full_path),
-                        "category": (
-                            rel_path.split(os.sep)[0] if os.sep in rel_path else "Root"
-                        ),
-                        "extension": os.path.splitext(file)[1].lower(),
-                    }
-                )
+def resolve_root_dir(root_dir: str) -> Path:
+    candidate = (root_dir or ".").strip()
+    if candidate in {"", "."}:
+        return WORKBENCH_ROOT
+    return Path(candidate).resolve()
 
-    with open("asset_index.json", "w") as f:
-        json.dump(asset_index, f, indent=4)
+
+def generate_index(root_dir: str = "."):
+    root_path = resolve_root_dir(root_dir)
+    asset_index = []
+    for root, dirs, files in os.walk(root_path):
+        dirs[:] = [d for d in dirs if d.casefold() not in {"tools", ".git"}]
+        for file in files:
+            full_path = Path(root) / file
+            if full_path.suffix.lower() not in DEFAULT_EXTENSIONS:
+                continue
+            rel_path = full_path.relative_to(root_path)
+            category = rel_path.parts[0] if len(rel_path.parts) > 1 else "Root"
+            asset_index.append(
+                {
+                    "name": file,
+                    "path": str(rel_path).replace("\\", "/"),
+                    "size": get_file_size(full_path),
+                    "category": category,
+                    "extension": full_path.suffix.lower(),
+                }
+            )
+
+    target = root_path / "asset_index.json"
+    target.write_text(json.dumps(asset_index, indent=2), encoding="utf-8")
     print(f"Indexed {len(asset_index)} assets.")
 
 

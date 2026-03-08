@@ -5,7 +5,16 @@ on:
     branches: [main, master]
   pull_request:
     branches: [main, master]
+  merge_group:
+    branches: [main, master]
   workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
 
 jobs:
   python-smoke:
@@ -36,6 +45,9 @@ jobs:
       - name: Unit tests
         run: pytest -q
 
+      - name: Validate committed run summaries
+        run: python3 scripts/check_committed_run_summaries.py
+
       - name: Plugin contract audit
         run: python3 scripts/check_plugin_contracts.py
 
@@ -45,8 +57,131 @@ jobs:
       - name: Workflow pinning exceptions review
         run: python3 scripts/check_workflow_pinning_exceptions.py
 
+      - name: CHIMERA packet docs check
+        run: python3 scripts/check_chimera_packets.py
+
+      - name: Suggestions bin status check
+        run: python3 scripts/check_suggestions_bin_status.py
+
+      - name: Operations NIST mapping check
+        run: python3 scripts/check_operations_nist_mapping.py
+
+      - name: SSDF quality-gate mapping check
+        run: python3 scripts/check_ssdf_quality_gate_mapping.py
+
+      - name: DORA reliability scoreboard check
+        run: python3 scripts/check_dora_reliability_scoreboard.py
+
+      - name: Campaign wave policy check
+        run: python3 scripts/check_campaign_wave_policy.py
+
+      - name: OpenAI async policy check
+        run: python3 scripts/check_openai_async_policy.py
+
+      - name: JetStream/OpenAI campaign guardrails policy check
+        run: python3 scripts/check_jetstream_openai_campaign_policy.py
+
+      - name: Workflow CodeQL/matrix guardrails policy check
+        run: python3 scripts/check_workflow_codeql_matrix_policy.py
+
+      - name: Reusable workflow governance policy check
+        run: python3 scripts/check_reusable_workflow_governance_policy.py
+
+      - name: JetStream consumer/OpenAI loop policy check
+        run: python3 scripts/check_jetstream_consumer_openai_loop_policy.py
+
+      - name: Dependency review policy check
+        run: python3 scripts/check_dependency_review_policy.py
+
+      - name: Merge queue readiness check
+        run: python3 scripts/check_merge_queue_readiness.py
+
+      - name: Merge/ruleset/deployment guardrails check
+        run: python3 scripts/check_merge_ruleset_deployment_guardrails.py
+
+      - name: Event resilience policy check
+        run: python3 scripts/check_event_resilience_policy.py
+
+      - name: Async eval/handoff policy check
+        run: python3 scripts/check_async_eval_handoff_policy.py
+
+      - name: Release/supply-chain policy check
+        run: python3 scripts/check_release_supply_chain_policy.py
+
+      - name: CICD telemetry policy check
+        run: python3 scripts/check_cicd_telemetry_policy.py
+
+      - name: Workflow run-summary wiring check
+        run: python3 scripts/check_workflow_run_summary_wiring.py
+
+      - name: Workflow operator handoff/recovery policy check
+        run: python3 scripts/check_workflow_operator_handoff_policy.py
+
+      - name: Workflow concurrency check
+        run: python3 scripts/check_workflow_concurrency.py
+
+      - name: Workflow permissions policy check
+        run: python3 scripts/check_workflow_permissions_policy.py
+
+      - name: Attestation preflight wiring check
+        run: python3 scripts/check_attestation_preflight_wiring.py
+
+      - name: Attestation identity wiring check
+        run: python3 scripts/check_attestation_identity_wiring.py
+
+      - name: Attestation offline wiring check
+        run: python3 scripts/check_attestation_offline_wiring.py
+
+      - name: Artifact digest wiring check
+        run: python3 scripts/check_artifact_digest_wiring.py
+
+      - name: Artifact retention policy check
+        run: python3 scripts/check_artifact_retention_policy.py
+
+      - name: CP4-B SLA check
+        run: python3 scripts/check_cp4b_sla.py
+
+      - name: Validate fetch index artifacts
+        run: python3 scripts/validate_fetch_index.py
+
       - name: Eval report
         run: python3 scripts/eval_report.py --baseline evals/baselines/main.json
 
       - name: Workspace index audit (enforced drift)
         run: python scripts/validate_workspace_index.py --suite-root .. --strict-enforced-only --ignore-cross-repo-warnings --ignore-submodule-dirty --ignore-submodule-ahead
+
+      - name: Generate run summary
+        if: ${{ failure() || cancelled() }}
+        run: |
+          python3 scripts/generate_run_summary.py \
+            --phase CP4-A \
+            --cycle-id CHIMERA-V2-RESEARCH-AND-EXECUTION-2026-02-15 \
+            --repo "${{ github.repository }}" \
+            --workflow "${{ github.workflow }}" \
+            --run-id "${{ github.run_id }}" \
+            --run-attempt "${{ github.run_attempt }}" \
+            --head-sha "${{ github.sha }}" \
+            --job-status "${{ job.status }}" \
+            --failure-taxonomy "$(python3 scripts/select_failure_taxonomy.py --workflow "${{ github.workflow }}" --job "${{ github.job }}")" \
+            --failing-job "python-smoke" \
+            --failing-step "see job logs" \
+            --next-owner "lane-workbench" \
+            --incident-id "CUTOVER-${{ github.run_id }}" \
+            --output-dir run_summary
+
+      - name: Validate run summary
+        if: ${{ failure() || cancelled() }}
+        run: python3 scripts/validate_run_summary.py --path run_summary/run_summary.json
+
+      - name: Upload run summary artifact
+        if: ${{ failure() || cancelled() }}
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4.6.2
+        with:
+          name: run-summary-python-smoke
+          path: |
+            run_summary/run_summary.json
+            run_summary/run_summary.md
+          retention-days: 7
+
+  forge-gates:
+    uses: ./.github/workflows/reusable-forge-gates.yml

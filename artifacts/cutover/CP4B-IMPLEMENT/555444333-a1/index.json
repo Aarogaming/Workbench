@@ -1,0 +1,23 @@
+{
+  "schema_version": "cp2.fetch_index.v1",
+  "generated_at_utc": "2026-02-17T05:32:18Z",
+  "repo": "owner/repo",
+  "run_id": "555444333",
+  "incident_id": "CUTOVER-CP4B-IMPLEMENT",
+  "run_attempt": 1,
+  "dry_run": true,
+  "artifacts": [
+    {
+      "class": "eval",
+      "artifact_name": "nightly-eval-report",
+      "status": "dry-run",
+      "dir": "artifacts/cutover/CP4B-IMPLEMENT/555444333-a1/eval"
+    },
+    {
+      "class": "policy",
+      "artifact_name": "workflow-policy-reports",
+      "status": "dry-run",
+      "dir": "artifacts/cutover/CP4B-IMPLEMENT/555444333-a1/policy"
+    }
+  ]
+}

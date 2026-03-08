@@ -5,8 +5,15 @@ on:
     - cron: "30 1 * * 6"
   workflow_dispatch:
 
+permissions:
+  contents: read
+
 jobs:
   scorecards:
+    permissions:
+      contents: read
+      security-events: write
+      id-token: write
     uses: ./.github/workflows/reusable-scorecards.yml
     with:
       repository: ${{ github.repository }}

@@ -1,0 +1,9 @@
+repo=owner/repo
+run_id=246813579
+incident_id=CUTOVER-2026-02-15-IMPLEMENT
+run_attempt=2
+dry_run=1
+classes=eval,attestations,policy
+class=eval artifact=nightly-eval-report status=dry-run dir=artifacts/cutover/CUTOVER-2026-02-15-IMPLEMENT/246813579-a2/eval
+class=attestations artifact=attestation-verify-report status=dry-run dir=artifacts/cutover/CUTOVER-2026-02-15-IMPLEMENT/246813579-a2/attestations
+class=policy artifact=workflow-policy-reports status=dry-run dir=artifacts/cutover/CUTOVER-2026-02-15-IMPLEMENT/246813579-a2/policy

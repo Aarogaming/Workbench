@@ -1,0 +1,7 @@
+repo=owner/repo
+run_id=123456789
+dry_run=1
+classes=eval,attestations,policy
+class=eval artifact=nightly-eval-report status=dry-run dir=artifacts/cutover/CP4A-CANARY/123456789-a1/eval
+class=attestations artifact=attestation-verify-report status=dry-run dir=artifacts/cutover/CP4A-CANARY/123456789-a1/attestations
+class=policy artifact=workflow-policy-reports status=dry-run dir=artifacts/cutover/CP4A-CANARY/123456789-a1/policy

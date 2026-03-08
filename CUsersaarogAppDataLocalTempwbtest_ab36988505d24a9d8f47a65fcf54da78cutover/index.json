@@ -1,0 +1,17 @@
+{
+  "schema_version": "cp2.fetch_index.v1",
+  "generated_at_utc": "2026-03-06T01:47:29Z",
+  "repo": "owner/repo",
+  "run_id": "12345",
+  "incident_id": "CUTOVER-TEST-002",
+  "run_attempt": 3,
+  "dry_run": true,
+  "artifacts": [
+    {
+      "class": "eval",
+      "artifact_name": "nightly-eval-report",
+      "status": "dry-run",
+      "dir": "C:UsersaarogAppDataLocalTempwbtest_ab36988505d24a9d8f47a65fcf54da78cutover/eval"
+    }
+  ]
+}

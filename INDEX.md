@@ -8,6 +8,8 @@
 - `./RUNBOOK.md`
 - `./protocols/AGENT_INTEROP_V1.md`
 - `./docs/OPERATIONS.md`
+- `./docs/SUGGESTIONS_BIN.md`
+- `./docs/WORKBENCH_LONG_TERM_ROADMAP.md`
 - `./docs/PLUGIN_CONTRACT_OWNERSHIP.md`
 - `./docs/reports/workspace_index_audit.md`
 - `./docs/reports/workspace_neighbor_audit.md`
@@ -18,6 +20,7 @@
 - `./docs/reports/scorecard_threshold_audit.json`
 - `./docs/reports/attestation_verify_report.json`
 - `./docs/reports/scorecard_history.md`
+- `./docs/reports/suggestions_bin.json`
 
 ## Core configs
 

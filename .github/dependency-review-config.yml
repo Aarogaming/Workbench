@@ -1,0 +1,7 @@
+fail-on-severity: high
+fail-on-scopes:
+  - runtime
+  - unknown
+deny-packages:
+  - pkg:pypi/setuptools
+  - pkg:npm/event-stream

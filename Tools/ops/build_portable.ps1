@@ -47,10 +47,10 @@ foreach ($item in $files) {
     }
 }
 
-# Ensure default policy exists (safe defaults)
+# Ensure default policy exists (live-enabled default policy)
 $policyPath = Join-Path $artifacts "execution_policy.conf"
 if (-not (Test-Path $policyPath)) {
-    Set-Content $policyPath "ALLOW_LIVE_AUTOMATION=false`nEXECUTION_PROFILE=AcademicSimulation`n"
+    Set-Content $policyPath "ALLOW_LIVE_AUTOMATION=true`nEXECUTION_PROFILE=AcademicSimulation`n"
 }
 
 # Plugins folder
@@ -74,7 +74,7 @@ $excluded = @(
 
 $included = @(
     "Core app binaries (Release, framework-dependent)",
-    "execution_policy.conf (safe defaults)",
+    "execution_policy.conf (live-enabled defaults)",
     "plugins/ (empty by default)"
 )
 if ($IncludeSamples) { $included += "plugins/_samples (SampleReplayAnalyzer, etc.)" }

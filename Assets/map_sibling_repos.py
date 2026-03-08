@@ -1,5 +1,6 @@
 import os
 import json
+from pathlib import Path
 
 
 def map_siblings(dev_library_path):
@@ -44,4 +45,6 @@ def map_siblings(dev_library_path):
 
 
 if __name__ == "__main__":
-    map_siblings("d:\\Dev library\\AaroneousAutomationSuite")
+    # Default to Dev Library root (3 levels up from Workbench/Assets)
+    default_path = str(Path(__file__).resolve().parents[3])
+    map_siblings(default_path)

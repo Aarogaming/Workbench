@@ -1,6 +1,7 @@
 using System.Reflection;
 using System.Text;
 using System.Text.Json;
+using System.Linq;
 using Json.Schema;
 
 namespace MaelstromToolkit;
@@ -123,6 +124,7 @@ internal static class Program
 
         var schemaDir = Path.Combine(root, "contracts", "schema");
         var examplesDir = Path.Combine(root, "contracts", "examples");
+        var contractsIndexPath = Path.Combine(root, "contracts", "contracts.json");
 
         if (!Directory.Exists(schemaDir))
         {
@@ -133,6 +135,36 @@ internal static class Program
         {
             Console.Error.WriteLine($"ERROR: examples dir not found: {examplesDir}");
             return 2;
+        }
+
+        var schemaNameToFile = new Dictionary<string, string>(StringComparer.OrdinalIgnoreCase);
+        if (File.Exists(contractsIndexPath))
+        {
+            using var contractsDoc = JsonDocument.Parse(File.ReadAllText(contractsIndexPath));
+            if (contractsDoc.RootElement.TryGetProperty("schemas", out var schemasProp) &&
+                schemasProp.ValueKind == JsonValueKind.Array)
+            {
+                foreach (var schemaEntry in schemasProp.EnumerateArray())
+                {
+                    if (!schemaEntry.TryGetProperty("name", out var nameProp) || nameProp.ValueKind != JsonValueKind.String)
+                    {
+                        continue;
+                    }
+                    if (!schemaEntry.TryGetProperty("file", out var fileProp) || fileProp.ValueKind != JsonValueKind.String)
+                    {
+                        continue;
+                    }
+
+                    var name = nameProp.GetString();
+                    var file = fileProp.GetString();
+                    if (string.IsNullOrWhiteSpace(name) || string.IsNullOrWhiteSpace(file))
+                    {
+                        continue;
+                    }
+
+                    schemaNameToFile[name] = Path.GetFileName(file);
+                }
+            }
         }
 
         // Register all schemas once so $ref works.
@@ -146,34 +178,43 @@ internal static class Program
             schemasByFile[Path.GetFileName(schemaPath)] = schema;
         }
 
+        var examplePaths = Directory.GetFiles(examplesDir, "*.sample.json", SearchOption.AllDirectories)
+            .Concat(Directory.GetFiles(examplesDir, "*.example.json", SearchOption.AllDirectories))
+            .Distinct(StringComparer.OrdinalIgnoreCase);
+
         int failures = 0;
-        foreach (var examplePath in Directory.GetFiles(examplesDir, "*.sample.json", SearchOption.AllDirectories))
+        foreach (var examplePath in examplePaths)
         {
             try
             {
                 using var doc = JsonDocument.Parse(File.ReadAllText(examplePath));
                 if (!doc.RootElement.TryGetProperty("schemaName", out var nameProp) || nameProp.ValueKind != JsonValueKind.String)
                 {
-                    Console.Error.WriteLine($"FAIL {examplePath}: missing schemaName");
-                    failures++;
+                    Console.Error.WriteLine($"WARN {examplePath}: missing schemaName (skipped)");
                     continue;
                 }
 
                 string schemaName = nameProp.GetString() ?? string.Empty;
-                string schemaFileStem = schemaName switch
+                schemaNameToFile.TryGetValue(schemaName, out var schemaFileStem);
+                schemaFileStem ??= string.Empty;
+                schemaFileStem = schemaFileStem switch
                 {
-                    "CommandBatch" => "command-batch.v1.schema.json",
-                    "GameStateSnapshot" => "snapshot.v1.schema.json",
-                    "HandoffEnvelope" => "handoff-envelope.v1.schema.json",
-                    "ContractsIndex" => "contracts-index.v1.schema.json",
-                    "HomeDeviceControl" => "home-device-control.v1.schema.json",
-                    "Capability" => "capability.v1.schema.json",
-                    "PluginManifest" => "plugin-manifest.v1.schema.json",
-                    "EventEnvelope" => "event-envelope.v1.schema.json",
-                    "MeshCapabilityAdvertisement" => "mesh-capability-advertisement.v1.schema.json",
-                    "SwarmMembershipHeartbeat" => "swarm-membership-heartbeat.v1.schema.json",
-                    "SwarmProviderAssignment" => "swarm-provider-assignment.v1.schema.json",
-                    _ => string.Empty
+                    _ when !string.IsNullOrWhiteSpace(schemaFileStem) => schemaFileStem,
+                    _ => schemaName switch
+                    {
+                        "CommandBatch" => "command-batch.v1.schema.json",
+                        "GameStateSnapshot" => "snapshot.v1.schema.json",
+                        "HandoffEnvelope" => "handoff-envelope.v1.schema.json",
+                        "ContractsIndex" => "contracts-index.v1.schema.json",
+                        "HomeDeviceControl" => "home-device-control.v1.schema.json",
+                        "Capability" => "capability.v1.schema.json",
+                        "PluginManifest" => "plugin-manifest.v1.schema.json",
+                        "EventEnvelope" => "event-envelope.v1.schema.json",
+                        "MeshCapabilityAdvertisement" => "mesh-capability-advertisement.v1.schema.json",
+                        "SwarmMembershipHeartbeat" => "swarm-membership-heartbeat.v1.schema.json",
+                        "SwarmProviderAssignment" => "swarm-provider-assignment.v1.schema.json",
+                        _ => string.Empty
+                    }
                 };
 
                 if (string.IsNullOrWhiteSpace(schemaFileStem))

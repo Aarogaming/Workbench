@@ -1,16 +1,22 @@
 import json
-import os
 import shutil
+from pathlib import Path
+
+WORKBENCH_ROOT = Path(__file__).resolve().parents[1]
 
 
 def create_quick_start(root_dir):
-    index_path = "asset_index.json"
-    if not os.path.exists(index_path):
+    root_path = (
+        WORKBENCH_ROOT
+        if str(root_dir).strip() in {"", "."}
+        else Path(root_dir).resolve()
+    )
+    index_path = root_path / "asset_index.json"
+    if not index_path.exists():
         print("Index not found.")
         return
 
-    with open(index_path, "r") as f:
-        assets = json.load(f)
+    assets = json.loads(index_path.read_text(encoding="utf-8"))
 
     # Curated list of "essential" assets
     essentials = [
@@ -22,15 +28,15 @@ def create_quick_start(root_dir):
         "200 Ultimate Fonts Bundle",
     ]
 
-    qs_dir = os.path.join(root_dir, "QuickStart")
-    os.makedirs(qs_dir, exist_ok=True)
+    qs_dir = root_path / "QuickStart"
+    qs_dir.mkdir(parents=True, exist_ok=True)
 
     for asset in assets:
         if any(e in asset["name"] for e in essentials):
-            src = asset["path"]
-            if os.path.exists(src):
+            src = root_path / asset["path"]
+            if src.exists():
                 print(f"Adding to QuickStart: {asset['name']}")
-                shutil.copy2(src, os.path.join(qs_dir, asset["name"]))
+                shutil.copy2(src, qs_dir / asset["name"])
 
 
 if __name__ == "__main__":

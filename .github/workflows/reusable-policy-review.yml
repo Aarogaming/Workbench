@@ -10,6 +10,13 @@ on:
         required: true
         type: boolean
 
+permissions:
+  contents: read
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+
 jobs:
   workflow-policy-review:
     runs-on: ubuntu-latest
@@ -49,3 +56,41 @@ jobs:
             docs/reports/scorecard_threshold_audit.json
             docs/reports/scorecard_history.json
             docs/reports/scorecard_history.md
+          retention-days: 30
+
+      - name: Generate run summary
+        if: ${{ failure() || cancelled() }}
+        run: |
+          python3 scripts/generate_run_summary.py \
+            --phase CP4-A \
+            --cycle-id CHIMERA-V2-RESEARCH-AND-EXECUTION-2026-02-15 \
+            --repo "${{ inputs.repository }}" \
+            --workflow "${{ github.workflow }}" \
+            --run-id "${{ github.run_id }}" \
+            --run-attempt "${{ github.run_attempt }}" \
+            --head-sha "${{ github.sha }}" \
+            --job-status "${{ job.status }}" \
+            --failure-taxonomy "$(python3 scripts/select_failure_taxonomy.py --workflow "${{ github.workflow }}" --job "${{ github.job }}")" \
+            --failing-job "workflow-policy-review" \
+            --failing-step "see job logs" \
+            --next-owner "lane-policy" \
+            --incident-id "CUTOVER-${{ github.run_id }}" \
+            --output-dir run_summary
+
+      - name: Validate run summary
+        if: ${{ failure() || cancelled() }}
+        run: python3 scripts/validate_run_summary.py --path run_summary/run_summary.json
+
+      - name: Upload run summary artifact
+        if: ${{ failure() || cancelled() }}
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4.6.2
+        with:
+          name: run-summary-policy-review
+          path: |
+            run_summary/run_summary.json
+            run_summary/run_summary.md
+          retention-days: 7
+
+      - name: Cancellation-safe cleanup dry-run
+        if: ${{ cancelled() }}
+        run: python3 scripts/clean_cutover_artifacts.py --retention-class short --dry-run

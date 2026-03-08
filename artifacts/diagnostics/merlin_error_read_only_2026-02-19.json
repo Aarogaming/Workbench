@@ -1,0 +1,6 @@
+{
+  "error": {
+    "code": "RESEARCH_MANAGER_READ_ONLY",
+    "message": "Session state is read-only during cutover"
+  }
+}

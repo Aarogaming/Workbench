@@ -8,6 +8,8 @@ from typing import Any, Dict, List
 from core.plugin_manifest import get_hive_metadata
 from loguru import logger
 
+DEFAULT_ROOT = Path(__file__).resolve().parents[2]
+
 DEFAULT_EXTENSIONS = (
     ".zip",
     ".7z",
@@ -53,15 +55,22 @@ def _get_file_size(path: Path) -> int:
         return 0
 
 
+def _resolve_root_dir(root_dir: str) -> Path:
+    candidate = (root_dir or ".").strip()
+    if candidate in {"", "."}:
+        return DEFAULT_ROOT
+    return Path(candidate).resolve()
+
+
 def _index_assets(root_dir: Path, extensions: tuple[str, ...]) -> List[Dict[str, Any]]:
     asset_index: List[Dict[str, Any]] = []
+    allowed_extensions = {ext.lower() for ext in extensions}
     for root, dirs, files in os.walk(root_dir):
-        if "tools" in root or ".git" in root:
-            continue
+        dirs[:] = [d for d in dirs if d.casefold() not in {"tools", ".git"}]
         for file in files:
-            if not file.endswith(extensions):
-                continue
             full_path = Path(root) / file
+            if full_path.suffix.lower() not in allowed_extensions:
+                continue
             rel_path = full_path.relative_to(root_dir)
             asset_index.append(
                 {
@@ -91,7 +100,7 @@ class Plugin:
         output_path: str = "asset_index.json",
         extensions: List[str] | None = None,
     ) -> Dict[str, Any]:
-        root = Path(root_dir).resolve()
+        root = _resolve_root_dir(root_dir)
         if not root.exists():
             return {"ok": False, "error": f"Root not found: {root}"}
 

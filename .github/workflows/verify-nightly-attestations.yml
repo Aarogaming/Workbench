@@ -10,6 +10,18 @@ on:
         description: "Nightly Evals run id to verify"
         required: true
         type: string
+      offline_bundle_path:
+        description: "Optional local attestation bundle file (.json/.jsonl) for offline verification"
+        required: false
+        default: ""
+        type: string
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
 
 jobs:
   verify-attestations:
@@ -23,6 +35,10 @@ jobs:
       - name: Checkout
         uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
 
+      - name: GH CLI minimum version preflight
+        if: ${{ github.event.repository.private == false }}
+        run: python3 scripts/check_gh_cli_version.py --min-version 2.50.0
+
       - name: Resolve run id
         id: runid
         run: |
@@ -31,6 +47,11 @@ jobs:
           else
             echo "value=${{ github.event.workflow_run.id }}" >> "$GITHUB_OUTPUT"
           fi
+
+      - name: Declare workflow_run trust boundary
+        if: ${{ github.event_name == 'workflow_run' }}
+        run: |
+          echo "::notice::Treat downloaded artifacts and extracted workspace as untrusted until provenance and digest verification completes."
 
       - name: Download nightly eval artifact
         env:
@@ -41,20 +62,81 @@ jobs:
             --name nightly-eval-report \
             --dir attested_artifacts
 
+      - name: Offline bundle preflight
+        if: ${{ github.event_name == 'workflow_dispatch' && inputs.offline_bundle_path != '' }}
+        run: |
+          if [ ! -f "${{ inputs.offline_bundle_path }}" ]; then
+            echo "[fail] offline bundle file not found: ${{ inputs.offline_bundle_path }}"
+            exit 1
+          fi
+          echo "[ok] offline bundle file: ${{ inputs.offline_bundle_path }}"
+
       - name: Verify artifact attestations
         env:
           GH_TOKEN: ${{ github.token }}
         run: |
+          BUNDLE_ARGS=()
+          if [ "${{ github.event_name }}" = "workflow_dispatch" ] && [ -n "${{ inputs.offline_bundle_path }}" ]; then
+            BUNDLE_ARGS+=(--bundle "${{ inputs.offline_bundle_path }}")
+          fi
+
           python3 scripts/verify_attestations.py \
             --repo "${{ github.repository }}" \
+            --signer-workflow "${{ github.repository }}/.github/workflows/nightly-evals.yml" \
+            --predicate-type "https://slsa.dev/provenance/v1" \
             --subject attested_artifacts/eval_report.json \
             --subject attested_artifacts/eval_report.md \
+            "${BUNDLE_ARGS[@]}" \
             --retries 5 \
             --retry-delay 20 \
             --json-out docs/reports/attestation_verify_report.json
+
+      - name: Verify artifact digests
+        run: |
+          python3 scripts/verify_artifact_digests.py \
+            --report attested_artifacts/artifact_digest_report.json \
+            --artifact eval_report_json=attested_artifacts/eval_report.json \
+            --artifact eval_report_md=attested_artifacts/eval_report.md \
+            --json-out docs/reports/artifact_digest_verify_report.json
 
       - name: Upload attestation verify report
         uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4.6.2
         with:
           name: attestation-verify-report
-          path: docs/reports/attestation_verify_report.json
+          path: |
+            docs/reports/attestation_verify_report.json
+            docs/reports/artifact_digest_verify_report.json
+          retention-days: 90
+
+      - name: Generate run summary
+        if: ${{ failure() || cancelled() }}
+        run: |
+          python3 scripts/generate_run_summary.py \
+            --phase CP4-A \
+            --cycle-id CHIMERA-V2-RESEARCH-AND-EXECUTION-2026-02-15 \
+            --repo "${{ github.repository }}" \
+            --workflow "${{ github.workflow }}" \
+            --run-id "${{ github.run_id }}" \
+            --run-attempt "${{ github.run_attempt }}" \
+            --head-sha "${{ github.sha }}" \
+            --job-status "${{ job.status }}" \
+            --failure-taxonomy "$(python3 scripts/select_failure_taxonomy.py --workflow "${{ github.workflow }}" --job "${{ github.job }}")" \
+            --failing-job "verify-attestations" \
+            --failing-step "see job logs" \
+            --next-owner "lane-supply-chain" \
+            --incident-id "CUTOVER-${{ github.run_id }}" \
+            --output-dir run_summary
+
+      - name: Validate run summary
+        if: ${{ failure() || cancelled() }}
+        run: python3 scripts/validate_run_summary.py --path run_summary/run_summary.json
+
+      - name: Upload run summary artifact
+        if: ${{ failure() || cancelled() }}
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4.6.2
+        with:
+          name: run-summary-verify-attestations
+          path: |
+            run_summary/run_summary.json
+            run_summary/run_summary.md
+          retention-days: 7

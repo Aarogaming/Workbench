@@ -1,0 +1,9 @@
+{
+  "schema": "workbench.idempotency_ledger_entry.v1",
+  "operation_id": "OP-2026-02-17-0001",
+  "consumer": "campaign-event-processor",
+  "status": "processed",
+  "first_seen_at_utc": "2026-02-17T00:00:00Z",
+  "processed_at_utc": "2026-02-17T00:00:01Z",
+  "result_ref": "docs/reports/campaigns/sample_consumer_result.json"
+}

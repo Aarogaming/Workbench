@@ -1,0 +1,36 @@
+{
+  "create": {
+    "schema_version": 1,
+    "target_service": "Merlin",
+    "operation": "merlin.research.manager.session.create",
+    "request_id": "req-create-001",
+    "payload": {
+      "objective": "cutover-canary",
+      "context_refs": []
+    }
+  },
+  "signal": {
+    "schema_version": 1,
+    "target_service": "Merlin",
+    "operation": "merlin.research.manager.session.signal.add",
+    "request_id": "req-signal-001",
+    "payload": {
+      "session_id": "sess-001",
+      "signal_type": "operator_check",
+      "signal_payload": {
+        "phase": "cp6",
+        "status": "green"
+      }
+    }
+  },
+  "brief": {
+    "schema_version": 1,
+    "target_service": "Merlin",
+    "operation": "merlin.research.manager.brief.get",
+    "request_id": "req-brief-001",
+    "payload": {
+      "session_id": "sess-001",
+      "format": "summary"
+    }
+  }
+}

@@ -8,11 +8,21 @@ from typing import Any, Dict, List
 from core.plugin_manifest import get_hive_metadata
 from loguru import logger
 
+DEFAULT_ROOT = Path(__file__).resolve().parents[2]
+
+
+def _resolve_root_dir(root_dir: str) -> Path:
+    candidate = (root_dir or ".").strip()
+    if candidate in {"", "."}:
+        return DEFAULT_ROOT
+    return Path(candidate).resolve()
+
 
 def _cleanup_names(root_dir: Path, apply_changes: bool) -> List[Dict[str, Any]]:
     actions: List[Dict[str, Any]] = []
-    for root, _, files in os.walk(root_dir, topdown=False):
-        if "tools" in root or ".git" in root:
+    for root, _, files in os.walk(root_dir):
+        parts = {part.casefold() for part in Path(root).parts}
+        if "tools" in parts or ".git" in parts:
             continue
         for name in files:
             new_name = name.replace("+", " ").replace("%20", " ")
@@ -103,7 +113,7 @@ class Plugin:
         return {"workbench.asset.cleanup": self.cleanup_assets}
 
     def cleanup_assets(self, root_dir: str = ".", apply_changes: bool = False) -> Dict[str, Any]:
-        root = Path(root_dir).resolve()
+        root = _resolve_root_dir(root_dir)
         if not root.exists():
             return {"ok": False, "error": f"Root not found: {root}"}
 

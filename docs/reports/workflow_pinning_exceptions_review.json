@@ -1,6 +1,6 @@
 {
-  "generated_utc": "2026-02-15T10:07:04Z",
-  "exceptions_file": ".github/workflow-pinning-exceptions.json",
+  "generated_utc": "2026-03-06T01:54:37Z",
+  "exceptions_file": ".github\\workflow-pinning-exceptions.json",
   "warn_days": 30,
   "summary": {
     "reviewed_count": 0,

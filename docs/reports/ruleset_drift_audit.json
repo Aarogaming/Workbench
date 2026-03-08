@@ -1,0 +1,8 @@
+{
+  "schema_version": "cp4b.ruleset_drift_audit.v1",
+  "generated_at_utc": "2026-02-17T00:00:00Z",
+  "owner": "lane-governance",
+  "repo": "owner/repo",
+  "drift_detected": false,
+  "notes": "Populate from gh api repos/{owner}/{repo}/rulesets --paginate output each weekly review."
+}
