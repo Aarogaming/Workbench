@@ -1,0 +1,9 @@
+{
+  "required": [
+    { "key": "ASPNETCORE_ENVIRONMENT", "pattern": "^(Development|Staging|Production)$" },
+    { "key": "WORKBENCH_LOG_LEVEL", "pattern": "^(Trace|Debug|Information|Warning|Error|Critical)$" },
+    { "key": "LIBRARY_DISCOVERY_ENDPOINT", "pattern": "^https?://" },
+    { "key": "WORKBENCH_ARTIFACTS_DIR", "pattern": "^.+$" },
+    { "key": "WORKBENCH_ENABLE_TELEMETRY", "pattern": "^(true|false)$" }
+  ]
+}

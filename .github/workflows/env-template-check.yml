@@ -1,0 +1,22 @@
+name: env-template-check
+
+on:
+  pull_request:
+  push:
+    branches: [ main ]
+
+jobs:
+  check-env-template:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Validate .env.example exists and is non-empty
+        run: |
+          test -f .env.example
+          test -s .env.example
+          grep -q "=" .env.example
+
+      - name: Validate env template contract
+        run: python3 scripts/validate_env_contract.py --contract config/env-contract.json --env-file .env.example

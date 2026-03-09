@@ -17,3 +17,20 @@ The canonical documentation lives in the AAS superproject:
 - `Assets/`: Asset tooling (ingestion/index/search)
 - `Tools/`: Developer tools
 - `plugins/`: Workbench plugin modules
+
+## Setup
+
+```bash
+git clone https://github.com/Aarogaming/Workbench.git
+cd Workbench
+cp .env.example .env
+```
+
+## Run
+
+Use the AAS canonical docs and tooling entrypoints to run Workbench tasks for your current workflow.
+
+## Test
+
+Run repository tests and validation from your preferred CI-compatible runner.
+
