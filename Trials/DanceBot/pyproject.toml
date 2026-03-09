@@ -10,7 +10,7 @@ readme = "README.md"
 requires-python = ">=3.9"
 dependencies = [
   "opencv-python==4.8.1.78",
-  "Pillow==10.3.0",
+  "Pillow==12.1.1",
   "PyAutoGUI==0.9.54",
   "PyGetWindow==0.0.9",
   "pynput==1.7.6",
