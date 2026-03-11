@@ -13,6 +13,7 @@ Primary local documentation entry points:
 - `docs/research/CP_RUNBOOK_COMMANDS.md` (quick operator command reference)
 - `docs/research/WORKBENCH_REPO_ADVANCEMENT_RECOMMENDATIONS_2026-02-18.md` (repo-specific advancement recommendation queue and promotion mapping)
 - `docs/research/SUGGESTIONS_BIN_ARCHIVE_2026-02-18.md` (rotated/archived WB-SUG entries moved from active bin)
+- `docs/HEALTH_PROTOCOL_COVERAGE_MAINTENANCE.md` (reusable automation for manager/coordinator health protocol coverage checks and Wave 2 doc refresh)
 - `docs/reports/workspace_index_audit.md` (generated neighbor/index/plugin audit snapshot)
 - `docs/reports/workspace_neighbor_audit.md` (generated full submodule-neighbor context audit snapshot)
 - `docs/reports/workbench_gap_assessment_2026-02-15.md` (assessment + remediation plan)
