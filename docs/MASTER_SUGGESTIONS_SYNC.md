@@ -1,7 +1,7 @@
 # Master Suggestions Synchronization Baseline
 
 Status: Active
-Generated UTC: 2026-02-26T03:13:55Z
+Generated UTC: 2026-03-27T14:41:18Z
 Workspace root: `C:\Dev library\AaroneousAutomationSuite`
 
 ## Purpose
@@ -11,36 +11,35 @@ lane planning, delegation prep, and next roadmap drafting cycles.
 
 ## Summary
 
-- Suggestion documents discovered: **9**
-- Suggestion entries extracted: **1429**
-- Repos with suggestions: **7**
+- Suggestion documents discovered: **7**
+- Suggestion entries extracted: **1116**
+- Repos with suggestions: **5**
 
 ### Risk class distribution
 
-- R0: 79
-- R1: 990
-- R2: 329
+- R0: 61
+- R1: 705
+- R2: 319
 - R3: 31
 
 ### Lane hint distribution
 
-- A: 17
-- B: 18
-- C: 30
-- D: 25
-- E: 41
-- F: 38
-- G: 20
-- H: 18
-- I: 11
-- J: 10
-- unassigned: 1201
+- A: 3
+- B: 8
+- C: 18
+- D: 13
+- E: 29
+- F: 25
+- G: 8
+- H: 6
+- I: 1
+- unassigned: 1005
 
 ### Actionability tier distribution
 
 - high: 68
-- medium: 604
-- low: 757
+- medium: 522
+- low: 526
 
 ### De-duplication summary
 
@@ -57,9 +56,7 @@ lane planning, delegation prep, and next roadmap drafting cycles.
 
 | Repo | Path | Title | Entries |
 |---|---|---|---:|
-| AaroneousAutomationSuite | `docs/research/SUGGESTIONS_BIN.md` | Suggestions Bin | 213 |
 | AndroidApp | `AndroidApp/docs/research/SUGGESTIONS_BIN.md` | Suggestions Bin | 244 |
-| guild | `guild/docs/research/SUGGESTIONS_BIN.md` | Suggestions Bin | 100 |
 | Library | `Library/docs/research/SUGGESTIONS_BIN.md` | Suggestions Bin | 113 |
 | Maelstrom | `Maelstrom/docs/research/SUGGESTIONS_BIN.md` | Suggestions Bin | 139 |
 | Merlin | `Merlin/docs/research/SUGGESTIONS_BIN.md` | Suggestions Bin | 277 |
